@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="../Images/Logo.jpeg" type="image/jpeg">
+<title>Events | Bidii Creek Conservancy</title>
+<meta name="description" content="Bidii Creek Conservancy events calendar: World Mangrove Day, Mazingira Day, World Environment Day and other days we mark with planting and conservation activities.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../Bidii style.css">
+<link rel="stylesheet" href="../CSS/events.css">
+</head>
+<body>
+
+<!-- Header is filled in by Bidii-script.js (same menu on every page) -->
+<header class="site"></header>
+
+<main id="main">
+
+  <!-- ===================================================
+       1. HERO (full screen, styled in Bidii-style.css)
+       =================================================== -->
+  <section class="page-hero" style="background-image: url('../Images/events/hero.jpg')">
+    <h1>Events</h1>
+    <p>Throughout the year we mark environmental and national days with planting, clean-ups and community activities at the creek. Come and join us.</p>
+  </section>
+
+
+  <!-- ===================================================
+       2. CALENDAR (left) + NEXT THREE EVENTS (right)
+       Built by the script below. The 12 days are built in;
+       activities come from data/events.json.
+       =================================================== -->
+  <section class="section" id="calendar" aria-labelledby="cal-heading">
+    <div class="container">
+
+      <div class="section-head">
+        <p class="eyebrow">Events calendar</p>
+        <h2 id="cal-heading">What is coming up</h2>
+        <p>Choose a highlighted date to see the day and the activity we have planned.</p>
+      </div>
+
+      <div class="events-layout">
+
+        <!-- LEFT: calendar -->
+        <div class="cal-card">
+          <div class="cal-head">
+            <button type="button" class="cal-nav" id="calPrev" aria-label="Previous month">&#8249;</button>
+            <h3 class="cal-month" id="calMonth" aria-live="polite"></h3>
+            <button type="button" class="cal-nav" id="calNext" aria-label="Next month">&#8250;</button>
+          </div>
+          <button type="button" class="cal-today" id="calToday">Back to today</button>
+
+          <table class="cal-grid" role="grid" aria-labelledby="calMonth">
+            <thead>
+              <tr>
+                <th scope="col" abbr="Monday">Mon</th>
+                <th scope="col" abbr="Tuesday">Tue</th>
+                <th scope="col" abbr="Wednesday">Wed</th>
+                <th scope="col" abbr="Thursday">Thu</th>
+                <th scope="col" abbr="Friday">Fri</th>
+                <th scope="col" abbr="Saturday">Sat</th>
+                <th scope="col" abbr="Sunday">Sun</th>
+              </tr>
+            </thead>
+            <tbody id="calBody"></tbody>
+          </table>
+
+          <ul class="cal-legend" aria-label="Key">
+            <li><span class="dot env"></span>Environmental day</li>
+            <li><span class="dot national"></span>National day</li>
+            <li><span class="dot planned"></span>Activity planned</li>
+          </ul>
+
+          <!-- Details of the chosen date -->
+          <div class="cal-details" id="calDetails" aria-live="polite"></div>
+        </div>
+
+        <!-- RIGHT: the next three events -->
+        <aside class="upcoming" aria-labelledby="upcoming-title">
+          <h3 class="upcoming-title" id="upcoming-title">Next up</h3>
+          <ol class="upcoming-list" id="upcomingList"></ol>
+        </aside>
+
+      </div>
+
+      <!-- Shown only if data/events.json cannot be loaded -->
+      <p class="events-note" id="eventsNote" hidden>
+        The days are shown, but the planned activities could not be loaded. If you are viewing this page from your computer, open it with <strong>Live Server</strong> in VS Code.
+      </p>
+
+    </div>
+  </section>
+
+
+  <!-- ===================================================
+       3. THE 12 DAYS WE MARK EACH YEAR
+       =================================================== -->
+  <section class="section alt" id="yearly" aria-labelledby="yearly-title">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Every year</p>
+        <h2 id="yearly-title">Days we mark</h2>
+        <p>These are the environmental and national days we celebrate each year. Choose one to see it on the calendar.</p>
+      </div>
+      <ul class="days-grid" id="daysGrid"></ul>
+    </div>
+  </section>
+
+</main>
+
+<!-- Footer is added by Bidii-script.js (same footer on every page) -->
+
+<script src="../Bidii script.js"></script>
+<script>
+/* ==========================================================
+   EVENTS PAGE SCRIPT
+   1. The 12 days marked every year (built in, below)
+   2. Activities added by the admin (data/events.json)
+   3. Calendar with a details panel
+   4. The next three events, highlighted beside the calendar
+   5. The list of all 12 days
+
+   To plan an activity, add it to data/events.json:
+   {
+     "day":         "World Mangrove Day",   (one of the 12 names below)
+     "date":        "2027-07-26",           (year-month-day of the activity)
+     "activity":    "Mangrove planting at the creek",
+     "time":        "8:00 AM - 12:00 PM",
+     "venue":       "Bidii Creek, Jomvu Kuu",
+     "description": "What will happen and what to bring.",
+     "image":       "Images/events/photo.jpg"   (optional)
+   }
+   If "day" is not one of the 12, the activity still appears
+   on the calendar as an event of its own.
+   ========================================================== */
+(function () {
+  "use strict";
+
+  var DATA_FILE = "../data/events.json";
+  var ROOT = "../";
+
+  /* ---------- 1. The 12 days (month is 1-12) ---------- */
+  var DAYS = [
+    { name: "World Wetlands Day",           month: 2,  day: 2,  type: "env",
+      about: "Celebrating wetlands, including the mangroves and creeks that protect our coast." },
+    { name: "World Wildlife Day",           month: 3,  day: 3,  type: "env",
+      about: "Celebrating wild animals and plants, like the birds, crabs and fish that live in the mangroves." },
+    { name: "International Day of Forests", month: 3,  day: 21, type: "env",
+      about: "Raising awareness of every kind of forest, mangrove forests included." },
+    { name: "Labour Day",                   month: 5,  day: 1,  type: "national",
+      about: "Honouring Kenya's workers, including the community members who restore the creek." },
+    { name: "Madaraka Day",                 month: 6,  day: 1,  type: "national",
+      about: "Celebrating the day Kenya attained self-rule." },
+    { name: "World Environment Day",        month: 6,  day: 5,  type: "env",
+      about: "The world's biggest day for action on the environment." },
+    { name: "World Oceans Day",             month: 6,  day: 8,  type: "env",
+      about: "Celebrating the ocean, which healthy mangroves help to protect." },
+    { name: "World Mangrove Day",           month: 7,  day: 26, type: "env",
+      about: "The International Day for the Conservation of the Mangrove Ecosystem: our biggest day of the year." },
+    { name: "Mazingira Day",                month: 10, day: 10, type: "national",
+      about: "Kenya's national day for environmental conservation and tree planting." },
+    { name: "Mashujaa Day",                 month: 10, day: 20, type: "national",
+      about: "Honouring Kenya's heroes." },
+    { name: "Jamhuri Day",                  month: 12, day: 12, type: "national",
+      about: "Celebrating Kenya becoming a republic." },
+    { name: "Utamaduni Day",                month: 12, day: 26, type: "national",
+      about: "Celebrating Kenya's many cultures and heritage." }
+  ];
+  var TYPE_LABEL = { env: "Environmental day", national: "National day", other: "Event" };
+  var MONTHS = ["January", "February", "March", "April", "May", "June",
+                "July", "August", "September", "October", "November", "December"];
+
+
+  /* ---------- Helpers ---------- */
+  function $(id) { return document.getElementById(id); }
+  function pad(n) { return (n < 10 ? "0" : "") + n; }
+  function iso(y, m, d) { return y + "-" + pad(m) + "-" + pad(d); }          // m is 1-12
+  function parse(s) { var p = s.split("-"); return new Date(+p[0], +p[1] - 1, +p[2]); }
+  function el(tag, cls, text) {
+    var n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (text) n.textContent = text;
+    return n;
+  }
+  function niceDate(s, withYear) {
+    return parse(s).toLocaleDateString("en-GB", withYear === false
+      ? { day: "numeric", month: "long" }
+      : { weekday: "long", day: "numeric", month: "long", year: "numeric" });
+  }
+  function imagePath(p) {
+    if (!p) return "";
+    return /^https?:\/\//.test(p) ? p : ROOT + p.replace(/^\//, "");
+  }
+  function sameName(a, b) {                       // tolerant match, e.g. "Jamuhuri" / "Jamhuri"
+    function norm(s) { return String(s).toLowerCase().replace(/[^a-z]/g, "").replace("jamuhuri", "jamhuri"); }
+    return norm(a) === norm(b);
+  }
+  function daysUntil(s) {
+    return Math.round((parse(s) - parse(TODAY)) / 86400000);
+  }
+
+  var now = new Date();
+  var TODAY = iso(now.getFullYear(), now.getMonth() + 1, now.getDate());
+
+
+  /* ---------- 2. Build every event for a range of years ---------- */
+  var events = [];          // { date, name, type, about, activity }
+  var byDate = {};          // "2026-12-12" -> [events]
+
+  function buildEvents(activities) {
+    events = [];
+    var year = now.getFullYear();
+    for (var y = year - 1; y <= year + 2; y++) {
+      DAYS.forEach(function (d) {
+        events.push({ date: iso(y, d.month, d.day), officialDate: iso(y, d.month, d.day),
+                      name: d.name, type: d.type, about: d.about, activity: null });
+      });
+    }
+
+    (activities || []).forEach(function (a) {
+      if (!a || !a.date || !/^\d{4}-\d{2}-\d{2}$/.test(a.date)) return;
+      var year = a.date.slice(0, 4);
+      var match = events.filter(function (e) {
+        return e.date.slice(0, 4) === year && sameName(e.name, a.day);
+      })[0];
+      if (match) {
+        match.activity = a;
+        match.date = a.date;            // shown on the day the activity actually happens
+      } else {
+        events.push({ date: a.date, officialDate: a.date, name: a.day || a.activity, type: "other",
+                      about: "", activity: a });
+      }
+    });
+
+    events.sort(function (x, y) { return x.date < y.date ? -1 : x.date > y.date ? 1 : 0; });
+    byDate = {};
+    events.forEach(function (e) { (byDate[e.date] = byDate[e.date] || []).push(e); });
+  }
+
+  function nextEvents(count) {
+    return events.filter(function (e) { return e.date >= TODAY; }).slice(0, count);
+  }
+
+
+  /* ---------- 3. Calendar ---------- */
+  var view = { year: now.getFullYear(), month: now.getMonth() + 1 };   // month 1-12
+  var selected = null;
+
+  function renderCalendar() {
+    $("calMonth").textContent = MONTHS[view.month - 1] + " " + view.year;
+    var body = $("calBody");
+    body.innerHTML = "";
+
+    var first = new Date(view.year, view.month - 1, 1);
+    var lead = (first.getDay() + 6) % 7;                  // Monday first
+    var total = new Date(view.year, view.month, 0).getDate();
+    var row = el("tr");
+
+    for (var i = 0; i < lead; i++) row.appendChild(el("td", "cal-empty"));
+
+    for (var d = 1; d <= total; d++) {
+      var key = iso(view.year, view.month, d);
+      var td = el("td");
+      var list = byDate[key];
+
+      if (list) {
+        var btn = el("button", "cal-day has-event");
+        btn.type = "button";
+        btn.dataset.date = key;
+        btn.appendChild(el("span", "cal-num", String(d)));
+        var dots = el("span", "cal-dots");
+        list.forEach(function (e) {
+          dots.appendChild(el("span", "dot " + e.type));
+          if (e.activity) dots.appendChild(el("span", "dot planned"));
+        });
+        btn.appendChild(dots);
+        btn.setAttribute("aria-label", niceDate(key) + ": " + list.map(function (e) { return e.name; }).join(", "));
+        btn.setAttribute("aria-pressed", String(key === selected));
+        btn.addEventListener("click", function () { select(this.dataset.date, { focus: true }); });
+        td.appendChild(btn);
+      } else {
+        td.appendChild(el("span", "cal-day", String(d)));
+      }
+      if (key === TODAY) td.firstChild.classList.add("is-today");
+      if (key < TODAY) td.firstChild.classList.add("is-past");
+      row.appendChild(td);
+
+      if ((lead + d) % 7 === 0) { body.appendChild(row); row = el("tr"); }
+    }
+    if (row.children.length) {
+      while (row.children.length < 7) row.appendChild(el("td", "cal-empty"));
+      body.appendChild(row);
+    }
+  }
+
+  function renderDetails() {
+    var box = $("calDetails");
+    box.innerHTML = "";
+    if (!selected) return;
+
+    var list = byDate[selected] || [];
+    box.appendChild(el("p", "details-date", niceDate(selected)));
+
+    if (!list.length) {
+      box.appendChild(el("p", "details-empty", "No events on this day."));
+      return;
+    }
+
+    list.forEach(function (e) {
+      var item = el("article", "details-item " + e.type);
+      var head = el("div", "details-head");
+      head.appendChild(el("span", "type-tag " + e.type, TYPE_LABEL[e.type]));
+      if (e.date < TODAY) head.appendChild(el("span", "past-tag", "Past event"));
+      item.appendChild(head);
+      item.appendChild(el("h4", "details-name", e.name));
+      if (e.about) item.appendChild(el("p", "details-about", e.about));
+      if (e.officialDate !== e.date) {
+        item.appendChild(el("p", "details-moved", "Marked on " + niceDate(e.date, false) +
+          " (the official day is " + niceDate(e.officialDate, false) + ")."));
+      }
+
+      var act = el("div", e.activity ? "activity" : "activity tba");
+      if (e.activity) {
+        var a = e.activity;
+        if (a.image) {
+          var img = el("img", "activity-img");
+          img.src = imagePath(a.image);
+          img.alt = "";
+          img.loading = "lazy";
+          img.addEventListener("error", function () { this.remove(); });
+          act.appendChild(img);
+        }
+        act.appendChild(el("p", "activity-label", e.date < TODAY ? "What we did" : "Our activity"));
+        act.appendChild(el("h5", "activity-title", a.activity || "Activity"));
+        var meta = el("ul", "activity-meta");
+        if (a.time) meta.appendChild(el("li", "", a.time));
+        if (a.venue) meta.appendChild(el("li", "", a.venue));
+        if (meta.children.length) act.appendChild(meta);
+        if (a.description) act.appendChild(el("p", "activity-desc", a.description));
+        if (e.date >= TODAY) {
+          var join = el("a", "btn green activity-join", "I would like to join");
+          join.href = "volunteer.html#apply";
+          act.appendChild(join);
+        }
+      } else {
+        act.appendChild(el("p", "", e.date < TODAY ? "No activity was recorded for this day." : "Activity to be announced. Check back soon."));
+      }
+      item.appendChild(act);
+      box.appendChild(item);
+    });
+  }
+
+  /* opts.scroll: bring the calendar into view; opts.focus: move keyboard focus to the date */
+  function select(date, opts) {
+    opts = opts || {};
+    selected = date;
+    var d = parse(date);
+    view = { year: d.getFullYear(), month: d.getMonth() + 1 };
+    renderCalendar();
+    renderDetails();
+    renderUpcoming();
+    if (opts.scroll) {
+      $("calendar").scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
+    }
+    if (opts.focus) {
+      var btn = document.querySelector('.cal-day[data-date="' + date + '"]');
+      if (btn) btn.focus({ preventScroll: true });
+    }
+  }
+
+  $("calPrev").addEventListener("click", function () {
+    view.month--; if (view.month < 1) { view.month = 12; view.year--; }
+    renderCalendar();
+  });
+  $("calNext").addEventListener("click", function () {
+    view.month++; if (view.month > 12) { view.month = 1; view.year++; }
+    renderCalendar();
+  });
+  $("calToday").addEventListener("click", function () {
+    view = { year: now.getFullYear(), month: now.getMonth() + 1 };
+    renderCalendar();
+  });
+
+
+  /* ---------- 4. Next three events ---------- */
+  function renderUpcoming() {
+    var list = $("upcomingList");
+    list.innerHTML = "";
+    nextEvents(3).forEach(function (e, i) {
+      var li = el("li");
+      var card = el("button", "up-card " + e.type + (i === 0 ? " is-next" : ""));
+      card.type = "button";
+      if (e.date === selected) card.classList.add("is-selected");
+
+      var date = parse(e.date);
+      var block = el("span", "up-date");
+      block.appendChild(el("span", "up-day", String(date.getDate())));
+      block.appendChild(el("span", "up-mon", MONTHS[date.getMonth()].slice(0, 3)));
+      card.appendChild(block);
+
+      var info = el("span", "up-info");
+      var n = daysUntil(e.date);
+      info.appendChild(el("span", "up-when", n === 0 ? "Today" : n === 1 ? "Tomorrow" : "In " + n + " days"));
+      info.appendChild(el("span", "up-name", e.name));
+      info.appendChild(el("span", e.activity ? "up-activity" : "up-activity tba",
+        e.activity ? (e.activity.activity || "Activity planned") : "Activity to be announced"));
+      card.appendChild(info);
+
+      card.addEventListener("click", function () { select(e.date, { scroll: window.innerWidth < 900, focus: true }); });
+      li.appendChild(card);
+      list.appendChild(li);
+    });
+  }
+
+
+  /* ---------- 5. The 12 days ---------- */
+  function renderDays() {
+    var grid = $("daysGrid");
+    grid.innerHTML = "";
+    DAYS.forEach(function (d) {
+      var next = events.filter(function (e) { return e.date >= TODAY && sameName(e.name, d.name); })[0];
+      var li = el("li");
+      var card = el("button", "day-card " + d.type);
+      card.type = "button";
+      card.appendChild(el("span", "day-date", d.day + " " + MONTHS[d.month - 1].slice(0, 3)));
+      card.appendChild(el("span", "day-name", d.name));
+      card.appendChild(el("span", "day-about", d.about));
+      var foot = el("span", "day-foot");
+      foot.appendChild(el("span", "type-tag " + d.type, TYPE_LABEL[d.type]));
+      if (next && next.activity) foot.appendChild(el("span", "planned-tag", "Activity planned"));
+      card.appendChild(foot);
+      if (next) {
+        card.setAttribute("aria-label", d.name + ", next on " + niceDate(next.date) + ". Show on calendar.");
+        card.addEventListener("click", function () { select(next.date, { scroll: true, focus: true }); });
+      }
+      li.appendChild(card);
+      grid.appendChild(li);
+    });
+  }
+
+
+  /* ---------- Start ---------- */
+  function start(activities) {
+    buildEvents(activities);
+    var first = nextEvents(1)[0];
+    if (first) select(first.date);               // open on the next event
+    else { renderCalendar(); renderUpcoming(); }
+    renderDays();
+  }
+
+  fetch(DATA_FILE, { cache: "no-cache" })
+    .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(function (data) { start(data.activities); })
+    .catch(function () {
+      $("eventsNote").hidden = false;
+      start([]);                                 // still show the 12 days
+    });
+})();
+</script>
+</body>
+</html>

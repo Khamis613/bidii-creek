@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="../Images/Logo.jpeg" type="image/jpeg">
+<title>News | Bidii Creek Conservancy</title>
+<meta name="description" content="The latest news from Bidii Creek Conservancy: mangrove planting, restoration, research and community stories from the creek.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../Bidii style.css">
+<link rel="stylesheet" href="../CSS/news.css">
+</head>
+<body>
+
+<!-- Header is filled in by Bidii-script.js (same menu on every page) -->
+<header class="site"></header>
+
+<main id="main">
+
+  <!-- ===================================================
+       1. HERO (full screen, styled in Bidii-style.css)
+       =================================================== -->
+  <section class="page-hero" style="background-image: url('../Images/news/hero.jpg')">
+    <h1>News from the creek</h1>
+    <p>Stories of planting, restoration, research and community life along the mangroves.</p>
+  </section>
+
+
+  <!-- ===================================================
+       2. NEWS
+       Everything below is built from data/news.json.
+       To add a story, add an entry to that file: no HTML needed.
+       =================================================== -->
+  <section class="section" id="news" aria-labelledby="news-title">
+    <div class="container">
+
+      <div class="news-top">
+        <div>
+          <p class="eyebrow">Latest news</p>
+          <h2 id="news-title">What is happening at Bidii Creek</h2>
+        </div>
+        <!-- Category buttons are added by the script, one per category used -->
+        <div class="news-filters" id="newsFilters" role="group" aria-label="Filter news by category"></div>
+      </div>
+
+      <!-- Latest story, shown large -->
+      <div id="newsFeatured"></div>
+
+      <!-- All other stories -->
+      <div class="news-grid" id="newsGrid" aria-live="polite"></div>
+
+      <p class="news-empty" id="newsEmpty" hidden>No stories in this category yet.</p>
+
+      <p class="news-more-wrap">
+        <button type="button" class="btn outline" id="newsMore" hidden>Show more news</button>
+      </p>
+
+      <!-- Shown only if data/news.json cannot be loaded -->
+      <div class="news-error" id="newsError" hidden>
+        <p><strong>The news could not be loaded.</strong></p>
+        <p>If you are viewing this page from your computer, open it with <strong>Live Server</strong> in VS Code (right-click the file and choose "Open with Live Server"). Pages that read data files do not work when opened by double-clicking.</p>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+
+<!-- ===================================================
+     FULL STORY POP-UP
+     Opens when a story is clicked. The page address changes to
+     news.html#story-name, so a story can be shared as a link.
+     =================================================== -->
+<dialog class="story" id="story" aria-labelledby="storyTitle">
+  <button type="button" class="story-close" id="storyClose" aria-label="Close story">&times;</button>
+  <div class="story-img-wrap" id="storyImgWrap"><img class="story-img" id="storyImg" src="" alt=""></div>
+  <div class="story-body">
+    <p class="story-meta"><span class="news-tag" id="storyTag"></span> <time id="storyDate"></time></p>
+    <h2 id="storyTitle"></h2>
+    <div class="story-text" id="storyText"></div>
+    <div class="story-actions">
+      <button type="button" class="btn outline" id="storyCopy">Copy link to this story</button>
+    </div>
+  </div>
+</dialog>
+
+<!-- Footer is added by Bidii-script.js (same footer on every page) -->
+
+<script src="../Bidii script.js"></script>
+<script>
+/* ==========================================================
+   NEWS PAGE SCRIPT
+   Reads the stories from data/news.json and builds the page:
+   1. Category filter buttons
+   2. The latest story (large) and a grid of the others
+   3. "Show more news" (6 more at a time)
+   4. Full-story pop-up with a shareable link
+
+   Each story in data/news.json looks like this:
+   {
+     "title":    "Story headline",
+     "date":     "2026-11-07",            (year-month-day)
+     "category": "Restoration",
+     "image":    "Images/news/photo.jpg", (from the main folder)
+     "summary":  "One or two sentences shown on the card.",
+     "body":     "The full story.\n\nA blank line starts a new paragraph."
+   }
+   Stories are sorted by date automatically, newest first.
+   ========================================================== */
+(function () {
+  "use strict";
+
+  var DATA_FILE = "../data/news.json";
+  var ROOT = "../";          // path from this page back to the main folder
+  var PAGE_SIZE = 6;         // stories added each time "Show more" is pressed
+
+  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function $(id) { return document.getElementById(id); }
+
+  var stories = [];          // all stories, newest first
+  var filter = "All";
+  var shown = PAGE_SIZE;
+
+
+  /* ---------- Helpers ---------- */
+  function imagePath(path) {
+    if (!path) return "";
+    if (/^https?:\/\//.test(path)) return path;              // full web address
+    return ROOT + path.replace(/^\//, "");                    // path from the main folder
+  }
+
+  function niceDate(iso) {
+    var d = new Date(iso + "T00:00");
+    return isNaN(d) ? iso : d.toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
+  }
+
+  function slugify(story) {
+    return (story.date + "-" + story.title).toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+  }
+
+  function el(tag, className, text) {
+    var node = document.createElement(tag);
+    if (className) node.className = className;
+    if (text) node.textContent = text;
+    return node;
+  }
+
+
+  /* ---------- 1. Category filters ---------- */
+  function buildFilters() {
+    var cats = ["All"];
+    stories.forEach(function (s) {
+      if (s.category && cats.indexOf(s.category) === -1) cats.push(s.category);
+    });
+    var box = $("newsFilters");
+    box.innerHTML = "";
+    if (cats.length < 3) return;          // no point filtering with only one category
+    cats.forEach(function (cat) {
+      var b = el("button", "filter-btn", cat);
+      b.type = "button";
+      b.setAttribute("aria-pressed", String(cat === filter));
+      b.addEventListener("click", function () {
+        filter = cat;
+        shown = PAGE_SIZE;
+        box.querySelectorAll(".filter-btn").forEach(function (x) {
+          x.setAttribute("aria-pressed", String(x === b));
+        });
+        render();
+      });
+      box.appendChild(b);
+    });
+  }
+
+
+  /* ---------- 2. Story cards ---------- */
+  function card(story, featured) {
+    var article = el("article", featured ? "news-card featured" : "news-card");
+
+    var img = el("img", "news-img");
+    img.src = imagePath(story.image);
+    img.alt = "";
+    img.loading = featured ? "eager" : "lazy";
+    img.addEventListener("error", function () {          // missing photo: show a plain green box instead
+      img.replaceWith(el("div", "news-img"));
+    });
+
+    var body = el("div", "news-body");
+    var meta = el("p", "news-meta");
+    if (story.category) meta.appendChild(el("span", "news-tag", story.category));
+    var time = el("time", "", niceDate(story.date));
+    time.dateTime = story.date;
+    meta.appendChild(time);
+
+    var h = el(featured ? "h3" : "h3", "news-title");
+    var link = el("a", "", story.title);
+    link.href = "#" + story.slug;
+    link.addEventListener("click", function (e) { e.preventDefault(); openStory(story); });
+    h.appendChild(link);
+
+    body.appendChild(meta);
+    body.appendChild(h);
+    if (story.summary) body.appendChild(el("p", "news-summary", story.summary));
+    body.appendChild(el("span", "news-read", "Read story"));
+
+    if (featured) article.appendChild(el("span", "featured-badge", "Latest"));
+    article.appendChild(img);
+    article.appendChild(body);
+    return article;
+  }
+
+  function render() {
+    var list = filter === "All" ? stories : stories.filter(function (s) { return s.category === filter; });
+    var featuredBox = $("newsFeatured");
+    var grid = $("newsGrid");
+    featuredBox.innerHTML = "";
+    grid.innerHTML = "";
+
+    // On "All", the newest story is shown large on its own
+    var rest = list;
+    if (filter === "All" && list.length) {
+      featuredBox.appendChild(card(list[0], true));
+      rest = list.slice(1);
+    }
+
+    rest.slice(0, shown).forEach(function (s) { grid.appendChild(card(s, false)); });
+
+    $("newsEmpty").hidden = list.length > 0;
+    $("newsMore").hidden = rest.length <= shown;
+  }
+
+  /* ---------- 3. Show more ---------- */
+  $("newsMore").addEventListener("click", function () {
+    var before = $("newsGrid").children.length;
+    shown += PAGE_SIZE;
+    render();
+    var next = $("newsGrid").children[before];       // move focus to the first new story
+    if (next) next.querySelector("a").focus();
+  });
+
+
+  /* ---------- 4. Full-story pop-up ---------- */
+  var dialog = $("story");
+  var lastFocus = null;
+
+  function openStory(story) {
+    lastFocus = document.activeElement;
+    var img = $("storyImg");
+    $("storyImgWrap").hidden = !story.image;
+    img.style.visibility = "";
+    img.onerror = function () { img.style.visibility = "hidden"; };   // missing photo: plain green box
+    img.src = imagePath(story.image);
+    img.alt = story.title;
+
+    $("storyTag").textContent = story.category || "";
+    $("storyTag").hidden = !story.category;
+    $("storyDate").textContent = niceDate(story.date);
+    $("storyDate").dateTime = story.date;
+    $("storyTitle").textContent = story.title;
+
+    // a blank line in the story starts a new paragraph
+    var text = $("storyText");
+    text.innerHTML = "";
+    String(story.body || story.summary || "").split(/\n\s*\n/).forEach(function (para) {
+      if (para.trim()) text.appendChild(el("p", "", para.trim()));
+    });
+
+    $("storyCopy").textContent = "Copy link to this story";
+    if (location.hash !== "#" + story.slug) history.replaceState(null, "", "#" + story.slug);
+    dialog.showModal();
+    dialog.scrollTop = 0;
+  }
+
+  function closeStory() { dialog.close(); }
+
+  dialog.addEventListener("close", function () {
+    history.replaceState(null, "", location.pathname + location.search);
+    if (lastFocus) lastFocus.focus({ preventScroll: true });
+  });
+  $("storyClose").addEventListener("click", closeStory);
+  dialog.addEventListener("click", function (e) { if (e.target === dialog) closeStory(); });   // click outside
+
+  $("storyCopy").addEventListener("click", function () {
+    var btn = this;
+    var url = location.href;
+    function done() { btn.textContent = "Link copied ✓"; }
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(url).then(done, function () { window.prompt("Copy this link:", url); });
+    } else {
+      window.prompt("Copy this link:", url);
+    }
+  });
+
+  // Open a story when the page is visited with its link
+  function openFromHash() {
+    var slug = location.hash.slice(1);
+    if (!slug) return;
+    var match = stories.filter(function (s) { return s.slug === slug; })[0];
+    if (match && !dialog.open) openStory(match);
+  }
+  window.addEventListener("hashchange", openFromHash);
+
+
+  /* ---------- Load the stories ---------- */
+  fetch(DATA_FILE, { cache: "no-cache" })
+    .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(function (data) {
+      stories = (data.items || [])
+        .filter(function (s) { return s && s.title && s.date; })
+        .sort(function (a, b) { return a.date < b.date ? 1 : a.date > b.date ? -1 : 0; });
+      stories.forEach(function (s) { s.slug = slugify(s); });
+      buildFilters();
+      render();
+      openFromHash();
+    })
+    .catch(function () {
+      $("newsError").hidden = false;
+    });
+})();
+</script>
+</body>
+</html>

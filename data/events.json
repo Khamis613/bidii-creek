@@ -1,0 +1,57 @@
+{
+  "days": [
+    { "name": "World Wetlands Day",           "month": 2,  "day": 2,  "type": "env",
+      "about": "Celebrating wetlands, including the mangroves and creeks that protect our coast." },
+    { "name": "World Wildlife Day",           "month": 3,  "day": 3,  "type": "env",
+      "about": "Celebrating wild animals and plants, like the birds, crabs and fish that live in the mangroves." },
+    { "name": "International Day of Forests", "month": 3,  "day": 21, "type": "env",
+      "about": "Raising awareness of every kind of forest, mangrove forests included." },
+    { "name": "Labour Day",                   "month": 5,  "day": 1,  "type": "national",
+      "about": "Honouring Kenya's workers, including the community members who restore the creek." },
+    { "name": "Madaraka Day",                 "month": 6,  "day": 1,  "type": "national",
+      "about": "Celebrating the day Kenya attained self-rule." },
+    { "name": "World Environment Day",        "month": 6,  "day": 5,  "type": "env",
+      "about": "The world's biggest day for action on the environment." },
+    { "name": "World Oceans Day",             "month": 6,  "day": 8,  "type": "env",
+      "about": "Celebrating the ocean, which healthy mangroves help to protect." },
+    { "name": "World Mangrove Day",           "month": 7,  "day": 26, "type": "env",
+      "about": "The International Day for the Conservation of the Mangrove Ecosystem: our biggest day of the year." },
+    { "name": "Mazingira Day",                "month": 10, "day": 10, "type": "national",
+      "about": "Kenya's national day for environmental conservation and tree planting." },
+    { "name": "Mashujaa Day",                 "month": 10, "day": 20, "type": "national",
+      "about": "Honouring Kenya's heroes." },
+    { "name": "Jamhuri Day",                  "month": 12, "day": 12, "type": "national",
+      "about": "Celebrating Kenya becoming a republic." },
+    { "name": "Utamaduni Day",                "month": 12, "day": 26, "type": "national",
+      "about": "Celebrating Kenya's many cultures and heritage." }
+  ],
+  "activities": [
+    {
+      "day": "Mazingira Day",
+      "date": "2026-10-10",
+      "activity": "Mazingira Day mangrove planting",
+      "time": "8:00 AM - 12:00 PM",
+      "venue": "Bidii Creek, Jomvu Kuu",
+      "description": "Members and volunteers planted mangrove seedlings along the creek to mark Kenya's national day for the environment.",
+      "image": "Images/events/mazingira.jpg"
+    },
+    {
+      "day": "Jamhuri Day",
+      "date": "2026-12-12",
+      "activity": "Jamhuri Day planting and creek clean-up",
+      "time": "8:00 AM - 1:00 PM",
+      "venue": "Bidii Creek, Jomvu Kuu",
+      "description": "Celebrate the republic by giving back to the creek. We will plant mangroves on the northern bank and clear plastic from the shoreline. Gumboots and tools are provided.",
+      "image": "Images/events/jamhuri.jpg"
+    },
+    {
+      "day": "Utamaduni Day",
+      "date": "2026-12-26",
+      "activity": "Culture by the creek",
+      "time": "10:00 AM - 4:00 PM",
+      "venue": "Bidii Creek eco restaurant",
+      "description": "A day of local food, music and storytelling about how the community has lived with the mangroves for generations.",
+      "image": "Images/events/utamaduni.jpg"
+    }
+  ]
+}

@@ -1,0 +1,272 @@
+/* ==========================================================
+   Bidii Creek Conservancy – Gallery page (Pages/gallery.html)
+   Load after Bidii-style.css: uses its fonts and colours
+   DM Serif Display (headings) · DM Sans (text)
+   Forest green · leaf green · soft green · warm off-white · earthy brown
+
+   Environmental days use leaf green, national days earthy brown
+   (the same as the Events page).
+   The hero is styled in Bidii-style.css (.page-hero), like every page.
+   ========================================================== */
+
+
+/* ---------- 1. Heading row, view switch and filters ---------- */
+.gallery-top {
+  display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between;
+  gap: 1.25rem; margin-bottom: 1.5rem;
+}
+.gallery-top h2 { margin: 0; font-size: clamp(1.9rem, 4vw, 2.6rem); }
+
+.view-switch,
+.type-switch {
+  display: inline-flex; padding: 4px; border-radius: 999px;
+  background: var(--mint-soft);
+}
+.switch-btn,
+.type-btn {
+  padding: .5rem 1.1rem; border: 0; border-radius: 999px;
+  background: transparent; cursor: pointer;
+  font: 600 .88rem var(--font-body); color: var(--forest-700);
+  transition: background .2s, color .2s;
+}
+.switch-btn[aria-pressed="true"],
+.type-btn[aria-pressed="true"] { background: var(--forest-800); color: var(--white); }
+.type-btn { padding: .4rem .9rem; font-size: .82rem; }
+
+.gallery-filters {
+  display: grid; gap: .9rem; margin-bottom: 1.25rem;
+  padding: 1.1rem 1.2rem; border-radius: 14px;
+  background: var(--white); border: 1px solid var(--line);
+}
+.filter-row { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; }
+.filter-row-small { gap: .75rem; padding-top: .9rem; border-top: 1px solid var(--line); }
+
+.chip {
+  padding: .45rem 1rem; border-radius: 999px;
+  border: 1.5px solid var(--line); background: var(--white);
+  font: 600 .85rem var(--font-body); color: var(--forest-800);
+  cursor: pointer; transition: background .2s, color .2s, border-color .2s;
+}
+.chip:hover { border-color: var(--leaf); }
+.chip[aria-pressed="true"] { background: var(--leaf); border-color: var(--leaf); color: var(--white); }
+
+.year-label { margin: 0; font-size: .85rem; }
+#yearFilter {
+  width: auto; padding: .45rem 2.2rem .45rem .9rem; font-size: .88rem; cursor: pointer;
+  appearance: none; -webkit-appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, var(--forest-700) 50%),
+                    linear-gradient(135deg, var(--forest-700) 50%, transparent 50%);
+  background-position: calc(100% - 1rem) 50%, calc(100% - .7rem) 50%;
+  background-size: 5px 5px; background-repeat: no-repeat;
+}
+.type-switch { margin-left: auto; }
+
+.result-count { margin: 0 0 1rem; font-size: .88rem; font-weight: 600; color: var(--ink-soft); }
+.result-count:empty { display: none; }
+
+@media (max-width: 600px) {
+  .type-switch { margin-left: 0; }
+  .view-switch { width: 100%; }
+  .switch-btn { flex: 1; }
+}
+
+
+/* ---------- 2. Album cards ---------- */
+.album-grid {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+}
+.album-card {
+  display: flex; flex-direction: column; width: 100%; height: 100%;
+  padding: 0; text-align: left; cursor: pointer;
+  background: var(--white); border: 1px solid var(--line); border-radius: 14px;
+  overflow: hidden; font: inherit; color: inherit;
+  transition: transform .2s, box-shadow .2s;
+}
+.album-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+
+/* cover photo with a "stack" look so it reads as an album */
+.album-cover {
+  position: relative; display: block; aspect-ratio: 4 / 3; overflow: hidden;
+  background: var(--mint);
+}
+.album-cover img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
+.album-card:hover .album-cover img { transform: scale(1.05); }
+.album-counts {
+  position: absolute; left: .75rem; bottom: .75rem;
+  display: flex; flex-wrap: wrap; gap: .35rem;
+}
+.album-counts span {
+  padding: .25rem .65rem; border-radius: 999px;
+  background: rgba(18,48,31,.78); color: var(--white);
+  font-size: .75rem; font-weight: 700; backdrop-filter: blur(3px);
+}
+.album-counts .count-video::before { content: "\25B6\00a0"; font-size: .65rem; }   /* small play sign */
+
+.album-body { display: flex; flex-direction: column; gap: .45rem; padding: 1.1rem 1.25rem 1.25rem; flex: 1; }
+.album-card-meta { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; }
+.album-card-date { font-size: .82rem; font-weight: 600; color: var(--bark); }
+.album-card-title { font-family: var(--font-head); font-size: 1.35rem; line-height: 1.25; color: var(--forest-800); }
+.album-card:hover .album-card-title { color: var(--bark); }
+.album-open { margin-top: auto; padding-top: .3rem; font-size: .88rem; font-weight: 600; color: var(--leaf); }
+.album-open::after { content: " \2192"; }
+
+.event-tag {
+  display: inline-block; padding: .2rem .7rem; border-radius: 999px;
+  font-size: .72rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+  background: var(--mint-soft); color: var(--forest-700);
+}
+.event-tag.national { background: #f6ead6; color: var(--bark-dark); }
+
+@media (max-width: 960px) { .album-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 600px) { .album-grid { grid-template-columns: 1fr; } }
+
+
+/* ---------- 3. Photo and video wall ----------
+   Columns let photos keep their own shape, like a pinboard. */
+.wall { list-style: none; margin: 0; padding: 0; columns: 4 220px; column-gap: 1rem; }
+.tile { break-inside: avoid; margin-bottom: 1rem; }
+.tile-btn {
+  position: relative; display: block; width: 100%;
+  padding: 0; border: 0; border-radius: 12px; overflow: hidden;
+  background: var(--mint); cursor: zoom-in;
+}
+.tile.video .tile-btn { cursor: pointer; }
+.tile-btn img { width: 100%; height: auto; min-height: 120px; object-fit: cover; transition: transform .4s ease; }
+.tile-btn:hover img { transform: scale(1.04); }
+.tile-missing { display: block; aspect-ratio: 4 / 3; background: var(--mint); }
+
+.tile-caption {
+  position: absolute; inset: auto 0 0 0;
+  display: flex; flex-direction: column; gap: .15rem;
+  padding: 2rem .85rem .75rem; text-align: left;
+  background: linear-gradient(to top, rgba(18,48,31,.85), transparent);
+  color: var(--white); font-size: .85rem; line-height: 1.35;
+  opacity: 0; transform: translateY(8px);
+  transition: opacity .25s, transform .25s;
+}
+.tile-caption:empty { display: none; }
+.tile-btn:hover .tile-caption,
+.tile-btn:focus-visible .tile-caption { opacity: 1; transform: none; }
+.tile-event { font-size: .7rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--mint); }
+
+/* round play button on videos */
+.play-badge {
+  position: absolute; top: 50%; left: 50%; width: 58px; height: 58px;
+  margin: -29px 0 0 -29px; border-radius: 50%;
+  background: rgba(18,48,31,.75); border: 2px solid rgba(255,255,255,.85);
+  transition: background .2s, transform .2s;
+}
+.play-badge::after {
+  content: ""; position: absolute; top: 50%; left: 54%;
+  border-style: solid; border-width: 10px 0 10px 16px;
+  border-color: transparent transparent transparent var(--white);
+  transform: translate(-50%, -50%);
+}
+.tile-btn:hover .play-badge { background: var(--bark); transform: scale(1.08); }
+
+/* on touch screens captions are always shown */
+@media (hover: none) {
+  .tile-caption { opacity: 1; transform: none; }
+}
+@media (max-width: 520px) {
+  .wall { columns: 2; column-gap: .6rem; }
+  .tile { margin-bottom: .6rem; }
+  .tile-caption { font-size: .75rem; padding: 1.5rem .6rem .5rem; }
+  .play-badge { width: 46px; height: 46px; margin: -23px 0 0 -23px; }
+}
+
+
+/* ---------- 4. One album ---------- */
+.back-btn {
+  margin-bottom: 1.5rem; padding: .5rem 1.1rem; border-radius: 999px;
+  border: 1.5px solid var(--line); background: var(--white); cursor: pointer;
+  font: 600 .9rem var(--font-body); color: var(--forest-800);
+  transition: background .2s, color .2s, border-color .2s;
+}
+.back-btn:hover { background: var(--forest-800); border-color: var(--forest-800); color: var(--white); }
+
+.album-head { max-width: 760px; margin-bottom: 2rem; }
+.album-meta { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem; margin: 0 0 .6rem; font-size: .88rem; font-weight: 600; color: var(--bark); }
+.album-head h2 { margin: 0 0 .6rem; font-size: clamp(2rem, 4.5vw, 2.9rem); }
+.album-desc { color: var(--ink-soft); font-size: 1.05rem; }
+.album-links { display: flex; flex-wrap: wrap; align-items: baseline; gap: .5rem 1.5rem; margin: 0; font-size: .92rem; font-weight: 600; color: var(--forest-700); }
+.album-links .more-link { margin-top: 0; }
+
+
+/* ---------- 5. Messages ---------- */
+.gallery-empty { margin: 1rem 0 0; padding: 2rem; text-align: center; color: var(--ink-soft); }
+.gallery-error {
+  max-width: 640px; margin: 1rem auto 0; padding: 1.25rem 1.4rem;
+  background: #f6ead6; border-left: 4px solid var(--clay); border-radius: 8px;
+  color: var(--bark-dark);
+}
+.gallery-error p { margin: 0 0 .5rem; }
+.gallery-error p:last-child { margin: 0; }
+.gallery-error a { color: var(--bark-dark); font-weight: 600; }
+.channel-link { margin: 2.5rem 0 0; text-align: center; }
+
+
+/* ---------- 6. Full-screen viewer ---------- */
+.viewer {
+  width: 100vw; height: 100vh; height: 100dvh; max-width: none; max-height: none;
+  margin: 0; padding: 0; border: 0;
+  background: rgba(10, 26, 17, .96); color: var(--white);
+  overflow: hidden;
+}
+.viewer::backdrop { background: rgba(10, 26, 17, .96); }
+.viewer[open] { display: grid; grid-template-rows: auto 1fr auto; animation: viewer-in .25s ease; }
+@keyframes viewer-in { from { opacity: 0; } to { opacity: 1; } }
+
+.viewer-top { display: flex; align-items: center; justify-content: space-between; padding: .9rem 1.25rem; }
+.viewer-count { margin: 0; font-size: .88rem; font-weight: 600; letter-spacing: .06em; color: var(--mint); }
+.viewer-close {
+  width: 44px; height: 44px; padding: 0; border: 0; border-radius: 50%;
+  background: rgba(255,255,255,.12); color: var(--white);
+  font-size: 1.7rem; line-height: 1; cursor: pointer; transition: background .2s;
+}
+.viewer-close:hover { background: var(--bark); }
+
+.viewer-stage {
+  display: grid; place-items: center; min-height: 0;
+  padding: 0 clamp(.5rem, 6vw, 5.5rem);
+}
+.viewer-img {
+  /* fits between the top bar and the caption, whatever the photo's shape */
+  width: auto; max-width: 100%;
+  max-height: calc(100vh - 10.5rem); max-height: calc(100dvh - 10.5rem);
+  object-fit: contain;
+  border-radius: 6px; box-shadow: 0 10px 40px rgba(0,0,0,.4);
+  animation: viewer-in .3s ease;
+}
+.viewer-video {
+  width: min(100%, 1100px, calc((100dvh - 10.5rem) * 16 / 9)); aspect-ratio: 16 / 9;
+  border: 0; border-radius: 6px; background: #000;
+}
+.viewer-missing {
+  display: grid; place-items: center; width: min(90%, 640px); aspect-ratio: 4 / 3;
+  border-radius: 8px; background: var(--forest-800); color: var(--mint);
+  font-weight: 600; letter-spacing: .06em;
+}
+
+.viewer-nav {
+  position: absolute; top: 50%; z-index: 2;
+  width: 54px; height: 54px; margin-top: -27px; padding: 0;
+  border: 2px solid rgba(255,255,255,.6); border-radius: 50%;
+  background: rgba(18,48,31,.6); color: var(--white);
+  font-size: 2rem; line-height: 1; cursor: pointer;
+  transition: background .2s, border-color .2s;
+}
+.viewer-nav:hover { background: var(--bark); border-color: var(--bark); }
+.viewer-prev { left: 1rem; }
+.viewer-next { right: 1rem; }
+
+.viewer-caption { padding: .9rem 1.25rem 1.25rem; text-align: center; }
+.viewer-text { margin: 0 auto .2rem; max-width: 760px; font-size: 1rem; }
+.viewer-text:empty { display: none; }
+.viewer-event { margin: 0; font-size: .8rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--mint); }
+
+@media (max-width: 600px) {
+  .viewer-nav { top: auto; bottom: 5.5rem; width: 46px; height: 46px; margin-top: 0; font-size: 1.6rem; }
+  .viewer-stage { padding: 0 .5rem; }
+}

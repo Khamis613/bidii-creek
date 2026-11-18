@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="../Images/Logo.jpeg" type="image/jpeg">
+<title>Photo and Video Gallery | Bidii Creek Conservancy</title>
+<meta name="description" content="Photos and videos from Bidii Creek Conservancy events: mangrove planting days, World Mangrove Day, Mazingira Day and more.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../Bidii style.css">
+<link rel="stylesheet" href="../Bidii-gallery.css">
+</head>
+<body>
+
+<!-- Header is filled in by Bidii-script.js (same menu on every page) -->
+<header class="site"></header>
+
+<main id="main">
+
+  <!-- ===================================================
+       1. HERO (full screen, styled in Bidii-style.css)
+       =================================================== -->
+  <section class="page-hero" style="background-image: url('../Images/gallery/hero.jpg')">
+    <h1>Photo and video gallery</h1>
+    <p>Moments from our events at the creek: planting days, celebrations and the people who make them happen.</p>
+  </section>
+
+
+  <!-- ===================================================
+       2. GALLERY
+       Everything below is built from data/gallery.json:
+       one album per event, each with photos and videos.
+       =================================================== -->
+  <section class="section" id="gallery" aria-labelledby="gallery-title">
+    <div class="container">
+
+      <!-- ===== Browsing: all albums, or everything at once ===== -->
+      <div id="browse">
+
+        <div class="gallery-top">
+          <div>
+            <p class="eyebrow">From our events</p>
+            <h2 id="gallery-title">Albums by event</h2>
+          </div>
+          <!-- Albums or everything in one wall -->
+          <div class="view-switch" role="group" aria-label="How to show the gallery">
+            <button type="button" class="switch-btn" data-view="albums" aria-pressed="true">By event</button>
+            <button type="button" class="switch-btn" data-view="all" aria-pressed="false">Everything</button>
+          </div>
+        </div>
+
+        <!-- Filters (built by the script from the albums) -->
+        <div class="gallery-filters" id="filters" hidden>
+          <div class="filter-row" id="eventFilters" role="group" aria-label="Filter by event"></div>
+          <div class="filter-row filter-row-small">
+            <label class="year-label" for="yearFilter">Year</label>
+            <select id="yearFilter"></select>
+            <div class="type-switch" role="group" aria-label="Photos or videos">
+              <button type="button" class="type-btn" data-type="all" aria-pressed="true">All</button>
+              <button type="button" class="type-btn" data-type="photo" aria-pressed="false">Photos</button>
+              <button type="button" class="type-btn" data-type="video" aria-pressed="false">Videos</button>
+            </div>
+          </div>
+        </div>
+
+        <p class="result-count" id="resultCount" aria-live="polite"></p>
+
+        <!-- Album cards ("By event") -->
+        <ul class="album-grid" id="albumGrid"></ul>
+
+        <!-- All photos and videos ("Everything") -->
+        <ul class="wall" id="allWall" hidden></ul>
+
+        <p class="gallery-empty" id="galleryEmpty" hidden>Nothing matches these filters yet. Try another event or year.</p>
+      </div>
+
+
+      <!-- ===== One album, opened ===== -->
+      <div id="albumView" hidden>
+        <button type="button" class="back-btn" id="albumBack">&larr; All albums</button>
+
+        <header class="album-head">
+          <p class="album-meta"><span class="event-tag" id="albumTag"></span> <time id="albumDate"></time></p>
+          <h2 id="albumTitle"></h2>
+          <p class="album-desc" id="albumDesc"></p>
+          <p class="album-links">
+            <span id="albumCount"></span>
+            <a class="more-link" id="albumEventLink" href="events.html">See this day on the events calendar</a>
+          </p>
+        </header>
+
+        <ul class="wall" id="albumWall"></ul>
+      </div>
+
+
+      <!-- Shown only if data/gallery.json can't be read -->
+      <div class="gallery-error" id="galleryError" hidden>
+        <p><strong>The gallery could not be loaded.</strong></p>
+        <p id="galleryErrorText">If you are viewing this page from your computer, open it with <strong>Live Server</strong> in VS Code (right-click the file and choose "Open with Live Server").</p>
+        <p>In the meantime, <a href="https://youtube.com/@bidiicreek" target="_blank" rel="noopener">watch our videos on YouTube</a>.</p>
+      </div>
+
+      <p class="channel-link" id="channelLink" hidden>
+        <a class="btn outline" href="https://youtube.com/@bidiicreek" target="_blank" rel="noopener">More videos on our YouTube channel</a>
+      </p>
+
+    </div>
+  </section>
+
+</main>
+
+
+<!-- ===================================================
+     FULL-SCREEN VIEWER
+     Arrows or swipe to move, Esc to close.
+     =================================================== -->
+<dialog class="viewer" id="viewer" aria-label="Photo and video viewer">
+  <div class="viewer-top">
+    <p class="viewer-count" id="viewerCount"></p>
+    <button type="button" class="viewer-close" id="viewerClose" aria-label="Close viewer">&times;</button>
+  </div>
+  <div class="viewer-stage" id="viewerStage"></div>
+  <button type="button" class="viewer-nav viewer-prev" id="viewerPrev" aria-label="Previous">&#8249;</button>
+  <button type="button" class="viewer-nav viewer-next" id="viewerNext" aria-label="Next">&#8250;</button>
+  <div class="viewer-caption">
+    <p class="viewer-text" id="viewerText"></p>
+    <p class="viewer-event" id="viewerEvent"></p>
+  </div>
+</dialog>
+
+<!-- Footer is added by Bidii-script.js (same footer on every page) -->
+
+<script src="../Bidii script.js"></script>
+<script>
+/* ==========================================================
+   GALLERY PAGE SCRIPT
+   Reads data/gallery.json and builds:
+   1. Filters: event, year, photos or videos
+   2. "By event": one card per album
+      "Everything": every photo and video in one wall
+   3. An album page (gallery.html#album-name, so it can be shared)
+   4. A full-screen viewer for photos and videos
+
+   Each album in data/gallery.json looks like this:
+   {
+     "day":   "World Mangrove Day",      (the event, as on the Events page)
+     "date":  "2027-07-26",              (year-month-day of the event)
+     "title": "World Mangrove Day at the creek",
+     "description": "One or two sentences about the day.",
+     "cover": "Images/gallery/album/photo-1.jpg",   (optional)
+     "items": [
+       { "type": "photo", "image": "Images/gallery/album/photo-1.jpg", "caption": "..." },
+       { "type": "video", "youtube": "https://youtu.be/VIDEO_ID", "caption": "..." }
+     ]
+   }
+   Videos are YouTube links: upload to the channel, then paste the link.
+   ========================================================== */
+(function () {
+  "use strict";
+
+  var GALLERY_FILE = "../data/gallery.json";
+  var EVENTS_FILE  = "../data/events.json";      // only used to colour event names
+  var ROOT = "../";
+
+  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function $(id) { return document.getElementById(id); }
+  function el(tag, cls, text) {
+    var n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (text) n.textContent = text;
+    return n;
+  }
+  function parse(s) { var p = s.split("-"); return new Date(+p[0], +p[1] - 1, +p[2]); }
+  function niceDate(s) { return parse(s).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" }); }
+  function imagePath(p) {
+    if (!p) return "";
+    return /^https?:\/\//.test(p) ? p : ROOT + p.replace(/^\//, "");
+  }
+  function slugify(a) {
+    return (a.date + "-" + a.title).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+  }
+  function norm(s) { return String(s || "").toLowerCase().replace(/[^a-z]/g, "").replace("jamuhuri", "jamhuri"); }
+  function plural(n, word) { return n + " " + word + (n === 1 ? "" : "s"); }
+
+  /* YouTube link -> video id (works with watch?v=, youtu.be/, shorts/ and embed/ links) */
+  function youtubeId(url) {
+    var m = String(url || "").match(/(?:youtu\.be\/|v=|\/shorts\/|\/embed\/)([A-Za-z0-9_-]{11})/);
+    return m ? m[1] : null;
+  }
+
+
+  /* ---------- State ---------- */
+  var albums = [];
+  var dayTypes = {};                 // "worldmangroveday" -> "env" / "national"
+  var state = { view: "albums", event: "All", year: "All", type: "all" };
+
+
+  /* ---------- Turn the data into albums ---------- */
+  function prepare(data) {
+    albums = (data.albums || [])
+      .filter(function (a) { return a && a.title && /^\d{4}-\d{2}-\d{2}$/.test(a.date || ""); })
+      .map(function (a) {
+        var items = (a.items || []).map(function (it) {
+          if (it.type === "video") {
+            var id = youtubeId(it.youtube);
+            if (!id) return null;                          // skip links that aren't real videos yet
+            return { type: "video", id: id, thumb: "https://img.youtube.com/vi/" + id + "/hqdefault.jpg", caption: it.caption || "" };
+          }
+          if (!it.image) return null;
+          return { type: "photo", src: imagePath(it.image), caption: it.caption || "" };
+        }).filter(Boolean);
+
+        var album = {
+          day: a.day || "Event", date: a.date, year: a.date.slice(0, 4),
+          title: a.title, description: a.description || "",
+          type: dayTypes[norm(a.day)] || "other",
+          items: items,
+          photos: items.filter(function (i) { return i.type === "photo"; }).length,
+          videos: items.filter(function (i) { return i.type === "video"; }).length
+        };
+        var firstPhoto = items.filter(function (i) { return i.type === "photo"; })[0];
+        album.cover = a.cover ? imagePath(a.cover) : firstPhoto ? firstPhoto.src : items[0] ? items[0].thumb : "";
+        album.slug = slugify(a);
+        items.forEach(function (i) { i.album = album; });
+        return album;
+      })
+      .sort(function (x, y) { return x.date < y.date ? 1 : x.date > y.date ? -1 : 0; });   // newest first
+  }
+
+
+  /* ---------- 1. Filters ---------- */
+  function buildFilters() {
+    var events = ["All"], years = ["All"];
+    albums.forEach(function (a) {
+      if (events.indexOf(a.day) === -1) events.push(a.day);
+      if (years.indexOf(a.year) === -1) years.push(a.year);
+    });
+
+    var row = $("eventFilters");
+    row.innerHTML = "";
+    events.forEach(function (name) {
+      var b = el("button", "chip", name === "All" ? "All events" : name);
+      b.type = "button";
+      b.dataset.event = name;
+      b.setAttribute("aria-pressed", String(name === state.event));
+      b.addEventListener("click", function () {
+        state.event = name;
+        row.querySelectorAll(".chip").forEach(function (c) { c.setAttribute("aria-pressed", String(c === b)); });
+        render();
+      });
+      row.appendChild(b);
+    });
+
+    var sel = $("yearFilter");
+    sel.innerHTML = "";
+    years.forEach(function (y) {
+      var o = el("option", "", y === "All" ? "All years" : y);
+      o.value = y;
+      sel.appendChild(o);
+    });
+    sel.onchange = function () { state.year = sel.value; render(); };
+    $("filters").hidden = false;
+  }
+
+  document.querySelectorAll(".type-btn").forEach(function (b) {
+    b.addEventListener("click", function () {
+      state.type = b.dataset.type;
+      document.querySelectorAll(".type-btn").forEach(function (x) { x.setAttribute("aria-pressed", String(x === b)); });
+      render();
+    });
+  });
+  document.querySelectorAll(".switch-btn").forEach(function (b) {
+    b.addEventListener("click", function () {
+      state.view = b.dataset.view;
+      document.querySelectorAll(".switch-btn").forEach(function (x) { x.setAttribute("aria-pressed", String(x === b)); });
+      $("gallery-title").textContent = state.view === "albums" ? "Albums by event" : "Every photo and video";
+      render();
+    });
+  });
+
+  function matchingAlbums() {
+    return albums.filter(function (a) {
+      return (state.event === "All" || a.day === state.event) &&
+             (state.year === "All" || a.year === state.year) &&
+             (state.type === "all" || (state.type === "photo" ? a.photos : a.videos) > 0);
+    });
+  }
+  function typeFilter(items) {
+    return state.type === "all" ? items : items.filter(function (i) { return i.type === state.type; });
+  }
+
+
+  /* ---------- 2. Album cards and the "Everything" wall ---------- */
+  function albumCard(a) {
+    var li = el("li");
+    var btn = el("button", "album-card " + a.type);
+    btn.type = "button";
+    btn.setAttribute("aria-label", "Open album: " + a.title + ", " + niceDate(a.date));
+
+    var cover = el("span", "album-cover");
+    if (a.cover) {
+      var img = el("img");
+      img.src = a.cover; img.alt = ""; img.loading = "lazy";
+      img.addEventListener("error", function () { img.remove(); });
+      cover.appendChild(img);
+    }
+    var counts = el("span", "album-counts");
+    if (a.photos) counts.appendChild(el("span", "count-photo", plural(a.photos, "photo")));
+    if (a.videos) counts.appendChild(el("span", "count-video", plural(a.videos, "video")));
+    cover.appendChild(counts);
+    btn.appendChild(cover);
+
+    var body = el("span", "album-body");
+    var meta = el("span", "album-card-meta");
+    meta.appendChild(el("span", "event-tag " + a.type, a.day));
+    meta.appendChild(el("span", "album-card-date", niceDate(a.date)));
+    body.appendChild(meta);
+    body.appendChild(el("span", "album-card-title", a.title));
+    body.appendChild(el("span", "album-open", "View album"));
+    btn.appendChild(body);
+
+    btn.addEventListener("click", function () { openAlbum(a, true); });
+    li.appendChild(btn);
+    return li;
+  }
+
+  function tile(item, list, index, showEvent) {
+    var li = el("li", "tile " + item.type);
+    var btn = el("button", "tile-btn");
+    btn.type = "button";
+    btn.setAttribute("aria-label", (item.type === "video" ? "Play video: " : "View photo: ") + (item.caption || item.album.title));
+
+    var img = el("img");
+    img.src = item.type === "video" ? item.thumb : item.src;
+    img.alt = "";
+    img.loading = "lazy";
+    img.addEventListener("error", function () { img.replaceWith(el("span", "tile-missing")); });
+    btn.appendChild(img);
+
+    if (item.type === "video") btn.appendChild(el("span", "play-badge"));
+    var cap = el("span", "tile-caption");
+    if (showEvent) cap.appendChild(el("span", "tile-event", item.album.day + " " + item.album.year));
+    if (item.caption) cap.appendChild(el("span", "", item.caption));
+    btn.appendChild(cap);
+
+    btn.addEventListener("click", function () { openViewer(list, index, btn); });
+    li.appendChild(btn);
+    return li;
+  }
+
+  function render() {
+    var found = matchingAlbums();
+    var grid = $("albumGrid"), wall = $("allWall");
+    grid.innerHTML = ""; wall.innerHTML = "";
+    var showAlbums = state.view === "albums";
+    grid.hidden = !showAlbums;
+    wall.hidden = showAlbums;
+
+    var count = 0;
+    if (showAlbums) {
+      found.forEach(function (a) { grid.appendChild(albumCard(a)); });
+      count = found.length;
+      $("resultCount").textContent = count ? plural(count, "album") : "";
+    } else {
+      var items = [];
+      found.forEach(function (a) { items = items.concat(typeFilter(a.items)); });
+      items.forEach(function (it, i) { wall.appendChild(tile(it, items, i, true)); });
+      count = items.length;
+      var p = items.filter(function (i) { return i.type === "photo"; }).length;
+      $("resultCount").textContent = count ? [p ? plural(p, "photo") : "", count - p ? plural(count - p, "video") : ""].filter(Boolean).join(" and ") : "";
+    }
+    $("galleryEmpty").hidden = count > 0;
+  }
+
+
+  /* ---------- 3. One album ---------- */
+  var lastAlbumButton = null;
+
+  function openAlbum(a, fromClick) {
+    if (fromClick) lastAlbumButton = document.activeElement;
+    $("browse").hidden = true;
+    $("albumView").hidden = false;
+
+    $("albumTag").textContent = a.day;
+    $("albumTag").className = "event-tag " + a.type;
+    $("albumDate").textContent = niceDate(a.date);
+    $("albumDate").dateTime = a.date;
+    $("albumTitle").textContent = a.title;
+    $("albumDesc").textContent = a.description;
+    $("albumDesc").hidden = !a.description;
+    $("albumCount").textContent = [a.photos ? plural(a.photos, "photo") : "", a.videos ? plural(a.videos, "video") : ""].filter(Boolean).join(" · ");
+    $("albumEventLink").href = "events.html#" + a.date;
+
+    var wall = $("albumWall");
+    wall.innerHTML = "";
+    a.items.forEach(function (it, i) { wall.appendChild(tile(it, a.items, i, false)); });
+
+    if (location.hash !== "#" + a.slug) history.replaceState(null, "", "#" + a.slug);
+    $("gallery").scrollIntoView({ behavior: reduceMotion || !fromClick ? "auto" : "smooth", block: "start" });
+    $("albumBack").focus({ preventScroll: true });
+  }
+
+  function closeAlbum() {
+    $("albumView").hidden = true;
+    $("browse").hidden = false;
+    history.replaceState(null, "", location.pathname + location.search);
+    if (lastAlbumButton && document.body.contains(lastAlbumButton)) lastAlbumButton.focus();
+  }
+  $("albumBack").addEventListener("click", closeAlbum);
+
+  function albumFromHash() {
+    var slug = location.hash.slice(1);
+    return albums.filter(function (a) { return a.slug === slug; })[0];
+  }
+  window.addEventListener("hashchange", function () {
+    var a = albumFromHash();
+    if (a) openAlbum(a, false);
+    else if (!$("albumView").hidden && !location.hash) closeAlbum();
+  });
+
+
+  /* ---------- 4. Full-screen viewer ---------- */
+  var viewer = $("viewer");
+  var current = { list: [], index: 0, opener: null };
+
+  function show(index) {
+    var list = current.list;
+    current.index = (index + list.length) % list.length;
+    var it = list[current.index];
+    var stage = $("viewerStage");
+    stage.innerHTML = "";                                    // also stops any playing video
+
+    if (it.type === "video") {
+      var frame = el("iframe", "viewer-video");
+      frame.src = "https://www.youtube-nocookie.com/embed/" + it.id + "?autoplay=1&rel=0";
+      frame.title = it.caption || "Video";
+      frame.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen";
+      frame.allowFullscreen = true;
+      stage.appendChild(frame);
+    } else {
+      var img = el("img", "viewer-img");
+      img.src = it.src;
+      img.alt = it.caption || it.album.title;
+      img.addEventListener("error", function () { img.replaceWith(el("span", "viewer-missing", "Photo coming soon")); });
+      stage.appendChild(img);
+    }
+
+    $("viewerText").textContent = it.caption;
+    $("viewerEvent").textContent = it.album.day + " · " + niceDate(it.album.date);
+    $("viewerCount").textContent = (current.index + 1) + " / " + list.length;
+    var many = list.length > 1;
+    $("viewerPrev").hidden = !many;
+    $("viewerNext").hidden = !many;
+
+    // load the next photo early so moving forward feels instant
+    var next = list[(current.index + 1) % list.length];
+    if (next && next.type === "photo") { (new Image()).src = next.src; }
+  }
+
+  function openViewer(list, index, opener) {
+    current = { list: list, index: index, opener: opener };
+    show(index);
+    viewer.showModal();
+  }
+
+  viewer.addEventListener("close", function () {
+    $("viewerStage").innerHTML = "";
+    if (current.opener) current.opener.focus({ preventScroll: true });
+  });
+  $("viewerClose").addEventListener("click", function () { viewer.close(); });
+  $("viewerPrev").addEventListener("click", function () { show(current.index - 1); });
+  $("viewerNext").addEventListener("click", function () { show(current.index + 1); });
+  viewer.addEventListener("click", function (e) { if (e.target === viewer || e.target.id === "viewerStage") viewer.close(); });
+  viewer.addEventListener("keydown", function (e) {
+    if (e.key === "ArrowLeft")  { e.preventDefault(); show(current.index - 1); }
+    if (e.key === "ArrowRight") { e.preventDefault(); show(current.index + 1); }
+  });
+
+  // swipe left and right on phones
+  var touchX = null;
+  viewer.addEventListener("touchstart", function (e) { touchX = e.touches[0].clientX; }, { passive: true });
+  viewer.addEventListener("touchend", function (e) {
+    if (touchX === null) return;
+    var dx = e.changedTouches[0].clientX - touchX;
+    if (Math.abs(dx) > 50) show(current.index + (dx < 0 ? 1 : -1));
+    touchX = null;
+  }, { passive: true });
+
+
+  /* ---------- Load ---------- */
+  function getJSON(url) {
+    return fetch(url, { cache: "no-cache" }).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); });
+  }
+
+  getJSON(EVENTS_FILE)
+    .then(function (ev) { (ev.days || []).forEach(function (d) { dayTypes[norm(d.name)] = d.type; }); })
+    .catch(function () { /* colours are optional */ })
+    .then(function () { return getJSON(GALLERY_FILE); })
+    .then(function (data) {
+      prepare(data);
+      if (data.youtubeChannel) {
+        document.querySelectorAll('a[href="https://youtube.com/@bidiicreek"]').forEach(function (a) { a.href = data.youtubeChannel; });
+      }
+      $("channelLink").hidden = false;
+      buildFilters();
+      render();
+      var a = albumFromHash();
+      if (a) openAlbum(a, false);
+    })
+    .catch(function (err) {
+      if (err instanceof SyntaxError) {
+        $("galleryErrorText").textContent = "There is a mistake in data/gallery.json, most often a missing or extra comma between photos or albums, or a missing quote mark. Check the last album you added.";
+      }
+      $("browse").hidden = true;
+      $("galleryError").hidden = false;
+    });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+{
+  "items": [
+    {
+      "title": "2,500 mangroves planted on community planting day",
+      "date": "2026-11-07",
+      "category": "Restoration",
+      "image": "Images/news/news-1.jpg",
+      "summary": "Members, volunteers and two local schools planted 2,500 seedlings along the northern bank of the creek.",
+      "body": "Members, volunteers and pupils from two local schools came together on Saturday to plant 2,500 mangrove seedlings along the northern bank of the creek.\n\nThe seedlings were raised in our production nursery over the past six months. Our team will monitor the site over the coming year and share survival figures.\n\nThank you to everyone who joined us. The next planting day will be announced in our events."
+    },
+    {
+      "title": "New beehives installed for mangrove honey",
+      "date": "2026-10-28",
+      "category": "Livelihoods",
+      "image": "Images/news/news-2.jpg",
+      "summary": "Ten new beehives were set up among the mangroves, giving our beekeepers more income from protecting the forest.",
+      "body": "Ten new beehives have been installed among the mangroves, expanding our community honey project.\n\nMangrove honey gives our beekeepers an income that depends on a healthy forest, so every hive is also a reason to protect the trees.\n\nOur honey and honey products are available in the shop."
+    },
+    {
+      "title": "Creek clean-up removes plastic from young mangroves",
+      "date": "2026-10-24",
+      "category": "Community",
+      "image": "Images/news/news-3.jpg",
+      "summary": "Volunteers spent a morning clearing plastic and debris that smothers young mangrove roots.",
+      "body": "Volunteers spent the morning clearing plastic bottles, bags and other debris from the creek.\n\nWaste that collects around young mangroves can smother their roots and stop them from growing. Regular clean-ups give our planted sites the best chance of survival."
+    },
+    {
+      "title": "Quarterly monitoring shows strong seedling survival",
+      "date": "2026-10-10",
+      "category": "Research",
+      "image": "Images/news/news-4.jpg",
+      "summary": "Our latest survey of restoration plots recorded healthy growth and survival across the sites.",
+      "body": "Our team has completed the quarterly survey of all restoration plots, recording survival and growth for each site.\n\nThe results help us decide which species to plant where, and when, so that each planting season is better than the last."
+    }
+  ]
+}

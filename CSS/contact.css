@@ -1,0 +1,116 @@
+/* ==========================================================
+   Bidii Creek Conservancy – contact page (Pages/contact.html)
+   Load after Bidii-style.css: uses its fonts and colours
+   DM Serif Display (headings) · DM Sans (text)
+   Forest green · leaf green · soft green · warm off-white · earthy brown
+
+   The hero is styled in Bidii-style.css (.page-hero), like every page.
+   ========================================================== */
+
+
+/* ---------- 1. Two columns: form left, information right ---------- */
+.contact-split {
+  display: grid; grid-template-columns: 1.25fr 1fr;
+  gap: clamp(1.5rem, 4vw, 3rem); align-items: start;
+}
+.contact-split h2 { font-size: clamp(1.8rem, 3.5vw, 2.4rem); margin-bottom: .4rem; }
+.contact-split .lead { color: var(--ink-soft); margin-bottom: 1.75rem; }
+
+@media (max-width: 900px) {
+  .contact-split { grid-template-columns: 1fr; }
+}
+
+
+/* ---------- 2. Message form ---------- */
+.form-card {
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  background: var(--white);
+  border: 1px solid var(--line); border-top: 4px solid var(--leaf);
+  border-radius: 14px; box-shadow: var(--shadow);
+}
+
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 1rem; }
+.form-grid .wide { grid-column: 1 / -1; }
+.form-grid textarea { min-height: 160px; resize: vertical; }
+
+.send-btn { display: block; width: 100%; padding: .95rem 1rem; font-size: 1.05rem; text-align: center; }
+.send-btn:disabled { opacity: .6; cursor: wait; }
+
+/* Spam trap: kept off screen, never shown to visitors */
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+/* Message shown after sending */
+.form-status {
+  margin-top: 1.25rem; padding: 1rem 1.1rem;
+  background: var(--mint-soft); border-left: 4px solid var(--leaf); border-radius: 8px;
+  color: var(--forest-800);
+}
+.form-status.error { background: #f8e4df; border-left-color: #a33a2a; color: #7a2a1e; }
+.form-status:focus { outline: none; }
+
+@media (max-width: 560px) {
+  .form-grid { grid-template-columns: 1fr; }
+}
+
+
+/* ---------- 3. Contact information ---------- */
+.contact-info { padding-top: .5rem; }
+
+.info-list { list-style: none; margin: 0; padding: 0; }
+.info-item {
+  display: flex; gap: 1rem; align-items: flex-start;
+  padding: 1.1rem 0; border-top: 1px solid var(--line);
+}
+.info-item:last-child { border-bottom: 1px solid var(--line); }
+
+.info-icon {
+  flex: none; width: 46px; height: 46px; border-radius: 50%;
+  display: grid; place-items: center;
+  background: var(--forest-800); color: var(--mint);
+}
+.info-icon svg { width: 20px; height: 20px; }
+
+.info-item h3 {
+  margin: 0 0 .15rem;
+  font-family: var(--font-body); font-weight: 600; font-size: .78rem;
+  letter-spacing: .12em; text-transform: uppercase; color: var(--bark);
+}
+.info-item p { margin: 0; font-size: 1.05rem; color: var(--forest-800); }
+.info-item a { color: var(--forest-800); font-weight: 600; text-decoration: none; word-break: break-word; }
+.info-item a:hover { color: var(--bark); text-decoration: underline; text-underline-offset: 3px; }
+
+/* Social links */
+.socials { margin-top: 1.75rem; }
+.socials h3 { margin: 0 0 .8rem; font-size: 1.35rem; }
+.social-row { display: flex; flex-wrap: wrap; gap: .6rem; }
+.social-row a {
+  width: 44px; height: 44px; border-radius: 50%;
+  display: grid; place-items: center;
+  border: 1.5px solid var(--line); color: var(--forest-800);
+  transition: background .2s, color .2s, border-color .2s;
+}
+.social-row a:hover { background: var(--bark); border-color: var(--bark); color: var(--white); }
+.social-row svg { width: 18px; height: 18px; }
+
+
+/* ---------- 4. Location and map ---------- */
+.map-card {
+  background: var(--white);
+  border: 1px solid var(--line); border-radius: 14px;
+  overflow: hidden; box-shadow: var(--shadow);
+}
+.map-frame {
+  display: block; width: 100%; height: clamp(320px, 50vh, 460px);
+  border: 0; background: var(--mint);
+}
+.map-bar {
+  display: flex; flex-wrap: wrap; gap: 1rem;
+  align-items: center; justify-content: space-between;
+  padding: 1.1rem 1.5rem; border-top: 4px solid var(--leaf);
+}
+.map-bar p { margin: 0; color: var(--ink-soft); }
+.map-bar strong { font-family: var(--font-head); font-weight: 400; font-size: 1.25rem; color: var(--forest-800); }
+
+@media (max-width: 560px) {
+  .map-bar .btn { width: 100%; text-align: center; }
+}

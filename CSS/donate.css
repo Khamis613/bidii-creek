@@ -1,0 +1,243 @@
+/* ==========================================================
+   Bidii Creek Conservancy – donate page (Pages/donate.html)
+   Load after Bidii-style.css: uses its fonts and colours
+   DM Serif Display (headings) · DM Sans (text)
+   Forest green · leaf green · soft green · warm off-white · earthy brown
+
+   The hero is styled in Bidii-style.css (.page-hero), like every page.
+   ========================================================== */
+
+
+/* ---------- 1. Why your donation matters ---------- */
+.why-grid {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+}
+.why-card {
+  position: relative;
+  padding: 1.75rem 1.5rem 1.6rem;
+  background: var(--white);
+  border: 1px solid var(--line); border-top: 4px solid var(--leaf);
+  border-radius: var(--radius);
+}
+.why-card:nth-child(2) { border-top-color: var(--bark); }
+.why-card h3 { margin: 0 0 .5rem; font-size: 1.4rem; }
+.why-card p { margin: 0; font-size: .95rem; color: var(--ink-soft); }
+
+@media (max-width: 800px) {
+  .why-grid { grid-template-columns: 1fr; gap: 1rem; }
+}
+
+
+/* ---------- 2. Donation section: money (left) + equipment (right) ---------- */
+.give-layout {
+  display: grid; grid-template-columns: 1.2fr 1fr;
+  gap: clamp(1.25rem, 3vw, 2rem); align-items: start;
+}
+@media (max-width: 960px) {
+  .give-layout { grid-template-columns: 1fr; max-width: 720px; margin: 0 auto; }
+}
+
+.give-card,
+.inkind-card {
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 14px; box-shadow: var(--shadow);
+}
+.give-card   { border-top: 4px solid var(--leaf); }
+.inkind-card { border-top: 4px solid var(--bark); }
+
+.give-card-title { margin: 0 0 .35rem; font-size: clamp(1.6rem, 3vw, 2rem); }
+.give-card-lead { margin: 0 0 1.75rem; color: var(--ink-soft); }
+
+.give-step {
+  margin: 0 0 1.75rem; padding: 0 0 1.75rem;
+  border: 0; border-bottom: 1px solid var(--line);
+}
+.give-step legend {
+  float: left; width: 100%;        /* lets the legend sit inside the fieldset normally */
+  margin-bottom: 1rem; padding: 0;
+  font-family: var(--font-head); font-size: 1.35rem; color: var(--forest-800);
+}
+.give-step legend + * { clear: both; }
+
+/* Amount buttons */
+.chips { display: flex; flex-wrap: wrap; gap: .6rem; margin-bottom: 1.1rem; }
+.chip { position: relative; margin: 0; cursor: pointer; }
+.chip input {                       /* hidden radio, still reachable by keyboard */
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  margin: 0; opacity: 0; cursor: pointer;
+}
+.chip span {
+  display: block; min-width: 92px; padding: .65rem 1.1rem;
+  border: 1.5px solid var(--line); border-radius: 999px;
+  background: var(--white); text-align: center;
+  font-weight: 600; color: var(--forest-800); font-variant-numeric: tabular-nums;
+  transition: background .2s, color .2s, border-color .2s;
+}
+.chip:hover span { border-color: var(--leaf); }
+.chip input:checked + span { background: var(--leaf); border-color: var(--leaf); color: var(--white); }
+.chip input:focus-visible + span { outline: 3px solid var(--clay); outline-offset: 2px; }
+
+/* "Other amount" box with KES in front */
+.amount-other { margin: 0; max-width: 300px; }
+.prefix {
+  display: flex; align-items: stretch;
+  border: 1.5px solid var(--line); border-radius: 8px;
+  background: var(--white); overflow: hidden;
+  transition: border-color .2s, box-shadow .2s;
+}
+.prefix span {
+  display: grid; place-items: center; padding: 0 .9rem;
+  background: var(--mint-soft); color: var(--forest-700); font-weight: 600;
+  border-right: 1.5px solid var(--line);
+}
+.prefix input { border: 0; border-radius: 0; }
+.prefix input:focus { box-shadow: none; }
+.prefix:focus-within { border-color: var(--leaf); box-shadow: 0 0 0 3px rgba(59,130,48,.2); }
+.field.error .prefix { border-color: #a33a2a; }
+
+/* Named / anonymous boxes */
+.choice-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; }
+.choice {
+  display: flex; align-items: flex-start; gap: .75rem; margin: 0;
+  padding: 1rem 1.1rem;
+  border: 1.5px solid var(--line); border-radius: 10px;
+  font-weight: 600; color: var(--forest-800); cursor: pointer;
+  transition: border-color .2s, background .2s;
+}
+.choice:hover { border-color: var(--leaf); }
+.choice:has(input:checked) { border-color: var(--leaf); background: var(--mint-soft); }
+.choice input { width: 18px; height: 18px; margin: .2rem 0 0; flex: none; accent-color: var(--leaf); }
+.choice small { display: block; margin-top: .2rem; font-weight: 400; font-size: .86rem; color: var(--ink-soft); }
+
+/* Donor details */
+.donor-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 0 1rem; }
+.donor-fields .wide { grid-column: 1 / -1; }
+.optional { font-weight: 400; color: var(--ink-soft); }
+
+.give-submit { display: block; width: 100%; padding: .95rem 1rem; font-size: 1.05rem; text-align: center; }
+
+/* Summary shown after "Continue to payment" */
+.pledge-result {
+  margin-top: 1.75rem; padding: 1.4rem 1.5rem;
+  background: var(--mint-soft); border-left: 4px solid var(--leaf); border-radius: 10px;
+}
+.pledge-result:focus { outline: none; }
+.pledge-result h3 { margin: 0 0 .4rem; font-size: 1.6rem; }
+.pledge-result p { color: var(--ink-soft); }
+.pledge-actions { display: flex; flex-wrap: wrap; gap: .75rem; }
+
+/* Equipment card */
+.item-list { list-style: none; margin: 0 0 1.5rem; padding: 0; }
+.item-list li {
+  position: relative;
+  padding: .75rem 0 .75rem 1.75rem;
+  border-top: 1px solid var(--line);
+}
+.item-list li:last-child { border-bottom: 1px solid var(--line); }
+.item-list li::before {                 /* small brown leaf-shaped marker */
+  content: ""; position: absolute; left: .15rem; top: 1.05rem;
+  width: 11px; height: 11px;
+  border-radius: 0 50% 0 50%; background: var(--bark);
+}
+.item-list h4 {
+  margin: 0 0 .1rem;
+  font-family: var(--font-body); font-weight: 600; font-size: 1rem; color: var(--forest-800);
+}
+.item-list p { margin: 0; font-size: .9rem; line-height: 1.5; color: var(--ink-soft); }
+
+.send-to {
+  padding: 1.25rem 1.25rem 1.4rem;
+  background: #f6ead6; border-radius: 10px;
+}
+.send-to h4 { margin: 0 0 .25rem; font-size: 1.3rem; }
+.send-to .contact-lines { margin-top: .5rem; }
+.send-to .contact-lines li { border-top-color: rgba(122,82,48,.2); }
+.send-note { margin: .9rem 0 1rem; font-size: .88rem; color: var(--bark-dark); }
+.inkind-btn { display: block; width: 100%; text-align: center; background: var(--white); }
+.inkind-btn:hover { background: var(--bark); }
+
+@media (max-width: 600px) {
+  .choice-grid,
+  .donor-fields { grid-template-columns: 1fr; }
+  .chip { flex: 1 1 calc(33.333% - .6rem); }
+  .chip span { min-width: 0; padding: .65rem .5rem; }
+  .amount-other { max-width: none; }
+  .pledge-actions .btn { flex: 1; text-align: center; }
+}
+
+
+/* ---------- 3. How to pay ---------- */
+.pay-grid {
+  display: grid; grid-template-columns: 1.15fr 1fr;
+  gap: 1.5rem; align-items: start;
+}
+.pay-card {
+  padding: 1.75rem 1.6rem;
+  background: var(--white);
+  border: 1px solid var(--line); border-radius: var(--radius);
+}
+.pay-mpesa { border-top: 4px solid var(--leaf); }
+.pay-bank  { border-top: 4px solid var(--bark); }
+.pay-card h3 { margin: 0 0 1rem; font-size: 1.5rem; }
+.pay-card > p { color: var(--ink-soft); }
+
+/* Paybill and account numbers */
+.paybill-box {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+  margin-bottom: 1.25rem;
+  background: rgba(255,255,255,.15); border-radius: 10px; overflow: hidden;
+}
+.paybill-box div {
+  padding: 1rem 1.1rem; background: var(--forest-800); text-align: center;
+}
+.paybill-box small {
+  display: block; margin-bottom: .2rem;
+  font-size: .75rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--mint);
+}
+.paybill-box strong {
+  font-family: var(--font-head); font-weight: 400; font-size: 1.7rem;
+  letter-spacing: .04em; color: var(--white); word-break: break-all;
+}
+
+/* Numbered steps */
+.pay-steps { list-style: none; counter-reset: step; margin: 0 0 1.25rem; padding: 0; }
+.pay-steps li {
+  counter-increment: step;
+  position: relative; padding: .5rem 0 .5rem 2.4rem;
+  font-size: .95rem; color: var(--ink);
+}
+.pay-steps li::before {
+  content: counter(step);
+  position: absolute; left: 0; top: .45rem;
+  width: 1.65rem; height: 1.65rem; border-radius: 50%;
+  display: grid; place-items: center;
+  background: var(--mint-soft); color: var(--forest-700);
+  font-size: .82rem; font-weight: 700;
+}
+.pay-note {
+  margin: 0; padding: .8rem 1rem;
+  background: #f6ead6; border-left: 4px solid var(--clay); border-radius: 8px;
+  font-size: .88rem; color: var(--bark-dark);
+}
+
+/* Contact lines on the bank card */
+.contact-lines { list-style: none; margin: 1.25rem 0 0; padding: 0; }
+.contact-lines li {
+  display: flex; justify-content: space-between; gap: 1rem; align-items: baseline;
+  padding: .75rem 0; border-top: 1px solid var(--line);
+}
+.contact-lines span {
+  font-size: .78rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--bark);
+}
+.contact-lines a,
+.contact-lines strong { font-weight: 600; color: var(--forest-800); text-align: right; word-break: break-word; }
+.contact-lines a:hover { color: var(--bark); }
+
+@media (max-width: 860px) {
+  .pay-grid { grid-template-columns: 1fr; }
+}

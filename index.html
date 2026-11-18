@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="icon" href="Images/Logo.jpeg" type="image/jpeg">
+<title>Bidii Creek Conservancy | Mangrove Conservation, Restoration and Protection</title>
+<meta name="description" content="Bidii Creek Conservancy conserves, restores and protects mangrove forests together with the local community. Join, donate or shop to support the work.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="Bidii style.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- HEADER
+     Bidii-script.js rebuilds this header on every page from its MENU list,
+     so to change menu items edit MENU in the script and mirror it here. -->
+<header class="site">
+  <div class="nav">
+    <a class="brand" href="index.html"><div class="logo-circle"><img src="Images/Logo.jpeg" alt="Bidii Creek" class="brand-icon"></div></a>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navMenuContainer">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="nav-menu" id="navMenuContainer" aria-label="Main menu">
+    <ul id="navMenu">
+      <li class="dropdown">
+        <a class="link" href="Pages/about.html">ABOUT US</a>
+        <ul class="dropdown-menu">
+          <li><a class="link" href="Pages/about.html#history">Our History</a></li>
+          <li><a class="link" href="Pages/about.html#objectives">Objectives</a></li>
+          <li><a class="link" href="Pages/about.html#team">Leadership and Team</a></li>
+          <li><a class="link" href="Pages/about.html#achievements">Achievements</a></li>
+          <li><a class="link" href="Pages/about.html#partners">Our Partners</a></li>
+        </ul>
+      </li>
+
+      <li class="dropdown">
+        <a class="link" href="Pages/our-work.html">OUR WORK</a>
+        <ul class="dropdown-menu">
+          <li><a class="link" href="Pages/our-work.html#projects">Projects and Impacts</a></li>
+          <li><a class="link" href="Pages/our-work.html#education">Community Education</a></li>
+          <li><a class="link" href="Pages/our-work.html#biodiversity">Biodiversity Conservation</a></li>
+          <li><a class="link" href="Pages/our-work.html#research">Research and Monitoring</a></li>
+        </ul>
+      </li>
+
+      <li class="dropdown">
+        <a class="link" href="Pages/news.html">NEWS &amp; EVENTS</a>
+        <ul class="dropdown-menu">
+          <li><a class="link" href="Pages/news.html">News</a></li>
+          <li><a class="link" href="Pages/events.html">Events</a></li>
+          <li><a class="link" href="Pages/gallery.html">Photo and Video Gallery</a></li>
+        </ul>
+      </li>
+
+      <li class="dropdown">
+        <a class="link" href="Pages/volunteer.html">GET INVOLVED</a>
+        <ul class="dropdown-menu">
+          <li><a class="link" href="Pages/volunteer.html">Volunteer</a></li>
+          <li><a class="link" href="Pages/donate.html">Donate</a></li>
+          <li><a class="link" href="Pages/partner.html">Partner with us</a></li>
+        </ul>
+      </li>
+
+      <li><a class="link" href="Pages/visit-us.html">VISIT US</a></li>
+      <li><a class="link" href="Pages/contact.html">CONTACT US</a></li>
+    </ul>
+    </nav>
+
+    <div class="nav-actions">
+      <a class="cart-btn" href="Pages/shop.html" aria-label="Shop">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        <span class="cart-count" hidden>0</span>
+      </a>
+      <a class="donate-btn" href="Pages/donate.html">Donate</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- PHOTO SLIDESHOW: name, tagline, mission and conservation photographs.
+       To add a slide, copy an <article class="slide"> block and add one more
+       button inside .sl-dots. -->
+  <section class="slider" id="slider" aria-label="Mangrove conservation photographs">
+
+    <div class="slides">
+
+      <article class="slide is-active">
+        <img src="Images/Heros slideshows/H index1.jpeg" alt="Mangroves at Bidii Creek">
+
+        <div class="slide-text">
+          <h1 class="slide-eyebrow">Conservation &middot; Restoration &middot; Protection</h1>
+        </div>
+      </article>
+
+      <article class="slide is-active">
+        <img src="Images/Heros slideshows/H index2.jpeg" alt="Mangroves at Bidii Creek">
+
+        <div class="slide-text">
+          <h1 class="slide-eyebrow">Conservation &middot; Restoration &middot; Protection</h1>
+        </div>
+      </article>
+      
+      <article class="slide is-active">
+        <img src="Images/Heros slideshows/H index3.jpg" alt="Mangroves at Bidii Creek">
+
+        <div class="slide-text">
+          <h1 class="slide-eyebrow">Conservation &middot; Restoration &middot; Protection</h1>
+        </div>
+      </article>
+      
+      <article class="slide is-active">
+        <img src="Images/Heros slideshows/H index4.jpg" alt="Mangroves at Bidii Creek">
+
+        <div class="slide-text">
+          <h1 class="slide-eyebrow">Conservation &middot; Restoration &middot; Protection</h1>
+        </div>
+      </article>
+      
+      <article class="slide is-active">
+        <img src="Images/Heros slideshows/H index5.jpg" alt="Mangroves at Bidii Creek">
+
+        <div class="slide-text">
+          <h1 class="slide-eyebrow">Conservation &middot; Restoration &middot; Protection</h1>
+        </div>
+      </article>
+      
+      <article class="slide is-active">
+        <img src="Images/Heros slideshows/H index6.jpg" alt="Mangroves at Bidii Creek">
+
+        <div class="slide-text">
+          <h1 class="slide-eyebrow">Conservation &middot; Restoration &middot; Protection</h1>
+        </div>
+      </article>
+      
+      <article class="slide is-active">
+        <img src="Images/Heros slideshows/H index7.jpg" alt="Mangroves at Bidii Creek">
+
+        <div class="slide-text">
+          <h1 class="slide-eyebrow">Conservation &middot; Restoration &middot; Protection</h1>
+        </div>
+      </article>
+
+    </div>
+
+
+  </section>
+
+  <!-- BRIEF INTRODUCTION (EDIT: placeholder text and photo) -->
+  <section class="section" aria-labelledby="intro-title">
+    <div class="container intro-grid">
+      <div class="intro-media">
+        <img src="Images/Heros slideshows/1.jpg" alt="Bidii Creek members among the mangroves they planted" loading="lazy">
+      </div>
+      <div class="intro-text">
+        <p class="eyebrow">Who we are</p>
+        <h2 id="intro-title">A community standing up for its mangroves</h2>
+        <p>Bidii Creek Conservancy is a community-led organization dedicated to the mangrove forests that line our creek. What began as a small group of neighbours replanting a cleared stretch of shoreline has grown into a movement of people who raise seedlings, restore degraded sites and watch over the forest. Our mission is to conserve, restore and protect mangrove forests, working hand in hand with the community that depends on them.</p>
+        <p>Mangroves shelter fish and birds, shield the shore from storms and erosion, and store large amounts of carbon. We work so that the creek stays healthy and the people who rely on it can thrive alongside it.</p>
+        <a class="btn green" href="Pages/about.html">More About Us</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONSERVATION STATISTICS
+       EDIT: placeholder figures. Change both data-target and the number shown. -->
+  <section class="stats" aria-labelledby="stats-title">
+    <div class="container">
+      <div class="section-head on-dark">
+        <p class="eyebrow">Our impact</p>
+        <h2 id="stats-title">Mangroves by the numbers</h2>
+      </div>
+
+      <ul class="stats-grid">
+        <li class="stat">
+          <span class="stat-number"><span class="stat-value" data-target="5.6">5.6</span><span class="stat-unit">M</span></span>
+          <span class="stat-label">Mangrove seedlings planted</span>
+        </li>
+        <li class="stat">
+          <span class="stat-number"><span class="stat-value" data-target="250">250</span><span class="stat-unit">ha</span></span>
+          <span class="stat-label">Degraded mangrove area restored</span>
+        </li>
+        <li class="stat">
+          <span class="stat-number"><span class="stat-value" data-target="82">82</span><span class="stat-unit">%</span></span>
+          <span class="stat-label">Seedling survival rate</span>
+        </li>
+        <li class="stat">
+          <span class="stat-number"><span class="stat-value" data-target="7">7</span></span>
+          <span class="stat-label">Mangrove species conserved</span>
+        </li>
+        <li class="stat">
+          <span class="stat-number"><span class="stat-value" data-target="30000">30,000</span></span>
+          <span class="stat-label">Seedlings growing in our nursery</span>
+        </li>
+        <li class="stat">
+          <span class="stat-number"><span class="stat-value" data-target="210">210</span><span class="stat-unit">ha</span></span>
+          <span class="stat-label">Mangrove forest under protection</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+
+  <!-- FEATURED PROJECTS (EDIT: five placeholder projects) -->
+  <section class="section alt" aria-labelledby="projects-title">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Our work</p>
+        <h2 id="projects-title">Featured projects</h2>
+        <p>A look at the work currently under way along the creek.</p>
+      </div>
+
+      <div class="project-grid">
+
+        <article class="project-card">
+          <img src="Images/Heros slideshows/3.jpg" alt="Volunteers planting mangrove seedlings on the mudflat" loading="lazy">
+          <div class="project-body">
+            <p class="tag">Restoration</p>
+            <h3><a href="Pages/our-work.html#projects">Creek Shoreline Replanting</a></h3>
+            <p>Replanting cleared and degraded stretches of the creek with site-matched mangrove species, then monitoring each plot until the young trees are established.</p>
+          </div>
+        </article>
+
+
+        <article class="project-card">
+          <img src="Images/Heros slideshows/5.jpg" alt="A bird perched on mangrove roots above the water" loading="lazy">
+          <div class="project-body">
+            <p class="tag">Biodiversity</p>
+            <h3><a href="Pages/our-work.html#biodiversity">Creek Wildlife Protection</a></h3>
+            <p>Safeguarding the birds, crabs and fish that breed among the mangrove roots, and patrolling against illegal cutting.</p>
+          </div>
+        </article>
+
+
+      </div>
+
+      <p class="section-foot"><a class="btn outline" href="Pages/our-work.html#projects">View All Projects</a></p>
+    </div>
+  </section>
+  <!-- ACTIVITIES IN THE CREEK (EDIT: photos and text) -->
+  <section class="section" aria-labelledby="activities-title">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Visit us</p>
+        <h2 id="activities-title">Activities in the creek</h2>
+        <p>Come and experience the mangroves for yourself. Every visit supports our conservation work.</p>
+      </div>
+
+      <div class="card-grid">
+
+        <article class="card">
+          <img src="Images/activity-boat.jpg" alt="Visitors on a boat ride through the mangrove creek" loading="lazy">
+          <p class="tag">On the water</p>
+          <h3>Boat rides</h3>
+          <p>Glide through the creek on a guided boat ride and take in the forest from the water.</p>
+          <ul class="activity-list">
+            <li>Bird viewing deep in the mangroves</li>
+            <li>Witness mangrove restoration</li>
+            <li>Visit Rabai heritage sites</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <img src="Images/activity-boardwalk.jpg" alt="The wooden boardwalk winding through the mangrove forest" loading="lazy">
+          <p class="tag">On foot</p>
+          <h3>Mangrove boardwalk</h3>
+          <p>Walk above the roots on our boardwalk and get close to the crabs, birds and young trees that make the forest come alive at every tide.</p>
+        </article>
+
+        <article class="card">
+          <img src="Images/activity-restaurant.jpg" alt="Diners at the eco-restaurant beside the creek" loading="lazy">
+          <p class="tag">Food and rest</p>
+          <h3>ECO-Restaurant</h3>
+          <p>Relax beside the creek with fresh, locally sourced meals. Proceeds from every plate go back into protecting the mangroves.</p>
+        </article>
+
+      </div>
+
+      <p class="section-foot"><a class="btn green" href="Pages/visit.html">Plan Your Visit</a></p>
+    </div>
+  </section>
+
+
+  <!-- LATEST NEWS AND UPCOMING EVENTS
+       Filled in automatically by the script at the bottom of this page:
+       - Latest news:     the 3 newest stories in data/news.json
+       - Upcoming events: the next 3 events from data/events.json
+       Nothing to edit here: add stories and activities to the data files. -->
+  <section class="section alt" aria-label="Latest news and upcoming events">
+    <div class="container news-events">
+
+      <div class="news">
+        <p class="eyebrow">Stay informed</p>
+        <h2>Latest news</h2>
+
+        <!-- The story below is shown only if data/news.json can't be read.
+             When it can, it is replaced by the 3 newest stories. -->
+        <div class="news-list" id="newsList">
+          <article class="news-item">
+            <img src="Images/NewsEvent/2.jpeg" alt="" loading="lazy" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'news-thumb'}))">
+            <div>
+              <time class="date" datetime="2026-11-07">7 November 2026</time>
+              <h3><a href="Pages/news.html">2,500 mangroves planted on community planting day</a></h3>
+              <p>Members, volunteers and two local schools planted 2,500 seedlings along the northern bank of the creek.</p>
+            </div>
+          </article>
+        </div>
+
+        <a class="more-link" href="Pages/news.html">All news</a>
+      </div>
+
+      <aside class="events" aria-labelledby="events-title">
+        <p class="eyebrow">Join us</p>
+        <h2 id="events-title">Upcoming events</h2>
+
+        <!-- The event below is shown only if data/events.json can't be read.
+             When it can, it is replaced by the next 3 events. -->
+        <ul class="event-list" id="eventList">
+          <li class="event">
+            <time class="event-date" datetime="2026-12-12"><span>12</span>Dec</time>
+            <div>
+              <h3><a href="Pages/events.html">Jamhuri Day</a></h3>
+              <p>Jamhuri Day planting and creek clean-up &middot; 8:00 AM - 1:00 PM</p>
+            </div>
+          </li>
+        </ul>
+
+        <a class="more-link" href="Pages/events.html">All events</a>
+      </aside>
+
+    </div>
+  </section>
+  <!-- OUR PARTNERS
+       EDIT: put logos in Images/partners/, then change src, alt, name and link.
+       Copy or delete <li> blocks to match the number of partners. -->
+  <section class="section partners" aria-labelledby="partners-title">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">With thanks</p>
+        <h2 id="partners-title">Our partners</h2>
+        <p>None of this work happens alone. We are deeply grateful to the organizations, institutions and friends who stand with us, whether by funding seedlings, sharing knowledge or lending a hand on the mudflats. Together we are restoring the creek for the generations to come.</p>
+      </div>
+      <ul class="partner-grid">
+        <li class="partner"><img src="Images/partners/KFS.jpeg" alt="Partner One" loading="lazy"></li>
+        <li class="partner"><img src="Images/partners/CGM.jpeg" alt="Partner Two" loading="lazy"></li>
+        <li class="partner"><img src="Images/partners/KPC.jpeg" alt="Partner Three" loading="lazy"></li>
+        <li class="partner"><img src="Images/partners/Equity.jpeg" alt="Partner Five" loading="lazy"></li>
+        <li class="partner"><img src="Images/partners/Nema.jpeg" alt="Partner One" loading="lazy"></li>
+        <li class="partner"><img src="Images/partners/Stanchart.jpeg" alt="Partner Three" loading="lazy"></li>
+      </ul>
+      
+      <p class="section-foot">
+        <a class="more-link" href="Pages/about.html#partners">See our partner's Achievements</a>
+        &nbsp;&middot;&nbsp;
+        <a class="more-link" href="Pages/partner.html">Become a partner</a>
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER: added to every page by Bidii-script.js (edit FOOTER in the script) -->
+
+<script src="Bidii script.js"></script>
+<script>
+/* ==========================================================
+   HOME PAGE: LATEST NEWS AND UPCOMING EVENTS
+   Reads the same data files as the News and Events pages, so
+   anything added there shows here automatically.
+   If the files cannot be read (e.g. the page was opened by
+   double-clicking), the one story and one event written into
+   the page above stay instead.
+   ========================================================== */
+(function () {
+  "use strict";
+
+  var MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  function el(tag, cls, text) {
+    var n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (text) n.textContent = text;
+    return n;
+  }
+  function pad(n) { return (n < 10 ? "0" : "") + n; }
+  function iso(y, m, d) { return y + "-" + pad(m) + "-" + pad(d); }
+  function parse(s) { var p = s.split("-"); return new Date(+p[0], +p[1] - 1, +p[2]); }
+  function longDate(s) { return parse(s).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" }); }
+  function getJSON(url) {
+    return fetch(url, { cache: "no-cache" }).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); });
+  }
+
+
+  /* ---------- Latest news: the 3 newest stories ---------- */
+  getJSON("data/news.json").then(function (data) {
+    var stories = (data.items || [])
+      .filter(function (s) { return s && s.title && s.date; })
+      .sort(function (a, b) { return a.date < b.date ? 1 : a.date > b.date ? -1 : 0; })
+      .slice(0, 3);
+    if (!stories.length) return;
+
+    var list = document.getElementById("newsList");
+    list.innerHTML = "";
+    stories.forEach(function (s) {
+      // same link format as the News page, so it opens that story
+      var slug = (s.date + "-" + s.title).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+      var item = el("article", "news-item");
+
+      var img = el("img");
+      img.src = s.image ? s.image.replace(/^\//, "") : "";
+      img.alt = "";
+      img.loading = "lazy";
+      img.addEventListener("error", function () { img.replaceWith(el("div", "news-thumb")); });
+      if (!s.image) img = el("div", "news-thumb");
+
+      var body = el("div");
+      var time = el("time", "date", longDate(s.date));
+      time.dateTime = s.date;
+      var h = el("h3");
+      var a = el("a", "", s.title);
+      a.href = "Pages/news.html#" + slug;
+      h.appendChild(a);
+      body.appendChild(time);
+      body.appendChild(h);
+      if (s.summary) body.appendChild(el("p", "", s.summary));
+
+      item.appendChild(img);
+      item.appendChild(body);
+      list.appendChild(item);
+    });
+  }).catch(function () { /* keep the story written into the page */ });
+
+
+  /* ---------- Upcoming events: the next 3 ---------- */
+  getJSON("data/events.json").then(function (data) {
+    var now = new Date();
+    var today = iso(now.getFullYear(), now.getMonth() + 1, now.getDate());
+    function norm(x) { return String(x).toLowerCase().replace(/[^a-z]/g, "").replace("jamuhuri", "jamhuri"); }
+
+    // every day for this year and next, with any planned activity attached
+    var events = [];
+    [now.getFullYear(), now.getFullYear() + 1].forEach(function (y) {
+      (data.days || []).forEach(function (d) {
+        events.push({ date: iso(y, d.month, d.day), name: d.name, activity: null });
+      });
+    });
+    (data.activities || []).forEach(function (a) {
+      if (!a || !/^\d{4}-\d{2}-\d{2}$/.test(a.date || "")) return;
+      var match = events.filter(function (e) {
+        return e.date.slice(0, 4) === a.date.slice(0, 4) && norm(e.name) === norm(a.day);
+      })[0];
+      if (match) { match.activity = a; match.date = a.date; }
+      else events.push({ date: a.date, name: a.day || a.activity, activity: a });
+    });
+
+    var next = events
+      .filter(function (e) { return e.date >= today; })
+      .sort(function (a, b) { return a.date < b.date ? -1 : a.date > b.date ? 1 : 0; })
+      .slice(0, 3);
+    if (!next.length) return;
+
+    var list = document.getElementById("eventList");
+    list.innerHTML = "";
+    next.forEach(function (e) {
+      var d = parse(e.date);
+      var li = el("li", "event");
+
+      var time = el("time", "event-date");
+      time.dateTime = e.date;
+      time.appendChild(el("span", "", pad(d.getDate())));
+      time.appendChild(document.createTextNode(MONTHS[d.getMonth()]));
+
+      var body = el("div");
+      var h = el("h3");
+      var a = el("a", "", e.name);
+      a.href = "Pages/events.html#" + e.date;     // opens this date on the Events calendar
+      h.appendChild(a);
+      body.appendChild(h);
+
+      var act = e.activity;
+      var detail = act
+        ? [act.activity, act.time].filter(Boolean).join(" \u00b7 ")
+        : "Activity to be announced";
+      body.appendChild(el("p", act ? "" : "tba", detail));
+
+      li.appendChild(time);
+      li.appendChild(body);
+      list.appendChild(li);
+    });
+  }).catch(function () { /* keep the event written into the page */ });
+})();
+</script>
+</body>
+</html>

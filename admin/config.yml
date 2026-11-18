@@ -1,0 +1,267 @@
+# ==========================================================
+# Bidii Creek Conservancy – admin panel settings (Sveltia CMS)
+#
+# The forms below edit the same data files the website reads:
+#   News     -> data/news.json      (News page + home page)
+#   Events   -> data/events.json    (Events page + home page)
+#   Gallery  -> data/gallery.json   (Gallery page + Events page links)
+#
+# After changing this file, reload the admin page.
+# ==========================================================
+
+
+# ---------- Where the website lives on GitHub ----------
+# EDIT: replace with your GitHub username and repository name,
+#       e.g. repo: janedoe/bidii-creek
+backend:
+  name: github
+  repo: Khamis613/bidii-creek
+  branch: main
+
+
+# ---------- Uploaded photos ----------
+# Photos uploaded through the forms are saved in Images/uploads.
+media_folder: Images/uploads
+public_folder: /Images/uploads
+
+# Large camera photos are shrunk and converted to WebP on upload,
+# so pages load quickly on phones. Smaller photos are not enlarged.
+media_libraries:
+  default:
+    config:
+      max_file_size: 15000000          # refuse files over about 15 MB
+      transformations:
+        raster_image:
+          format: webp
+          quality: 85
+          width: 2000
+          height: 2000
+
+
+collections:
+
+  # ======================================================
+  # NEWS
+  # ======================================================
+  - name: news
+    label: News
+    icon: newspaper
+    files:
+      - name: news
+        label: News stories
+        file: data/news.json
+        fields:
+          - name: items
+            label: Stories
+            label_singular: story
+            widget: list
+            summary: "{{fields.date}} · {{fields.title}}"
+            add_to_top: true
+            fields:
+              - name: title
+                label: Headline
+                widget: string
+              - name: date
+                label: Date
+                widget: datetime
+                time_format: false         # date only, no time
+                format: YYYY-MM-DD         # saved as year-month-day, e.g. 2026-12-12
+              - name: category
+                label: Category
+                widget: select
+                options: [Restoration, Livelihoods, Community, Research, Education, Events, Partnerships]
+                hint: Stories can be filtered by category on the News page.
+              - name: image
+                label: Photo
+                widget: image
+                required: false
+              - name: summary
+                label: Short summary
+                widget: text
+                hint: One or two sentences, shown on the story card and on the home page.
+              - name: body
+                label: Full story
+                widget: text
+                hint: Leave a blank line between paragraphs.
+
+
+  # ======================================================
+  # EVENTS
+  # ======================================================
+  - name: events
+    label: Events
+    icon: event
+    files:
+      - name: events
+        label: Events and activities
+        file: data/events.json
+        fields:
+
+          # ----- Activities: what you will do on each day -----
+          - name: activities
+            label: Planned activities
+            label_singular: activity
+            widget: list
+            summary: "{{fields.date}} · {{fields.day}} · {{fields.activity}}"
+            add_to_top: true
+            hint: Add an activity for any of the 12 days. It appears on the Events calendar, in "Next up" and on the home page.
+            fields:
+              - name: day
+                label: Which day?
+                widget: select
+                # The 12 days. If you add or rename a day under "Days we mark
+                # every year", add or rename it here too.
+                options: &day_options
+                  - World Wetlands Day
+                  - World Wildlife Day
+                  - International Day of Forests
+                  - Labour Day
+                  - Madaraka Day
+                  - World Environment Day
+                  - World Oceans Day
+                  - World Mangrove Day
+                  - Mazingira Day
+                  - Mashujaa Day
+                  - Jamhuri Day
+                  - Utamaduni Day
+              - name: date
+                label: Date of the activity
+                hint: Usually the day itself. If you hold it on another date, the calendar shows it there and notes the official date.
+                widget: datetime
+                time_format: false         # date only, no time
+                format: YYYY-MM-DD         # saved as year-month-day, e.g. 2026-12-12
+              - name: activity
+                label: Activity
+                widget: string
+                hint: e.g. Mangrove planting and creek clean-up
+              - name: time
+                label: Time
+                widget: string
+                required: false
+                hint: e.g. 8:00 AM - 12:00 PM
+              - name: venue
+                label: Venue
+                widget: string
+                required: false
+                default: Bidii Creek, Jomvu Kuu
+              - name: description
+                label: Description
+                widget: text
+                required: false
+                hint: What will happen and what to bring.
+              - name: image
+                label: Photo
+                widget: image
+                required: false
+
+          # ----- The 12 days marked every year -----
+          - name: days
+            label: Days we mark every year
+            label_singular: day
+            widget: list
+            summary: "{{fields.day}}/{{fields.month}} · {{fields.name}}"
+            collapsed: true
+            hint: These repeat every year. You rarely need to change them.
+            fields:
+              - name: name
+                label: Name
+                widget: string
+              - name: month
+                label: Month (1-12)
+                widget: number
+                value_type: int
+                min: 1
+                max: 12
+              - name: day
+                label: Day of the month
+                widget: number
+                value_type: int
+                min: 1
+                max: 31
+              - name: type
+                label: Type
+                widget: select
+                options:
+                  - { label: Environmental day, value: env }
+                  - { label: National day, value: national }
+              - name: about
+                label: About this day
+                widget: text
+
+
+  # ======================================================
+  # GALLERY
+  # ======================================================
+  - name: gallery
+    label: Gallery
+    icon: photo_library
+    files:
+      - name: gallery
+        label: Photo and video albums
+        file: data/gallery.json
+        fields:
+          - name: albums
+            label: Albums
+            label_singular: album
+            widget: list
+            summary: "{{fields.date}} · {{fields.title}}"
+            add_to_top: true
+            hint: One album per event. Use the same day and date as the event so the calendar links to it.
+            fields:
+              - name: day
+                label: Which event?
+                widget: select
+                options: *day_options     # the same 12 days as above
+              - name: date
+                label: Date of the event
+                widget: datetime
+                time_format: false         # date only, no time
+                format: YYYY-MM-DD         # saved as year-month-day, e.g. 2026-12-12
+              - name: title
+                label: Album title
+                widget: string
+                hint: e.g. Jamhuri Day planting and clean-up
+              - name: description
+                label: Description
+                widget: text
+                required: false
+              - name: cover
+                label: Cover photo
+                widget: image
+                required: false
+                hint: Optional. If empty, the first photo is used.
+              - name: items
+                label: Photos and videos
+                label_singular: photo or video
+                widget: list
+                types:
+                  - name: photo
+                    label: Photo
+                    widget: object
+                    summary: "{{fields.caption}}"
+                    fields:
+                      - name: image
+                        label: Photo
+                        widget: image
+                      - name: caption
+                        label: Caption
+                        widget: string
+                        required: false
+                  - name: video
+                    label: YouTube video
+                    widget: object
+                    summary: "{{fields.caption}}"
+                    fields:
+                      - name: youtube
+                        label: YouTube link
+                        widget: string
+                        hint: Upload the video to the Bidii Creek YouTube channel, then paste its link here.
+                      - name: caption
+                        label: Caption
+                        widget: string
+                        required: false
+
+          - name: youtubeChannel
+            label: YouTube channel link
+            widget: string
+            default: https://youtube.com/@bidiicreek

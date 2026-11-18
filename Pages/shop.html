@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="../Images/logo.jpeg" type="image/jpeg">
+<title>Shop | Bidii Creek Conservancy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../Bidii style.css">
+<link rel="stylesheet" href="../CSS/shop.css">
+</head>
+<body>
+
+<!-- Header is filled in by Bidii-script.js (same menu on every page) -->
+<header class="site"></header>
+
+<main id="main">
+
+  <!-- ===================================================
+       SHOP HERO
+       =================================================== -->
+  <section class="shop-hero" style="background-image: url('../Images/Shop/Hero.jpg')">
+    <div class="shop-hero-inner">
+     
+    </div>
+  </section>
+
+
+  <!-- ===================================================
+       PRODUCTS: two columns side by side
+       LEFT  = Honey products   (id="honey")
+       RIGHT = Seedlings        (id="seedlings")
+       On phones and small tablets the columns stack:
+       honey first, then seedlings.
+       Each product card has: photo, name, description,
+       price, quantity and an Add to cart button.
+       data-id must be unique; data-price is a plain number.
+       =================================================== -->
+  <section class="section shop-products" aria-label="Products">
+    <div class="container shop-columns">
+
+      <!-- LEFT COLUMN: HONEY PRODUCTS -->
+      <section class="shop-column" id="honey" aria-labelledby="honey-title">
+        <div class="section-head">
+          <p class="eyebrow">From our beehives</p>
+          <h2 id="honey-title">Honey Products</h2>
+          <p>Made from honey and beeswax harvested by our community beekeepers along the creek.</p>
+        </div>
+
+        <div class="product-grid">
+
+          <!-- Honey -->
+          <article class="product" data-id="honey" data-name="Pure Honey" data-price="450">
+            <img class="product-img" src="../Images/shop/honey.jpg" alt="Jar of pure honey" loading="lazy">
+            <div class="product-body">
+              <h3 class="product-name">Pure Honey</h3>
+              <p class="product-desc">Raw, natural honey from hives kept among the mangroves.</p>
+              <p class="product-price">KES 450 <small>per jar</small></p>
+              <div class="product-buy">
+                <label class="sr-only" for="qty-honey">Quantity of Pure Honey</label>
+                <div class="qty">
+                  <button type="button" class="qty-minus" aria-label="Decrease quantity">&minus;</button>
+                  <input type="number" id="qty-honey" class="qty-input" value="1" min="1" max="99">
+                  <button type="button" class="qty-plus" aria-label="Increase quantity">+</button>
+                </div>
+                <button type="button" class="btn add-to-cart">Add to cart</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Shampoo -->
+          <article class="product" data-id="honey-shampoo" data-name="Honey Shampoo" data-price="550">
+            <img class="product-img" src="../Images/shop/honey-shampoo.jpg" alt="Bottle of honey shampoo" loading="lazy">
+            <div class="product-body">
+              <h3 class="product-name">Honey Shampoo</h3>
+              <p class="product-desc">A gentle shampoo enriched with honey to soften and nourish hair.</p>
+              <p class="product-price">KES 550 <small>per bottle</small></p>
+              <div class="product-buy">
+                <label class="sr-only" for="qty-honey-shampoo">Quantity of Honey Shampoo</label>
+                <div class="qty">
+                  <button type="button" class="qty-minus" aria-label="Decrease quantity">&minus;</button>
+                  <input type="number" id="qty-honey-shampoo" class="qty-input" value="1" min="1" max="99">
+                  <button type="button" class="qty-plus" aria-label="Increase quantity">+</button>
+                </div>
+                <button type="button" class="btn add-to-cart">Add to cart</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Shower gel -->
+          <article class="product" data-id="honey-showergel" data-name="Honey Shower Gel" data-price="500">
+            <img class="product-img" src="../Images/shop/honey-showergel.jpg" alt="Bottle of honey shower gel" loading="lazy">
+            <div class="product-body">
+              <h3 class="product-name">Honey Shower Gel</h3>
+              <p class="product-desc">A moisturising shower gel with honey, kind to the skin.</p>
+              <p class="product-price">KES 500 <small>per bottle</small></p>
+              <div class="product-buy">
+                <label class="sr-only" for="qty-honey-showergel">Quantity of Honey Shower Gel</label>
+                <div class="qty">
+                  <button type="button" class="qty-minus" aria-label="Decrease quantity">&minus;</button>
+                  <input type="number" id="qty-honey-showergel" class="qty-input" value="1" min="1" max="99">
+                  <button type="button" class="qty-plus" aria-label="Increase quantity">+</button>
+                </div>
+                <button type="button" class="btn add-to-cart">Add to cart</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Wax -->
+          <article class="product" data-id="beeswax" data-name="Beeswax" data-price="300">
+            <img class="product-img" src="../Images/shop/beeswax.jpg" alt="Block of natural beeswax" loading="lazy">
+            <div class="product-body">
+              <h3 class="product-name">Beeswax</h3>
+              <p class="product-desc">Natural beeswax for candles, wood polish and home-made balms.</p>
+              <p class="product-price">KES 300 <small>per block</small></p>
+              <div class="product-buy">
+                <label class="sr-only" for="qty-beeswax">Quantity of Beeswax</label>
+                <div class="qty">
+                  <button type="button" class="qty-minus" aria-label="Decrease quantity">&minus;</button>
+                  <input type="number" id="qty-beeswax" class="qty-input" value="1" min="1" max="99">
+                  <button type="button" class="qty-plus" aria-label="Increase quantity">+</button>
+                </div>
+                <button type="button" class="btn add-to-cart">Add to cart</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Bar soap -->
+          <article class="product" data-id="honey-barsoap" data-name="Honey Bar Soap" data-price="250">
+            <img class="product-img" src="../Images/shop/honey-barsoap.jpg" alt="Hand-made honey bar soap" loading="lazy">
+            <div class="product-body">
+              <h3 class="product-name">Honey Bar Soap</h3>
+              <p class="product-desc">A hand-made bar soap with honey and beeswax.</p>
+              <p class="product-price">KES 250 <small>per bar</small></p>
+              <div class="product-buy">
+                <label class="sr-only" for="qty-honey-barsoap">Quantity of Honey Bar Soap</label>
+                <div class="qty">
+                  <button type="button" class="qty-minus" aria-label="Decrease quantity">&minus;</button>
+                  <input type="number" id="qty-honey-barsoap" class="qty-input" value="1" min="1" max="99">
+                  <button type="button" class="qty-plus" aria-label="Increase quantity">+</button>
+                </div>
+                <button type="button" class="btn add-to-cart">Add to cart</button>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- RIGHT COLUMN: SEEDLINGS -->
+      <section class="shop-column" id="seedlings" aria-labelledby="seedlings-title">
+        <div class="section-head">
+          <p class="eyebrow">From our nursery</p>
+          <h2 id="seedlings-title">Seedlings</h2>
+          <p>Grow a tree at home, or let us plant a mangrove in the creek on your behalf.</p>
+        </div>
+
+        <div class="product-grid">
+
+          <!-- Mangrove -->
+          <article class="product" data-id="seedling-mangrove" data-name="Mangrove Seedling" data-price="200">
+            <img class="product-img" src="../Images/Shop/M Seedling.jpeg" alt="Young mangrove seedling" loading="lazy">
+            <div class="product-body">
+              <h3 class="product-name">Mangrove Seedling</h3>
+              <p class="product-desc">We plant a mangrove on your behalf and help restore the creek.</p>
+              <p class="product-price">KES 200 <small>each</small></p>
+              <div class="product-buy">
+                <label class="sr-only" for="qty-seedling-mangrove">Quantity of Mangrove Seedling</label>
+                <div class="qty">
+                  <button type="button" class="qty-minus" aria-label="Decrease quantity">&minus;</button>
+                  <input type="number" id="qty-seedling-mangrove" class="qty-input" value="1" min="1" max="99">
+                  <button type="button" class="qty-plus" aria-label="Increase quantity">+</button>
+                </div>
+                <button type="button" class="btn add-to-cart">Add to cart</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Mango -->
+          <article class="product" data-id="seedling-mango" data-name="Mango Seedling" data-price="250">
+            <img class="product-img" src="../Images/shop/seedling-mango.jpg" alt="Grafted mango seedling" loading="lazy">
+            <div class="product-body">
+              <h3 class="product-name">Mango Seedling</h3>
+              <p class="product-desc">A healthy grafted mango seedling, ready to plant at home.</p>
+              <p class="product-price">KES 250 <small>each</small></p>
+              <div class="product-buy">
+                <label class="sr-only" for="qty-seedling-mango">Quantity of Mango Seedling</label>
+                <div class="qty">
+                  <button type="button" class="qty-minus" aria-label="Decrease quantity">&minus;</button>
+                  <input type="number" id="qty-seedling-mango" class="qty-input" value="1" min="1" max="99">
+                  <button type="button" class="qty-plus" aria-label="Increase quantity">+</button>
+                </div>
+                <button type="button" class="btn add-to-cart">Add to cart</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Orange -->
+          <article class="product" data-id="seedling-orange" data-name="Orange Seedling" data-price="250">
+            <img class="product-img" src="../Images/shop/seedling-orange.jpg" alt="Orange tree seedling" loading="lazy">
+            <div class="product-body">
+              <h3 class="product-name">Orange Seedling</h3>
+              <p class="product-desc">A sturdy orange seedling that fruits well in the coastal climate.</p>
+              <p class="product-price">KES 250 <small>each</small></p>
+              <div class="product-buy">
+                <label class="sr-only" for="qty-seedling-orange">Quantity of Orange Seedling</label>
+                <div class="qty">
+                  <button type="button" class="qty-minus" aria-label="Decrease quantity">&minus;</button>
+                  <input type="number" id="qty-seedling-orange" class="qty-input" value="1" min="1" max="99">
+                  <button type="button" class="qty-plus" aria-label="Increase quantity">+</button>
+                </div>
+                <button type="button" class="btn add-to-cart">Add to cart</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Pawpaw -->
+          <article class="product" data-id="seedling-pawpaw" data-name="Pawpaw Seedling" data-price="150">
+            <img class="product-img" src="../Images/shop/seedling-pawpaw.jpg" alt="Pawpaw seedling" loading="lazy">
+            <div class="product-body">
+              <h3 class="product-name">Pawpaw Seedling</h3>
+              <p class="product-desc">A fast-growing pawpaw seedling that can fruit within its first year.</p>
+              <p class="product-price">KES 150 <small>each</small></p>
+              <div class="product-buy">
+                <label class="sr-only" for="qty-seedling-pawpaw">Quantity of Pawpaw Seedling</label>
+                <div class="qty">
+                  <button type="button" class="qty-minus" aria-label="Decrease quantity">&minus;</button>
+                  <input type="number" id="qty-seedling-pawpaw" class="qty-input" value="1" min="1" max="99">
+                  <button type="button" class="qty-plus" aria-label="Increase quantity">+</button>
+                </div>
+                <button type="button" class="btn add-to-cart">Add to cart</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Jackfruit -->
+          <article class="product" data-id="seedling-jackfruit" data-name="Jackfruit Seedling" data-price="300">
+            <img class="product-img" src="../Images/shop/seedling-jackfruit.jpg" alt="Jackfruit seedling" loading="lazy">
+            <div class="product-body">
+              <h3 class="product-name">Jackfruit Seedling</h3>
+              <p class="product-desc">A jackfruit seedling for shade, and large, sweet fruit in time.</p>
+              <p class="product-price">KES 300 <small>each</small></p>
+              <div class="product-buy">
+                <label class="sr-only" for="qty-seedling-jackfruit">Quantity of Jackfruit Seedling</label>
+                <div class="qty">
+                  <button type="button" class="qty-minus" aria-label="Decrease quantity">&minus;</button>
+                  <input type="number" id="qty-seedling-jackfruit" class="qty-input" value="1" min="1" max="99">
+                  <button type="button" class="qty-plus" aria-label="Increase quantity">+</button>
+                </div>
+                <button type="button" class="btn add-to-cart">Add to cart</button>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+    </div>
+  </section>
+
+
+  <!-- ===================================================
+       3. CART
+       Rows are built by the script from the <template> below
+       each time a product is added.
+       =================================================== -->
+  <section class="section cart-section" id="cart" aria-labelledby="cart-title">
+    <div class="container">
+
+      <div class="section-head">
+        <h2 id="cart-title">Your Cart</h2>
+      </div>
+
+      <div class="cart-layout">
+
+        <!-- Items in the cart -->
+        <div class="cart-items">
+          <table class="cart-table">
+            <thead>
+              <tr>
+                <th scope="col">Product</th>
+                <th scope="col">Price</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Subtotal</th>
+                <th scope="col"><span class="sr-only">Remove</span></th>
+              </tr>
+            </thead>
+            <tbody id="cart-body">
+              <!-- cart rows are added here by the script -->
+            </tbody>
+          </table>
+
+          <!-- One cart row. The script copies this for each product in the cart. -->
+          <template id="cart-row-template">
+            <tr class="cart-row">
+              <td class="cart-product">
+                <img src="" alt="">
+                <span class="cart-name"></span>
+              </td>
+              <td class="cart-price"></td>
+              <td class="cart-qty">
+                <div class="qty">
+                  <button type="button" class="qty-minus" aria-label="Decrease quantity">&minus;</button>
+                  <input type="number" class="qty-input" min="1" max="99">
+                  <button type="button" class="qty-plus" aria-label="Increase quantity">+</button>
+                </div>
+              </td>
+              <td class="cart-subtotal"></td>
+              <td><button type="button" class="cart-remove">&times;</button></td>
+            </tr>
+          </template>
+
+          <!-- Shown when the cart is empty -->
+          <p class="cart-empty" id="cart-empty" hidden>
+            Your cart is empty. <a href="#honey">Start shopping</a>
+          </p>
+        </div>
+
+        <!-- Order summary with total to pay -->
+        <aside class="cart-summary" aria-labelledby="summary-title">
+          <h3 id="summary-title">Order Summary</h3>
+          <dl>
+            <div class="summary-row">
+              <dt>Items</dt>
+              <dd id="summary-items">0</dd>
+            </div>
+            <div class="summary-row summary-total">
+              <dt>Total to pay</dt>
+              <dd id="summary-total">KES 0</dd>
+            </div>
+          </dl>
+          <a class="btn green checkout-btn" id="checkout-btn" href="#payment">Proceed to payment</a>
+        </aside>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===================================================
+       4. PAYMENT
+       Hidden by the script until "Proceed to payment" is clicked.
+       =================================================== -->
+  <section class="section alt payment-section" id="payment" aria-labelledby="payment-title">
+    <div class="container">
+
+      <div class="section-head">
+        <h2 id="payment-title">Payment</h2>
+        <p>Enter your details and choose how you would like to pay.</p>
+      </div>
+
+      <form class="payment-form" id="payment-form">
+
+        <!-- Order recap -->
+        <div class="payment-recap">
+          <p>Amount to pay</p>
+          <p class="payment-amount" id="payment-amount">KES 0</p>
+        </div>
+
+        <fieldset class="payment-details">
+          <legend>Your details</legend>
+          <div class="field">
+            <label for="pay-name">Full name</label>
+            <input type="text" id="pay-name" name="name" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="pay-phone">Phone number</label>
+            <input type="tel" id="pay-phone" name="phone" autocomplete="tel" placeholder="e.g. 0712 345 678" required>
+          </div>
+          <div class="field">
+            <label for="pay-email">Email</label>
+            <input type="email" id="pay-email" name="email" autocomplete="email" required>
+          </div>
+        </fieldset>
+
+        <fieldset class="payment-methods">
+          <legend>Payment method</legend>
+          <label class="pay-option">
+            <input type="radio" name="method" value="mpesa" checked>
+            <span>M-Pesa</span>
+          </label>
+          <label class="pay-option">
+            <input type="radio" name="method" value="card">
+            <span>Card</span>
+          </label>
+        </fieldset>
+
+        <p class="payment-note">Demo checkout: no payment gateway is connected yet, so no money is taken.</p>
+
+        <button type="submit" class="btn green pay-btn" id="pay-btn">Pay</button>
+      </form>
+
+    </div>
+  </section>
+
+</main>
+
+<!-- Footer is added by Bidii-script.js (same footer on every page) -->
+
+<!-- Announces cart changes to screen readers -->
+<div class="sr-only" id="cart-announce" role="status" aria-live="polite"></div>
+
+<script src="../Bidii script.js"></script>
+<script>
+/* ==========================================================
+   SHOP SCRIPT
+   1. Reads the products from the cards on the page
+   2. Quantity − / + buttons on each card
+   3. Add to cart
+   4. Shows the cart: rows, quantities, remove, total to pay
+   5. Proceed to payment: opens the payment section
+   6. Checks the payment form and completes the (demo) order
+
+   The cart is saved in the browser, so it is kept when the
+   visitor moves to another page, and the cart icon in the
+   header shows how many items are in it.
+   ========================================================== */
+(function () {
+  "use strict";
+
+  var CURRENCY = "KES";
+
+  /* Set to true once a real payment gateway is connected (see startPayment below) */
+  var PAYMENT_READY = false;
+
+
+  /* ---------- Helpers ---------- */
+  function $(id) { return document.getElementById(id); }
+
+  function money(amount) {
+    return CURRENCY + " " + amount.toLocaleString("en-US");
+  }
+
+  /* Keep a quantity between 1 and 99 (or 0 to 99 when allowZero is true) */
+  function cleanQty(value, allowZero) {
+    var n = parseInt(value, 10);
+    var min = allowZero ? 0 : 1;
+    if (isNaN(n)) n = min;
+    return Math.max(min, Math.min(99, n));
+  }
+
+  var announceTimer;
+  function announce(message) {
+    var box = $("cart-announce");
+    box.textContent = "";
+    clearTimeout(announceTimer);
+    announceTimer = setTimeout(function () { box.textContent = message; }, 50);
+  }
+
+
+  /* ---------- Cart storage ----------
+     Uses the shared cart in Bidii-script.js so the header badge updates.
+     The fallback below only runs if that script fails to load. */
+  var cart = window.BidiiCart || (function () {
+    var KEY = "bidiiCartItems";
+    function read() { try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) { return {}; } }
+    function write(c) {
+      try { localStorage.setItem(KEY, JSON.stringify(c)); } catch (e) {}
+      document.dispatchEvent(new Event("bidii:cart"));
+    }
+    return {
+      items: read,
+      add: function (id, q) { var c = read(); c[id] = Math.min((c[id] || 0) + q, 99); write(c); },
+      set: function (id, q) { var c = read(); if (q <= 0) delete c[id]; else c[id] = Math.min(q, 99); write(c); },
+      remove: function (id) { var c = read(); delete c[id]; write(c); },
+      clear: function () { write({}); }
+    };
+  })();
+
+
+  /* ---------- 1. Read the products from the page ---------- */
+  var products = {};
+
+  document.querySelectorAll(".product").forEach(function (card) {
+    var unit = card.querySelector(".product-price small");
+    var img = card.querySelector(".product-img");
+    products[card.dataset.id] = {
+      id: card.dataset.id,
+      name: card.dataset.name,
+      price: Number(card.dataset.price),
+      unit: unit ? unit.textContent.trim() : "each",
+      img: img ? img.getAttribute("src") : ""
+    };
+  });
+
+  /* Remove anything left in the cart that is no longer sold here
+     (for example products from an older version of the shop) */
+  Object.keys(cart.items()).forEach(function (id) {
+    if (!products[id]) cart.remove(id);
+  });
+
+
+  /* ---------- 2. Quantity − / + buttons ----------
+     One listener handles every stepper on the page,
+     on the product cards and in the cart. */
+  document.addEventListener("click", function (e) {
+    var btn = e.target.closest(".qty-minus, .qty-plus");
+    if (!btn) return;
+    var input = btn.parentElement.querySelector(".qty-input");
+    var inCart = !!btn.closest(".cart-row");
+    var step = btn.classList.contains("qty-plus") ? 1 : -1;
+    input.value = cleanQty(Number(input.value) + step, inCart);
+    input.dispatchEvent(new Event("change", { bubbles: true }));
+  });
+
+  /* Tidy up a quantity typed by hand on a product card */
+  document.querySelectorAll(".product .qty-input").forEach(function (input) {
+    input.addEventListener("change", function () { input.value = cleanQty(input.value); });
+  });
+
+
+  /* ---------- 3. Add to cart ---------- */
+  document.querySelectorAll(".add-to-cart").forEach(function (button) {
+    var card = button.closest(".product");
+    var input = card.querySelector(".qty-input");
+    var label = button.textContent;
+    var resetTimer;
+
+    button.addEventListener("click", function () {
+      var product = products[card.dataset.id];
+      var qty = cleanQty(input.value);
+
+      cart.add(product.id, qty);
+
+      // short confirmation on the button itself
+      button.textContent = "Added ✓";
+      button.disabled = true;
+      clearTimeout(resetTimer);
+      resetTimer = setTimeout(function () {
+        button.textContent = label;
+        button.disabled = false;
+      }, 1200);
+
+      input.value = 1;
+      announce(qty + " " + product.name + " added to cart. Cart total " + money(cartTotal()) + ".");
+    });
+  });
+
+
+  /* ---------- 4. The cart ---------- */
+  var cartBody = $("cart-body");
+  var cartTable = cartBody.closest("table");
+  var rowTemplate = $("cart-row-template");
+  var checkoutBtn = $("checkout-btn");
+
+  /* Products in the cart, with their quantity */
+  function cartLines() {
+    var items = cart.items();
+    return Object.keys(items)
+      .filter(function (id) { return products[id]; })
+      .map(function (id) { return { product: products[id], qty: items[id] }; });
+  }
+
+  function cartTotal() {
+    return cartLines().reduce(function (sum, line) {
+      return sum + line.product.price * line.qty;
+    }, 0);
+  }
+
+  function renderCart() {
+    var lines = cartLines();
+    var count = 0;
+    cartBody.innerHTML = "";
+
+    lines.forEach(function (line) {
+      var p = line.product;
+      var row = rowTemplate.content.firstElementChild.cloneNode(true);
+      var img = row.querySelector("img");
+      var input = row.querySelector(".qty-input");
+
+      row.dataset.id = p.id;
+      img.src = p.img;
+      row.querySelector(".cart-name").textContent = p.name;
+      row.querySelector(".cart-price").textContent = money(p.price) + " " + p.unit;
+      row.querySelector(".cart-subtotal").textContent = money(p.price * line.qty);
+      input.value = line.qty;
+      input.setAttribute("aria-label", "Quantity of " + p.name);
+      row.querySelector(".cart-remove").setAttribute("aria-label", "Remove " + p.name);
+
+      cartBody.appendChild(row);
+      count += line.qty;
+    });
+
+    var empty = lines.length === 0;
+    var total = cartTotal();
+
+    cartTable.hidden = empty;
+    $("cart-empty").hidden = !empty;
+
+    $("summary-items").textContent = count;
+    $("summary-total").textContent = money(total);
+
+    // the checkout button is a link, so "disable" it by hand
+    checkoutBtn.classList.toggle("is-disabled", empty);
+    checkoutBtn.setAttribute("aria-disabled", String(empty));
+    checkoutBtn.style.opacity = empty ? ".45" : "";
+    checkoutBtn.style.pointerEvents = empty ? "none" : "";
+    checkoutBtn.tabIndex = empty ? -1 : 0;
+
+    // keep the payment section in step with the cart
+    // (these are missing while the thank-you message is showing)
+    if ($("payment-amount")) $("payment-amount").textContent = money(total);
+    if ($("pay-btn") && !$("pay-btn").disabled) $("pay-btn").textContent = "Pay " + money(total);
+    if (empty && !orderComplete) hidePayment();
+  }
+
+  /* Change a quantity in the cart (0 removes the item) */
+  cartBody.addEventListener("change", function (e) {
+    if (!e.target.classList.contains("qty-input")) return;
+    var row = e.target.closest(".cart-row");
+    var qty = cleanQty(e.target.value, true);
+    var name = products[row.dataset.id].name;
+    cart.set(row.dataset.id, qty);
+    announce(qty === 0 ? name + " removed from cart." : name + " quantity is now " + qty + ".");
+  });
+
+  /* Remove an item */
+  cartBody.addEventListener("click", function (e) {
+    var btn = e.target.closest(".cart-remove");
+    if (!btn) return;
+    var id = btn.closest(".cart-row").dataset.id;
+    cart.remove(id);
+    announce(products[id].name + " removed from cart.");
+  });
+
+  /* Redraw the cart whenever it changes (on this page or in another tab) */
+  document.addEventListener("bidii:cart", renderCart);
+  window.addEventListener("storage", renderCart);
+
+
+  /* ---------- 5. Proceed to payment ---------- */
+  var paymentSection = $("payment");
+  var paymentForm = $("payment-form");
+  var formHTML = paymentForm.innerHTML;   // kept so the form can be reset after an order
+  var orderComplete = false;
+  paymentForm.noValidate = true;          // use the messages below instead of browser pop-ups
+
+  function hidePayment() { paymentSection.hidden = true; }
+
+  function showPayment() {
+    if (!cartLines().length) return;
+    if (orderComplete) {               // a new order after a finished one
+      paymentForm.innerHTML = formHTML;
+      orderComplete = false;
+      renderCart();
+    }
+    paymentSection.hidden = false;
+    paymentSection.scrollIntoView({ behavior: "smooth", block: "start" });
+    setTimeout(function () {
+      var first = $("pay-name");
+      if (first) first.focus({ preventScroll: true });
+    }, 400);
+  }
+
+  checkoutBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+    showPayment();
+  });
+
+
+  /* ---------- 6. Payment form ---------- */
+  function setError(input, message) {
+    var field = input.closest(".field");
+    var old = field.querySelector(".msg");
+    if (old) old.remove();
+    field.classList.toggle("error", !!message);
+    input.setAttribute("aria-invalid", message ? "true" : "false");
+    if (message) {
+      var msg = document.createElement("div");
+      msg.className = "msg";
+      msg.id = input.id + "-error";
+      msg.textContent = message;
+      field.appendChild(msg);
+      input.setAttribute("aria-describedby", msg.id);
+    } else {
+      input.removeAttribute("aria-describedby");
+    }
+  }
+
+  function validate(form) {
+    var name = form.elements["name"];
+    var phone = form.elements["phone"];
+    var email = form.elements["email"];
+    var ok = true;
+
+    if (name.value.trim().length < 2) { setError(name, "Please enter your full name."); ok = false; }
+    else setError(name, "");
+
+    // Kenyan mobile numbers: 07xx, 01xx, +2547xx, 2541xx ...
+    var digits = phone.value.replace(/[\s-]/g, "");
+    if (!/^(?:\+?254|0)[17]\d{8}$/.test(digits)) {
+      setError(phone, "Enter a valid phone number, e.g. 0712 345 678.");
+      ok = false;
+    } else setError(phone, "");
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) {
+      setError(email, "Enter a valid email address.");
+      ok = false;
+    } else setError(email, "");
+
+    if (!ok) form.querySelector("[aria-invalid='true']").focus();
+    return ok;
+  }
+
+  /* ---- Connect your payment provider here ----
+     Payments (M-Pesa Daraja, Pesapal, Flutterwave...) need a server to keep
+     your secret keys safe. When you have one, send `order` to it here and
+     return its result, then set PAYMENT_READY = true at the top. */
+  function startPayment(order) {
+    return new Promise(function (resolve) {
+      setTimeout(function () {
+        resolve({ ok: true, ref: "BC-" + Date.now().toString(36).toUpperCase() });
+      }, 900);
+    });
+  }
+
+  function showThankYou(order, ref) {
+    var first = order.customer.name.split(" ")[0];
+    paymentForm.innerHTML =
+      '<div class="payment-recap">' +
+        '<p>Order received</p>' +
+        '<p class="payment-amount"></p>' +
+      '</div>' +
+      '<p class="payment-note" style="border-left-color: var(--leaf); background: var(--mint-soft); color: var(--forest-800);"></p>' +
+      '<p style="margin: 1rem 1.5rem 0; text-align: center; font-weight: 600; color: var(--forest-700);"></p>' +
+      '<a class="btn pay-btn" href="#honey">Continue shopping</a>';
+
+    paymentForm.querySelector(".payment-amount").textContent = "Thank you, " + first + "!";
+    paymentForm.querySelector(".payment-note").textContent = PAYMENT_READY
+      ? "Your payment of " + money(order.total) + " was received. A confirmation will be sent to " + order.customer.email + "."
+      : "This was a demo checkout, so no payment was taken and no order was placed.";
+    paymentForm.querySelectorAll("p")[3].textContent = "Order reference: " + ref;
+
+    paymentForm.querySelector("a").addEventListener("click", function () {
+      hidePayment();
+      paymentForm.innerHTML = formHTML;
+      orderComplete = false;
+      renderCart();
+    });
+  }
+
+  paymentForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var form = e.target;
+    var lines = cartLines();
+    if (!lines.length || !validate(form)) return;
+
+    var order = {
+      customer: {
+        name: form.elements["name"].value.trim(),
+        phone: form.elements["phone"].value.replace(/[\s-]/g, ""),
+        email: form.elements["email"].value.trim()
+      },
+      method: form.elements["method"].value,
+      items: lines.map(function (l) {
+        return { id: l.product.id, name: l.product.name, qty: l.qty, price: l.product.price };
+      }),
+      total: cartTotal()
+    };
+
+    var payBtn = $("pay-btn");
+    payBtn.disabled = true;
+    payBtn.textContent = "Processing…";
+
+    startPayment(order).then(function (result) {
+      orderComplete = true;
+      cart.clear();
+      showThankYou(order, result.ref);
+      paymentSection.scrollIntoView({ behavior: "smooth", block: "start" });
+      announce("Order complete. Reference " + result.ref + ".");
+    }).catch(function () {
+      payBtn.disabled = false;
+      payBtn.textContent = "Pay " + money(order.total);
+      announce("Payment failed. Please try again.");
+    });
+  });
+
+  /* Clear a field's error as soon as the visitor fixes it */
+  paymentForm.addEventListener("input", function (e) {
+    var field = e.target.closest(".field");
+    if (field && field.classList.contains("error")) setError(e.target, "");
+  });
+
+
+  /* ---------- Start ---------- */
+  hidePayment();
+  renderCart();
+})();
+</script>
+</body>
+</html>

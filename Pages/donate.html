@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="../Images/Logo.jpeg" type="image/jpeg">
+<title>Donate | Bidii Creek Conservancy</title>
+<meta name="description" content="Donate to Bidii Creek Conservancy and help plant, restore and protect the mangroves of the creek.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../Bidii style.css">
+<link rel="stylesheet" href="../CSS/donate.css">
+</head>
+<body>
+
+<!-- Header is filled in by Bidii-script.js (same menu on every page) -->
+<header class="site"></header>
+
+<main id="main">
+
+  <!-- ===================================================
+       1. HERO (full screen, styled in Bidii-style.css)
+       =================================================== -->
+  <section class="page-hero" style="background-image: url('../Images/Heros slideshows/H\ index9.jpg');" aria-label="Volunteers planting mangrove seedlings on the mudflat">
+ </section>
+
+
+  <!-- ===================================================
+       2. WHY YOUR DONATION MATTERS
+       =================================================== -->
+  <section class="section" aria-labelledby="why-title">
+    <div class="container">
+
+      <div class="section-head">
+        <p class="eyebrow">Why give</p>
+        <h2 id="why-title">Why your donation matters</h2>
+        <p>Conservation depends on ordinary people choosing to act. No gift is too small: whether you give once or regularly, every contribution brings the creek closer to a greener, healthier future.</p>
+      </div>
+
+      <ul class="why-grid">
+        <li class="why-card">
+          <h3>Plant and nurture</h3>
+          <p>Your gift raises mangrove seedlings, plants them and cares for them until they can thrive on their own.</p>
+        </li>
+        <li class="why-card">
+          <h3>Restore habitats</h3>
+          <p>It brings damaged stretches of the creek back to life for the fish, crabs and birds that depend on them.</p>
+        </li>
+        <li class="why-card">
+          <h3>Support the community</h3>
+          <p>When local people have training, tools and fair income from protecting nature, conservation lasts for generations.</p>
+        </li>
+      </ul>
+
+    </div>
+  </section>
+
+
+  <!-- ===================================================
+       3. DONATION DETAILS
+       LEFT  = give money (form)
+       RIGHT = give equipment (buy items and send them to us)
+       On phones and small tablets the two stack.
+       =================================================== -->
+  <section class="section alt" id="give" aria-labelledby="give-title">
+    <div class="container">
+
+      <div class="section-head">
+        <p class="eyebrow">Give today</p>
+        <h2 id="give-title">Your donation</h2>
+        <p>Give money towards our work, or buy equipment we need and send it to us. Both make a real difference.</p>
+      </div>
+
+      <div class="give-layout">
+
+      <!-- LEFT: MONEY DONATION -->
+      <div class="give-card" aria-labelledby="money-title">
+        <h3 class="give-card-title" id="money-title">Donate money</h3>
+        <p class="give-card-lead">Tell us how much you would like to give and whether you would like to be named.</p>
+        <form id="giveForm" novalidate>
+
+          <!-- Amount -->
+          <fieldset class="give-step">
+            <legend>Choose an amount (KES)</legend>
+            <div class="chips" id="amountChips">
+              <label class="chip"><input type="radio" name="amount" value="500"><span>500</span></label>
+              <label class="chip"><input type="radio" name="amount" value="1000" checked><span>1,000</span></label>
+              <label class="chip"><input type="radio" name="amount" value="2500"><span>2,500</span></label>
+              <label class="chip"><input type="radio" name="amount" value="5000"><span>5,000</span></label>
+              <label class="chip"><input type="radio" name="amount" value="10000"><span>10,000</span></label>
+            </div>
+            <div class="field amount-other" id="amountField">
+              <label for="amountOther">Or enter another amount</label>
+              <div class="prefix">
+                <span>KES</span>
+                <input id="amountOther" type="number" min="10" step="1" inputmode="numeric" placeholder="Other amount">
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- Named or anonymous -->
+          <fieldset class="give-step">
+            <legend>Give as</legend>
+            <div class="choice-grid">
+              <label class="choice">
+                <input type="radio" name="mode" value="named" checked>
+                <span>Use my name<small>We will thank you personally.</small></span>
+              </label>
+              <label class="choice">
+                <input type="radio" name="mode" value="anon">
+                <span>Stay anonymous<small>Your name will not be recorded or listed.</small></span>
+              </label>
+            </div>
+          </fieldset>
+
+          <!-- Donor details -->
+          <fieldset class="give-step">
+            <legend>Your details</legend>
+            <div class="donor-fields">
+              <div class="field wide" id="nameField">
+                <label for="donorName">Full name</label>
+                <input id="donorName" type="text" autocomplete="name" required>
+              </div>
+              <div class="field">
+                <label for="donorEmail">Email <span class="optional">(optional, for a receipt)</span></label>
+                <input id="donorEmail" type="email" autocomplete="email">
+              </div>
+              <div class="field" id="phoneField">
+                <label for="donorPhone">Phone <span class="optional">(optional)</span></label>
+                <input id="donorPhone" type="tel" autocomplete="tel" placeholder="e.g. 0712 345 678">
+              </div>
+            </div>
+          </fieldset>
+
+          <button type="submit" class="btn green give-submit">Continue to payment</button>
+        </form>
+
+        <!-- Shown after "Continue to payment" -->
+        <div class="pledge-result" id="pledge" hidden tabindex="-1" aria-live="polite">
+          <h3 id="pledgeTitle"></h3>
+          <p id="pledgeText"></p>
+          <div class="pledge-actions">
+            <a class="btn green" href="#pay">How to pay</a>
+            <a class="btn outline" id="pledgeMail" href="#">Email my details to us</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: EQUIPMENT DONATION
+           EDIT: add or remove items freely (copy an <li> block) -->
+      <aside class="inkind-card" id="equipment" aria-labelledby="equipment-title">
+        <h3 class="give-card-title" id="equipment-title">Donate equipment</h3>
+        <p class="give-card-lead">Prefer to give something practical? Buy any of the items below and send or deliver them to us. Every item goes straight into the field.</p>
+
+        <ul class="item-list">
+          <li>
+            <h4>Crab nests</h4>
+          </li>
+          <li>
+            <h4>Beehives</h4>
+          </li>
+          <li>
+            <h4>Beekeeping gear</h4>
+            <p>Protective suits, gloves, smokers and honey harvesting tools.</p>
+          </li>
+          <li>
+            <h4>Boat machinery and equipment</h4>
+            <p>Outboard engines, spare parts, oars and anchors for our creek boats.</p>
+          </li>
+          <li>
+            <h4>Safety gear</h4>
+            <p>Life jackets and gumboots for planting and boat trips.</p>
+          </li>
+          <li>
+            <h4>Nursery supplies</h4>
+            <p>Potting bags, shade nets and watering cans for raising seedlings.</p>
+          </li>
+          <li>
+            <h4>Planting tools</h4>
+            <p>Spades, machetes, rakes and wheelbarrows.</p>
+          </li>
+          <li>
+            <h4>Monitoring equipment</h4>
+            <p>Binoculars, GPS units and measuring tapes for research and bird watching.</p>
+          </li>
+        </ul>
+
+        <div class="send-to">
+          <h4>Where to send items</h4>
+          <ul class="contact-lines">
+            <li><span>Deliver</span><strong id="inkindOffice"></strong></li>
+            <li><span>Post</span><strong id="inkindPost"></strong></li>
+          </ul>
+          <p class="send-note">Please contact us before buying, so we can confirm what is needed most and arrange collection or delivery.</p>
+          <a class="btn outline inkind-btn" id="inkindMail" href="#">Tell us what you are sending</a>
+        </div>
+      </aside>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ===================================================
+       4. HOW TO PAY
+       =================================================== -->
+  <section class="section" id="pay" aria-labelledby="pay-title">
+    <div class="container">
+
+      <div class="section-head">
+        <p class="eyebrow">Payment options</p>
+        <h2 id="pay-title">How to complete your donation</h2>
+        <p>Choose the option that suits you best.</p>
+      </div>
+
+      <div class="pay-grid">
+
+        <!-- M-Pesa -->
+        <article class="pay-card pay-mpesa">
+          <h3>M-Pesa Paybill</h3>
+          <div class="paybill-box">
+            <div><small>Business no.</small><strong id="paybill"></strong></div>
+            <div><small>Account no.</small><strong id="account"></strong></div>
+          </div>
+          <ol class="pay-steps">
+            <li>Open <strong>M-Pesa</strong> on your phone and select <strong>Lipa na M-Pesa</strong>.</li>
+            <li>Choose <strong>Pay Bill</strong>.</li>
+            <li>Enter the business number and account number shown above.</li>
+            <li>Enter the amount<span id="payAmountHint"></span>.</li>
+            <li>Enter your M-Pesa PIN and confirm. You will receive an M-Pesa confirmation message.</li>
+          </ol>
+          <p class="pay-note">Keep your M-Pesa confirmation message. If you would like a receipt, email it to us.</p>
+        </article>
+
+        <!-- Cheque or bank -->
+        <article class="pay-card pay-bank">
+          <h3>Cheque or bank transfer</h3>
+          <p>Prefer to give by cheque or bank transfer? Contact us and we will share our banking details and help you complete your gift.</p>
+          <ul class="contact-lines">
+            <li><span>Email</span><a id="contactEmail" href="#"></a></li>
+            <li><span>Phone</span><a id="contactPhone" href="#"></a></li>
+            <li><span>Post</span><strong id="contactPost"></strong></li>
+          </ul>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- Footer is added by Bidii-script.js (same footer on every page) -->
+
+<script src="../Bidii script.js"></script>
+<script>
+/* ==========================================================
+   DONATE PAGE SCRIPT
+   1. Fills in the payment details below
+   2. Amount buttons and "other amount" box
+   3. Named / anonymous switch
+   4. Checks the form, then shows a summary and how to pay
+   ========================================================== */
+(function () {
+  "use strict";
+
+  /* ===== EDIT THESE DETAILS ===== */
+  var DONATE = {
+    paybill: "400200",                 // your M-Pesa Paybill business number
+    account: "1051795",                 // account number donors should type
+    email:   "bidiicreek001@gmail.com",
+    phone:   "+254 720322662",
+    post:    "P.O. Box 93837-80100",
+    office:  "Jomvu Kuu, Mombasa, Kenya"   // where equipment can be delivered
+  };
+
+  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function $(id) { return document.getElementById(id); }
+  function money(n) { return "KES " + n.toLocaleString("en-US"); }
+
+
+  /* ---------- 1. Payment details ---------- */
+  $("paybill").textContent = DONATE.paybill;
+  $("account").textContent = DONATE.account;
+  $("contactEmail").textContent = DONATE.email;
+  $("contactEmail").href = "mailto:" + DONATE.email;
+  $("contactPhone").textContent = DONATE.phone;
+  $("contactPhone").href = "tel:" + DONATE.phone.replace(/\s/g, "");
+  $("contactPost").textContent = DONATE.post;
+
+  // equipment donations
+  $("inkindOffice").textContent = DONATE.office;
+  $("inkindPost").textContent = DONATE.post;
+  $("inkindMail").href = "mailto:" + DONATE.email +
+    "?subject=" + encodeURIComponent("Equipment donation") +
+    "&body=" + encodeURIComponent(
+      "Hello Bidii Creek Conservancy,\n\n" +
+      "I would like to donate the following equipment:\n\n" +
+      "Item(s):\nQuantity:\nHow I will send it (deliver / post / courier):\n\n" +
+      "My name:\nMy phone:\n\nThank you.");
+
+
+  /* ---------- Error messages under a field (same style as the shop) ---------- */
+  function setError(input, message) {
+    var field = input.closest(".field");
+    var old = field.querySelector(".msg");
+    if (old) old.remove();
+    field.classList.toggle("error", !!message);
+    input.setAttribute("aria-invalid", message ? "true" : "false");
+    if (message) {
+      var msg = document.createElement("div");
+      msg.className = "msg";
+      msg.id = input.id + "-error";
+      msg.textContent = message;
+      field.appendChild(msg);
+      input.setAttribute("aria-describedby", msg.id);
+    } else {
+      input.removeAttribute("aria-describedby");
+    }
+  }
+
+
+  /* ---------- 2. Amount ---------- */
+  var form = $("giveForm");
+  var chips = form.querySelectorAll('input[name="amount"]');
+  var other = $("amountOther");
+
+  // typing an amount clears the buttons; choosing a button clears the box
+  other.addEventListener("input", function () {
+    if (other.value) chips.forEach(function (c) { c.checked = false; });
+    setError(other, "");
+  });
+  chips.forEach(function (c) {
+    c.addEventListener("change", function () { other.value = ""; setError(other, ""); });
+  });
+
+  function chosenAmount() {
+    if (other.value) return parseInt(other.value, 10);
+    var c = form.querySelector('input[name="amount"]:checked');
+    return c ? parseInt(c.value, 10) : 0;
+  }
+
+
+  /* ---------- 3. Named / anonymous ---------- */
+  var nameField = $("nameField"), phoneField = $("phoneField"), nameInput = $("donorName");
+
+  function applyMode() {
+    var anon = form.elements["mode"].value === "anon";
+    nameField.hidden = anon;
+    phoneField.hidden = anon;
+    nameInput.required = !anon;
+    if (anon) {
+      nameInput.value = ""; $("donorPhone").value = "";
+      setError(nameInput, ""); setError($("donorPhone"), "");
+    }
+  }
+  form.querySelectorAll('input[name="mode"]').forEach(function (r) { r.addEventListener("change", applyMode); });
+  applyMode();
+
+  // clear a field's error as soon as it is fixed
+  form.addEventListener("input", function (e) {
+    var field = e.target.closest(".field");
+    if (field && field.classList.contains("error")) setError(e.target, "");
+  });
+
+
+  /* ---------- 4. Submit ---------- */
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    var amount = chosenAmount();
+    var anon = form.elements["mode"].value === "anon";
+    var name = nameInput.value.trim();
+    var email = $("donorEmail").value.trim();
+    var phone = $("donorPhone").value.replace(/[\s-]/g, "");
+    var ok = true;
+
+    if (!amount || amount < 10) { setError(other, "Please choose an amount, or enter at least KES 10."); ok = false; }
+    else setError(other, "");
+
+    if (!anon && name.length < 2) { setError(nameInput, "Please enter your full name."); ok = false; }
+    else setError(nameInput, "");
+
+    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { setError($("donorEmail"), "Enter a valid email address."); ok = false; }
+    else setError($("donorEmail"), "");
+
+    if (!anon && phone && !/^(?:\+?254|0)[17]\d{8}$/.test(phone)) { setError($("donorPhone"), "Enter a valid phone number, e.g. 0712 345 678."); ok = false; }
+    else setError($("donorPhone"), "");
+
+    if (!ok) { form.querySelector("[aria-invalid='true']").focus(); return; }
+
+    // summary
+    $("pledgeTitle").textContent = anon ? "Thank you for your generosity!" : "Thank you, " + name.split(" ")[0] + "!";
+    $("pledgeText").textContent = "You have chosen to give " + money(amount) + (anon ? " anonymously" : "") +
+      ". Complete your gift using one of the payment options below. Nothing has been charged yet.";
+    $("payAmountHint").textContent = " (" + money(amount) + ")";
+
+    // pre-written email with the donor's details
+    var lines = [
+      "Hello Bidii Creek Conservancy,", "",
+      "I would like to make a donation.",
+      "Amount: " + money(amount),
+      "Giving as: " + (anon ? "Anonymous" : name)
+    ];
+    if (email) lines.push("Email: " + email);
+    if (!anon && phone) lines.push("Phone: " + phone);
+    lines.push("", "Thank you.");
+    $("pledgeMail").href = "mailto:" + DONATE.email +
+      "?subject=" + encodeURIComponent("Donation of " + money(amount)) +
+      "&body=" + encodeURIComponent(lines.join("\n"));
+
+    var box = $("pledge");
+    box.hidden = false;
+    box.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "center" });
+    box.focus({ preventScroll: true });
+  });
+})();
+</script>
+</body>
+</html>
