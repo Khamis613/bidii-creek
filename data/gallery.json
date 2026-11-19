@@ -1,19 +1,42 @@
 {
-  "youtubeChannel": "https://youtube.com/@bidiicreek",
   "albums": [
     {
       "day": "Mazingira Day",
       "date": "2026-10-10",
       "title": "Mazingira Day mangrove planting",
       "description": "Members and volunteers planting mangroves along the creek on Kenya's national day for the environment.",
-      "cover": "Images/gallery/mazingira-2026/photo-1.jpg",
+      "cover": "/Images/uploads/4.webp",
       "items": [
-        { "type": "photo", "image": "Images/gallery/mazingira-2026/photo-1.jpg", "caption": "Volunteers arriving at the planting site" },
-        { "type": "photo", "image": "Images/gallery/mazingira-2026/photo-2.jpg", "caption": "Seedlings ready for planting" },
-        { "type": "photo", "image": "Images/gallery/mazingira-2026/photo-3.jpg", "caption": "Planting along the northern bank" },
-        { "type": "photo", "image": "Images/gallery/mazingira-2026/photo-4.jpg", "caption": "Pupils from a local school joined us" },
-        { "type": "photo", "image": "Images/gallery/mazingira-2026/photo-5.jpg", "caption": "The newly planted site at low tide" },
-        { "type": "video", "youtube": "https://www.youtube.com/watch?v=PASTE_VIDEO_ID", "caption": "Highlights from the day" }
+        {
+          "type": "photo",
+          "image": "/Images/uploads/H index1.webp",
+          "caption": "Volunteers arriving at the planting site"
+        },
+        {
+          "type": "photo",
+          "image": "/Images/uploads/4.webp",
+          "caption": "Seedlings ready for planting"
+        },
+        {
+          "type": "photo",
+          "image": "/Images/uploads/2.webp",
+          "caption": "Planting along the northern bank"
+        },
+        {
+          "type": "photo",
+          "image": "/Images/uploads/4-1.webp",
+          "caption": "Pupils from a local school joined us"
+        },
+        {
+          "type": "photo",
+          "image": "/Images/uploads/H donate.webp",
+          "caption": "The newly planted site at low tide"
+        },
+        {
+          "type": "video",
+          "caption": "Highlights from the day",
+          "youtube": "https://youtu.be/v2SLIMvzhC8?si=Ggb6DrdxahLc18WQ"
+        }
       ]
     },
     {
@@ -23,11 +46,28 @@
       "description": "Boat tours, a nursery visit and planting to celebrate the International Day for the Conservation of the Mangrove Ecosystem.",
       "cover": "Images/gallery/mangrove-day-2026/photo-1.jpg",
       "items": [
-        { "type": "photo", "image": "Images/gallery/mangrove-day-2026/photo-1.jpg", "caption": "Guests on a boat tour through the mangroves" },
-        { "type": "photo", "image": "Images/gallery/mangrove-day-2026/photo-2.jpg", "caption": "Visiting the production nursery" },
-        { "type": "photo", "image": "Images/gallery/mangrove-day-2026/photo-3.jpg", "caption": "Planting the first seedling of the day" },
-        { "type": "photo", "image": "Images/gallery/mangrove-day-2026/photo-4.jpg", "caption": "The team after planting" }
+        {
+          "type": "photo",
+          "image": "Images/gallery/mangrove-day-2026/photo-1.jpg",
+          "caption": "Guests on a boat tour through the mangroves"
+        },
+        {
+          "type": "photo",
+          "image": "Images/gallery/mangrove-day-2026/photo-2.jpg",
+          "caption": "Visiting the production nursery"
+        },
+        {
+          "type": "photo",
+          "image": "Images/gallery/mangrove-day-2026/photo-3.jpg",
+          "caption": "Planting the first seedling of the day"
+        },
+        {
+          "type": "photo",
+          "image": "Images/gallery/mangrove-day-2026/photo-4.jpg",
+          "caption": "The team after planting"
+        }
       ]
     }
-  ]
+  ],
+  "youtubeChannel": "https://youtube.com/@bidiicreek"
 }
