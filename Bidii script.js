@@ -48,7 +48,7 @@
 
   /* ---------- Shared header (edit menu items here, it updates every page) ---------- */
   var MENU = [
-    { label: "ABOUT US", href: "Pages/about.html", sub: [
+    { label: "ABOUT US", href: "Pages/history.html", sub: [
       ["Our History", "Pages/history.html"],
       ["Leadership and Team", "Pages/team.html"],
       ["Our Partners", "Pages/partners.html"]
