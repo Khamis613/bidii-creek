@@ -14,22 +14,16 @@
 </head>
 <body>
 
-<!-- Header is filled in by Bidii-script.js (same menu on every page) -->
+
 <header class="site"></header>
 
 <main id="main">
 
-  <!-- ===================================================
-       1. HERO (full screen, styled in Bidii-style.css)
-       =================================================== -->
   <section class="page-hero" style="background-image: url('../Images/volunteer/hero.jpeg')">
    
   </section>
 
 
-  <!-- ===================================================
-       2. WAYS TO VOLUNTEER (overview: each card jumps to its section)
-       =================================================== -->
   <section class="section" id="ways" aria-labelledby="ways-title">
     <div class="container">
 
@@ -78,10 +72,6 @@
   </section>
 
 
-  <!-- ===================================================
-       3. SCHOOLS AND INSTITUTIONS
-       EDIT: photos go in Images/volunteer/
-       =================================================== -->
   <section class="section alt" id="schools" aria-labelledby="schools-title">
     <div class="container">
       <div class="split">
@@ -106,9 +96,6 @@
   </section>
 
 
-  <!-- ===================================================
-       4. ORGANIZATIONS (part-time members)
-       =================================================== -->
   <section class="section" id="organizations" aria-labelledby="org-title">
     <div class="container">
       <div class="split reverse">
@@ -131,9 +118,6 @@
   </section>
 
 
-  <!-- ===================================================
-       5. INDIVIDUALS (join the Bidii CBO team)
-       =================================================== -->
   <section class="section alt" id="individuals" aria-labelledby="ind-title">
     <div class="container">
       <div class="split">
@@ -156,23 +140,18 @@
     </div>
   </section>
 
-
-  <!-- ===================================================
-       6. STUDENTS ON ATTACHMENT (criteria)
-       EDIT: courses and requirements to match your policy
-       =================================================== -->
+>
   <section class="section" id="attachment" aria-labelledby="attach-title">
     <div class="container">
 
       <div class="section-head">
-        <p class="eyebrow">Students on attachment</p>
-        <h2 id="attach-title">Industrial attachment</h2>
+        <p class="eyebrow"></p>
+        <h2 id="attach-title">Students on Industrial attachment</h2>
         <p>Students in related fields can come for attachment and gain real field experience in mangrove conservation, restoration, research and community work.</p>
       </div>
 
       <div class="criteria-grid">
 
-        <!-- Who can apply -->
         <div class="criteria-card">
           <h3>Related fields of study</h3>
           <p>We accept students taking courses in:</p>
@@ -192,7 +171,6 @@
           </ul>
         </div>
 
-        <!-- Requirements -->
         <div class="criteria-card">
           <h3>Requirements</h3>
           <ul class="tick-list">
@@ -211,22 +189,19 @@
   </section>
 
 
-  <!-- ===================================================
-       7. REACH OUT (application form, sent by email for approval)
-       =================================================== -->
   <section class="section alt" id="apply" aria-labelledby="apply-title">
     <div class="container">
 
       <div class="section-head">
-        <p class="eyebrow">Reach out</p>
-        <h2 id="apply-title">Apply to volunteer</h2>
+        <p class="eyebrow">Reach out, Apply to volunteer</p>
+        <h2 id="apply-title"></h2>
         <p>Fill in your details and send them to us by email. We will review your request and reply to approve it and share the next steps.</p>
       </div>
 
       <div class="apply-card">
         <form id="volForm" novalidate>
 
-          <!-- Type of volunteer -->
+
           <fieldset class="type-step">
             <legend>I am applying as</legend>
             <div class="type-grid">
@@ -239,7 +214,7 @@
 
           <div class="form-grid">
 
-            <!-- Group name (school / organization / student's institution) -->
+
             <div class="field wide" data-show="school organization student">
               <label for="vGroup" id="vGroupLabel">Name of school or institution</label>
               <input id="vGroup" name="group" type="text" autocomplete="organization">
@@ -258,7 +233,7 @@
               <input id="vEmail" name="email" type="email" autocomplete="email" required>
             </div>
 
-            <!-- Schools and organizations -->
+            
             <div class="field" data-show="school organization">
               <label for="vSize">Number of people</label>
               <input id="vSize" name="size" type="number" min="1" inputmode="numeric" placeholder="e.g. 25">
@@ -268,7 +243,7 @@
               <input id="vWhen" name="when" type="text" placeholder="e.g. next planting day">
             </div>
 
-            <!-- Individuals -->
+           
             <fieldset class="field wide interests" data-show="individual">
               <legend>I would like to help with <span class="optional">(choose any)</span></legend>
               <label><input type="checkbox" name="interest" value="Mangrove planting"> Mangrove planting</label>
@@ -277,7 +252,7 @@
               <label><input type="checkbox" name="interest" value="Community education"> Community education</label>
             </fieldset>
 
-            <!-- Students on attachment -->
+          
             <div class="field" data-show="student">
               <label for="vCourse">Course</label>
               <select id="vCourse" name="course">
@@ -327,7 +302,7 @@
             </div>
           </div>
 
-          <!-- Students: reminder about documents -->
+         
           <p class="doc-note" data-show="student">Please attach your <strong>attachment letter, CV and student ID</strong> to the email before you send it.</p>
 
           <button type="submit" class="btn green apply-btn" id="vSend">Send for approval</button>
@@ -342,7 +317,7 @@
 
 </main>
 
-<!-- Footer is added by Bidii-script.js (same footer on every page) -->
+
 
 <script src="../Bidii script.js"></script>
 <script>
@@ -355,8 +330,8 @@
 (function () {
   "use strict";
 
-  /* ===== EDIT THESE DETAILS ===== */
-  var EMAIL = "bidiicreek001@gmail.com";     // where applications go
+ 
+  var EMAIL = "bidiicreekconservancy001@gmail.com";  
 
   /* Optional: a form-service address (e.g. Formspree) so applications arrive
      in your inbox directly. While empty, the visitor's email app opens instead.

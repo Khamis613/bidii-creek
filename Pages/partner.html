@@ -14,19 +14,12 @@
 </head>
 <body>
 
-<!-- Header is filled in by Bidii-script.js (same menu on every page) -->
+
 <header class="site"></header>
 
 <main id="main">
 
-  <!-- ===================================================
-       1. SLIDESHOW: photos of partners and sponsors
-       The heading stays the same while the photos change.
-       Full screen, same as the home page slideshow (styled in
-       Bidii-style.css, run by Bidii-script.js).
-       EDIT: photos go in Images/partners/. To add a slide, copy an
-       <article class="slide"> block AND add one more dot button.
-       =================================================== -->
+ 
   <section class="slider" id="slider" aria-label="Photos of our partners and sponsors">
 
     <div class="slides">
@@ -44,7 +37,7 @@
       </article>
     </div>
 
-    <!-- Same heading on every slide -->
+   
     <div class="slide-text">
       <p class="slide-eyebrow">Partnership &middot; Sponsorship</p>
     
@@ -53,7 +46,6 @@
   </section>
 
 
-  <!-- Quick jump links -->
   <nav class="page-jump" aria-label="On this page">
     <div class="container">
       <a href="#partnership">Partnership</a>
@@ -64,19 +56,16 @@
   </nav>
 
 
-  <!-- ===================================================
-       2. PARTNERSHIP
-       =================================================== -->
   <section class="section" id="partnership" aria-labelledby="partnership-title">
     <div class="container">
 
       <div class="section-head">
-        <p class="eyebrow">Partnership</p>
+        <p class="eyebrow"></p>
         <h2 id="partnership-title">Work with us for the long term</h2>
         <p>We partner with organizations that share our goal of healthy mangroves and a thriving community. Our partners bring skills, people and resources; we bring restoration sites, a working nursery, local knowledge and a committed community team.</p>
       </div>
 
-      <!-- Areas we partner on -->
+   
       <h3 class="block-title">Areas we partner on</h3>
       <ul class="area-grid">
         <li class="area-card">
@@ -101,7 +90,6 @@
         </li>
       </ul>
 
-      <!-- Who we work with + how it works -->
       <div class="partner-split">
         <div class="who-card">
           <h3 class="block-title">Who we work with</h3>
@@ -130,9 +118,6 @@
   </section>
 
 
-  <!-- ===================================================
-       3. SPONSORSHIP
-       =================================================== -->
   <section class="section alt" id="sponsorship" aria-labelledby="sponsorship-title">
     <div class="container">
 
@@ -142,11 +127,10 @@
         <p>Fund restoration you can see and visit. Choose one of our two sponsorship programmes.</p>
       </div>
 
-      <!-- 3a. ADOPT A SITE -->
       <article class="sponsor-block" id="adopt" aria-labelledby="adopt-title">
         <div class="sponsor-media">
           <img src="../Images/partners/adopt-site.jpg" alt="A newly planted mangrove site along the creek" loading="lazy">
-          <!-- EDIT: price per hectare -->
+      
           <p class="price-badge"><span>Priced per</span>hectare</p>
         </div>
         <div class="sponsor-text">
@@ -164,7 +148,7 @@
         </div>
       </article>
 
-      <!-- 3b. 1 MILLION TREE CAMPAIGN -->
+
       <article class="sponsor-block reverse" id="trees" aria-labelledby="trees-title">
         <div class="sponsor-media">
           <img src="../Images/partners/tree-campaign.jpg" alt="Mangrove seedlings growing in the production nursery" loading="lazy">
@@ -176,20 +160,20 @@
           <h3 id="trees-title">1 Million Tree Campaign</h3>
           <p>Help us plant one million mangroves. You pay for the mangrove trees themselves, and you can join our team to plant them. The campaign takes each tree all the way from our production nursery to planting in the creek.</p>
 
-          <!-- Campaign progress. EDIT: trees planted so far (both numbers) -->
+         
           <div class="campaign-progress">
             <div class="progress-figures">
-              <span><span class="stat-value" data-target="48250">48,250</span> trees planted</span>
+              <span><span class="stat-value" data-target="348250">348,250</span> trees planted</span>
               <span>Goal: 1,000,000</span>
             </div>
-            <div class="progress-bar" role="progressbar" aria-label="Trees planted towards the goal" aria-valuemin="0" aria-valuemax="1000000" aria-valuenow="48250">
-              <span style="width: 4.8%"></span>
+            <div class="progress-bar" role="progressbar" aria-label="Trees planted towards the goal" aria-valuemin="0" aria-valuemax="1000000" aria-valuenow="348250">
+              <span style="width: 34.8%"></span>
             </div>
           </div>
         </div>
       </article>
 
-      <!-- The journey of a sponsored tree -->
+
       <div class="journey">
         <h3 class="block-title center">The journey of your trees</h3>
         <ol class="journey-steps">
@@ -220,39 +204,12 @@
   </section>
 
 
-  <!-- ===================================================
-       4. OUR PARTNERS AND SPONSORS (logos)
-       Uses the same logo styles as the home page.
-       EDIT: put logos in Images/partners/ and change src and alt.
-       =================================================== -->
-  <section class="section partners" aria-labelledby="logos-title">
-    <div class="container">
-      <div class="section-head">
-        <p class="eyebrow">With thanks</p>
-        <h2 id="logos-title">Our partners and sponsors</h2>
-        <p>We are grateful to the organizations that already stand with us.</p>
-      </div>
-      <ul class="partner-grid">
-        <li class="partner"><img src="../Images/partners/partner-1.png" alt="Partner One" loading="lazy"></li>
-        <li class="partner"><img src="../Images/partners/partner-2.png" alt="Partner Two" loading="lazy"></li>
-        <li class="partner"><img src="../Images/partners/partner-3.png" alt="Partner Three" loading="lazy"></li>
-        <li class="partner"><img src="../Images/partners/partner-4.png" alt="Partner Four" loading="lazy"></li>
-        <li class="partner"><img src="../Images/partners/partner-5.png" alt="Partner Five" loading="lazy"></li>
-        <li class="partner"><img src="../Images/partners/partner-6.png" alt="Partner Six" loading="lazy"></li>
-      </ul>
-    </div>
-  </section>
-
-
-  <!-- ===================================================
-       5. GET IN TOUCH (enquiry form, sent by email)
-       =================================================== -->
   <section class="section alt" id="enquire" aria-labelledby="enquire-title">
     <div class="container">
 
       <div class="section-head">
         <p class="eyebrow">Get in touch</p>
-        <h2 id="enquire-title">Start a conversation</h2>
+        <h2 id="enquire-title"></h2>
         <p>Tell us how you would like to work with us. We will get back to you to discuss the details.</p>
       </div>
 
@@ -286,7 +243,7 @@
               <input id="pEmail" name="email" type="email" autocomplete="email" required>
             </div>
 
-            <!-- Partnership -->
+           
             <div class="field wide" data-show="partnership">
               <label for="pArea">Area of partnership</label>
               <select id="pArea" name="area">
@@ -300,13 +257,13 @@
               </select>
             </div>
 
-            <!-- Adopt a site -->
+            
             <div class="field" data-show="adopt">
               <label for="pHa">Size of site (hectares)</label>
               <input id="pHa" name="hectares" type="number" min="0.1" step="0.1" inputmode="decimal" placeholder="e.g. 1">
             </div>
 
-            <!-- 1 Million Tree Campaign -->
+           
             <div class="field" data-show="trees">
               <label for="pTrees">Number of trees</label>
               <input id="pTrees" name="trees" type="number" min="1" step="1" inputmode="numeric" value="100">
@@ -326,7 +283,7 @@
           </div>
 
           <button type="submit" class="btn green enquire-btn" id="pSend">Send enquiry</button>
-          <p class="direct-email">Prefer to write your own email? Send it to <a id="pDirect" href="mailto:info@example.org">info@example.org</a></p>
+          <p class="direct-email">Prefer to write your own email? Send it to <a id="pDirect" href="mailto:bidiicreekconservancy001@gmail.com">bidiicreekconservancy001@gmail.com</a></p>
         </form>
 
         <div class="form-status" id="pStatus" role="status" aria-live="polite" tabindex="-1" hidden></div>
@@ -337,7 +294,7 @@
 
 </main>
 
-<!-- Footer is added by Bidii-script.js (same footer on every page) -->
+
 
 <script src="../Bidii script.js"></script>
 <script>
@@ -352,7 +309,7 @@
   "use strict";
 
   /* ===== EDIT THESE DETAILS ===== */
-  var EMAIL = "bidiicreek001@gmail.com";   // where enquiries go
+  var EMAIL = "bidiicreek001conservancy@gmail.com";   // where enquiries go
   var TREE_PRICE = 200;             // KES per tree (also shown on the page)
 
   /* Optional: a form-service address (e.g. Formspree) so enquiries arrive in

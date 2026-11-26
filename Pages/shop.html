@@ -13,45 +13,29 @@
 </head>
 <body>
 
-<!-- Header is filled in by Bidii-script.js (same menu on every page) -->
 <header class="site"></header>
 
 <main id="main">
 
-  <!-- ===================================================
-       SHOP HERO
-       =================================================== -->
   <section class="shop-hero" style="background-image: url('../Images/Shop/Hero.jpg')">
     <div class="shop-hero-inner">
      
     </div>
   </section>
 
-
-  <!-- ===================================================
-       PRODUCTS: two columns side by side
-       LEFT  = Honey products   (id="honey")
-       RIGHT = Seedlings        (id="seedlings")
-       On phones and small tablets the columns stack:
-       honey first, then seedlings.
-       Each product card has: photo, name, description,
-       price, quantity and an Add to cart button.
-       data-id must be unique; data-price is a plain number.
-       =================================================== -->
   <section class="section shop-products" aria-label="Products">
     <div class="container shop-columns">
 
-      <!-- LEFT COLUMN: HONEY PRODUCTS -->
+     
       <section class="shop-column" id="honey" aria-labelledby="honey-title">
         <div class="section-head">
-          <p class="eyebrow">From our beehives</p>
-          <h2 id="honey-title">Honey Products</h2>
+          <p class="eyebrow">Honey Products From our beehives</p>
+          <h2 id="honey-title"></h2>
           <p>Made from honey and beeswax harvested by our community beekeepers along the creek.</p>
         </div>
 
         <div class="product-grid">
 
-          <!-- Honey -->
           <article class="product" data-id="honey" data-name="Pure Honey" data-price="450">
             <img class="product-img" src="../Images/shop/honey.jpg" alt="Jar of pure honey" loading="lazy">
             <div class="product-body">
@@ -70,7 +54,7 @@
             </div>
           </article>
 
-          <!-- Shampoo -->
+        
           <article class="product" data-id="honey-shampoo" data-name="Honey Shampoo" data-price="550">
             <img class="product-img" src="../Images/shop/honey-shampoo.jpg" alt="Bottle of honey shampoo" loading="lazy">
             <div class="product-body">
@@ -89,7 +73,7 @@
             </div>
           </article>
 
-          <!-- Shower gel -->
+       
           <article class="product" data-id="honey-showergel" data-name="Honey Shower Gel" data-price="500">
             <img class="product-img" src="../Images/shop/honey-showergel.jpg" alt="Bottle of honey shower gel" loading="lazy">
             <div class="product-body">
@@ -108,7 +92,7 @@
             </div>
           </article>
 
-          <!-- Wax -->
+         
           <article class="product" data-id="beeswax" data-name="Beeswax" data-price="300">
             <img class="product-img" src="../Images/shop/beeswax.jpg" alt="Block of natural beeswax" loading="lazy">
             <div class="product-body">
@@ -127,7 +111,7 @@
             </div>
           </article>
 
-          <!-- Bar soap -->
+       
           <article class="product" data-id="honey-barsoap" data-name="Honey Bar Soap" data-price="250">
             <img class="product-img" src="../Images/shop/honey-barsoap.jpg" alt="Hand-made honey bar soap" loading="lazy">
             <div class="product-body">
@@ -149,17 +133,16 @@
         </div>
       </section>
 
-      <!-- RIGHT COLUMN: SEEDLINGS -->
+   
       <section class="shop-column" id="seedlings" aria-labelledby="seedlings-title">
         <div class="section-head">
-          <p class="eyebrow">From our nursery</p>
-          <h2 id="seedlings-title">Seedlings</h2>
+          <p class="eyebrow">Seedlings From our nursery</p>
+          <h2 id="seedlings-title"></h2>
           <p>Grow a tree at home, or let us plant a mangrove in the creek on your behalf.</p>
         </div>
 
         <div class="product-grid">
 
-          <!-- Mangrove -->
           <article class="product" data-id="seedling-mangrove" data-name="Mangrove Seedling" data-price="200">
             <img class="product-img" src="../Images/Shop/M Seedling.jpeg" alt="Young mangrove seedling" loading="lazy">
             <div class="product-body">
@@ -178,7 +161,6 @@
             </div>
           </article>
 
-          <!-- Mango -->
           <article class="product" data-id="seedling-mango" data-name="Mango Seedling" data-price="250">
             <img class="product-img" src="../Images/shop/seedling-mango.jpg" alt="Grafted mango seedling" loading="lazy">
             <div class="product-body">
@@ -197,7 +179,6 @@
             </div>
           </article>
 
-          <!-- Orange -->
           <article class="product" data-id="seedling-orange" data-name="Orange Seedling" data-price="250">
             <img class="product-img" src="../Images/shop/seedling-orange.jpg" alt="Orange tree seedling" loading="lazy">
             <div class="product-body">
@@ -216,7 +197,6 @@
             </div>
           </article>
 
-          <!-- Pawpaw -->
           <article class="product" data-id="seedling-pawpaw" data-name="Pawpaw Seedling" data-price="150">
             <img class="product-img" src="../Images/shop/seedling-pawpaw.jpg" alt="Pawpaw seedling" loading="lazy">
             <div class="product-body">
@@ -235,7 +215,6 @@
             </div>
           </article>
 
-          <!-- Jackfruit -->
           <article class="product" data-id="seedling-jackfruit" data-name="Jackfruit Seedling" data-price="300">
             <img class="product-img" src="../Images/shop/seedling-jackfruit.jpg" alt="Jackfruit seedling" loading="lazy">
             <div class="product-body">
@@ -260,12 +239,7 @@
     </div>
   </section>
 
-
-  <!-- ===================================================
-       3. CART
-       Rows are built by the script from the <template> below
-       each time a product is added.
-       =================================================== -->
+  
   <section class="section cart-section" id="cart" aria-labelledby="cart-title">
     <div class="container">
 
@@ -275,7 +249,6 @@
 
       <div class="cart-layout">
 
-        <!-- Items in the cart -->
         <div class="cart-items">
           <table class="cart-table">
             <thead>
@@ -288,11 +261,11 @@
               </tr>
             </thead>
             <tbody id="cart-body">
-              <!-- cart rows are added here by the script -->
+      
             </tbody>
           </table>
 
-          <!-- One cart row. The script copies this for each product in the cart. -->
+      
           <template id="cart-row-template">
             <tr class="cart-row">
               <td class="cart-product">
@@ -312,13 +285,12 @@
             </tr>
           </template>
 
-          <!-- Shown when the cart is empty -->
           <p class="cart-empty" id="cart-empty" hidden>
             Your cart is empty. <a href="#honey">Start shopping</a>
           </p>
         </div>
 
-        <!-- Order summary with total to pay -->
+   
         <aside class="cart-summary" aria-labelledby="summary-title">
           <h3 id="summary-title">Order Summary</h3>
           <dl>
@@ -339,10 +311,7 @@
   </section>
 
 
-  <!-- ===================================================
-       4. PAYMENT
-       Hidden by the script until "Proceed to payment" is clicked.
-       =================================================== -->
+
   <section class="section alt payment-section" id="payment" aria-labelledby="payment-title">
     <div class="container">
 
@@ -397,9 +366,6 @@
 
 </main>
 
-<!-- Footer is added by Bidii-script.js (same footer on every page) -->
-
-<!-- Announces cart changes to screen readers -->
 <div class="sr-only" id="cart-announce" role="status" aria-live="polite"></div>
 
 <script src="../Bidii script.js"></script>

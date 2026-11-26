@@ -17,9 +17,7 @@
 
 <a class="skip-link" href="#main">Skip to content</a>
 
-<!-- HEADER
-     Bidii-script.js rebuilds this header on every page from its MENU list,
-     so to change menu items edit MENU in the script and mirror it here. -->
+
 <header class="site">
   <div class="nav">
     <a class="brand" href="index.html"><div class="logo-circle"><img src="Images/Logo.jpeg" alt="Bidii Creek" class="brand-icon"></div></a>
@@ -33,11 +31,9 @@
       <li class="dropdown">
         <a class="link" href="Pages/about.html">ABOUT US</a>
         <ul class="dropdown-menu">
-          <li><a class="link" href="Pages/about.html#history">Our History</a></li>
-          <li><a class="link" href="Pages/about.html#objectives">Objectives</a></li>
-          <li><a class="link" href="Pages/about.html#team">Leadership and Team</a></li>
-          <li><a class="link" href="Pages/about.html#achievements">Achievements</a></li>
-          <li><a class="link" href="Pages/about.html#partners">Our Partners</a></li>
+          <li><a class="link" href="Pages/history.html">Our History</a></li>
+          <li><a class="link" href="Pages/team.html">Leadership and Team</a></li>
+          <li><a class="link" href="Pages/partner.html">Our Partners</a></li>
         </ul>
       </li>
 
@@ -86,9 +82,7 @@
 
 <main id="main">
 
-  <!-- PHOTO SLIDESHOW: name, tagline, mission and conservation photographs.
-       To add a slide, copy an <article class="slide"> block and add one more
-       button inside .sl-dots. -->
+  
   <section class="slider" id="slider" aria-label="Mangrove conservation photographs">
 
     <div class="slides">
@@ -154,7 +148,7 @@
 
   </section>
 
-  <!-- BRIEF INTRODUCTION (EDIT: placeholder text and photo) -->
+  
   <section class="section" aria-labelledby="intro-title">
     <div class="container intro-grid">
       <div class="intro-media">
@@ -163,15 +157,15 @@
       <div class="intro-text">
         <p class="eyebrow">Who we are</p>
         <h2 id="intro-title">A community standing up for its mangroves</h2>
-        <p>Bidii Creek Conservancy is a community-led organization dedicated to the mangrove forests that line our creek. What began as a small group of neighbours replanting a cleared stretch of shoreline has grown into a movement of people who raise seedlings, restore degraded sites and watch over the forest. Our mission is to conserve, restore and protect mangrove forests, working hand in hand with the community that depends on them.</p>
-        <p>Mangroves shelter fish and birds, shield the shore from storms and erosion, and store large amounts of carbon. We work so that the creek stays healthy and the people who rely on it can thrive alongside it.</p>
-        <a class="btn green" href="Pages/about.html">More About Us</a>
+        <p>BIDII CREEK CBO is a community-led conservation group dedicated to the restoration, protection, and sustainable management of mangrove ecosystems along Kenya’s coast. Over 10 years of active field experience in mangrove restoration, the conservancy has restored over 5.4 million mangrove trees across multiple sites alongside Tudor Creek in Mombasa County through community mobilization and partnerships. Based in Jomvu, Mombasa, the organization brings together local residents to restore degraded mangrove areas while promoting alternative livelihoods that reduce pressure on marine and coastal resources.</p>
+       <p>Our <strong>Mission</strong>: To protect, restore, and sustainably utilize mangrove ecosystems while empowering local communities through nature-based solutions and livelihood opportunities.</p>
+        <p>Our <strong>Vision</strong>: To achieve a resilient coastal ecosystem where communities and nature thrive together through sustainable conservation and livelihood development. </p>
+        <a class="btn green" href="Pages/history.html">More About Us</a>
       </div>
     </div>
   </section>
 
-  <!-- CONSERVATION STATISTICS
-       EDIT: placeholder figures. Change both data-target and the number shown. -->
+
   <section class="stats" aria-labelledby="stats-title">
     <div class="container">
       <div class="section-head on-dark">
@@ -209,7 +203,6 @@
   </section>
 
 
-  <!-- FEATURED PROJECTS (EDIT: five placeholder projects) -->
   <section class="section alt" aria-labelledby="projects-title">
     <div class="container">
       <div class="section-head">
@@ -245,7 +238,8 @@
       <p class="section-foot"><a class="btn outline" href="Pages/our-work.html#projects">View All Projects</a></p>
     </div>
   </section>
-  <!-- ACTIVITIES IN THE CREEK (EDIT: photos and text) -->
+
+
   <section class="section" aria-labelledby="activities-title">
     <div class="container">
       <div class="section-head">
@@ -265,6 +259,7 @@
             <li>Bird viewing deep in the mangroves</li>
             <li>Witness mangrove restoration</li>
             <li>Visit Rabai heritage sites</li>
+            <li>Sunrise and sunset viewing</li>
           </ul>
         </article>
 
@@ -289,11 +284,6 @@
   </section>
 
 
-  <!-- LATEST NEWS AND UPCOMING EVENTS
-       Filled in automatically by the script at the bottom of this page:
-       - Latest news:     the 3 newest stories in data/news.json
-       - Upcoming events: the next 3 events from data/events.json
-       Nothing to edit here: add stories and activities to the data files. -->
   <section class="section alt" aria-label="Latest news and upcoming events">
     <div class="container news-events">
 
@@ -301,8 +291,7 @@
         <p class="eyebrow">Stay informed</p>
         <h2>Latest news</h2>
 
-        <!-- The story below is shown only if data/news.json can't be read.
-             When it can, it is replaced by the 3 newest stories. -->
+
         <div class="news-list" id="newsList">
           <article class="news-item">
             <img src="Images/NewsEvent/2.jpeg" alt="" loading="lazy" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'news-thumb'}))">
@@ -321,8 +310,7 @@
         <p class="eyebrow">Join us</p>
         <h2 id="events-title">Upcoming events</h2>
 
-        <!-- The event below is shown only if data/events.json can't be read.
-             When it can, it is replaced by the next 3 events. -->
+        
         <ul class="event-list" id="eventList">
           <li class="event">
             <time class="event-date" datetime="2026-12-12"><span>12</span>Dec</time>
@@ -338,15 +326,14 @@
 
     </div>
   </section>
-  <!-- OUR PARTNERS
-       EDIT: put logos in Images/Partners/, then change src, alt, name and link.
-       Copy or delete <li> blocks to match the number of partners. -->
+
+
   <section class="section partners" aria-labelledby="partners-title">
     <div class="container">
       <div class="section-head">
-        <p class="eyebrow">With thanks</p>
+        <p class="eyebrow"></p>
         <h2 id="partners-title">Our partners</h2>
-        <p>None of this work happens alone. We are deeply grateful to the organizations, institutions and friends who stand with us, whether by funding seedlings, sharing knowledge or lending a hand on the mudflats. Together we are restoring the creek for the generations to come.</p>
+        <p></p>
       </div>
       <ul class="partner-grid">
         <li class="partner"><img src="Images/Partner6/KFS.jpeg" alt="Partner 1" loading="lazy"></li>
@@ -367,7 +354,7 @@
 
 </main>
 
-<!-- FOOTER: added to every page by Bidii-script.js (edit FOOTER in the script) -->
+
 
 <script src="Bidii script.js"></script>
 <script>

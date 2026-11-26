@@ -49,11 +49,9 @@
   /* ---------- Shared header (edit menu items here, it updates every page) ---------- */
   var MENU = [
     { label: "ABOUT US", href: "Pages/about.html", sub: [
-      ["Our History", "Pages/about.html#history"],
-      ["Objectives", "Pages/about.html#objectives"],
-      ["Leadership and Team", "Pages/about.html#team"],
-      ["Achievements", "Pages/about.html#achievements"],
-      ["Our Partners", "Pages/about.html#partners"]
+      ["Our History", "Pages/history.html"],
+      ["Leadership and Team", "Pages/team.html"],
+      ["Our Partners", "Pages/partners.html"]
     ]},
     { label: "OUR WORK", href: "Pages/our-work.html", sub: [
       ["Projects and Impacts", "Pages/our-work.html#projects"],
@@ -339,7 +337,7 @@
     name: "Bidii Creek Conservancy. All rights reserved",
     address: "Jomvu Kuu, Mombasa, Kenya",
     postal: "P.O. Box 93837-80100",
-    email: "bidiicreek001@gmail.com",
+    email: "bidiicreekconservancy001@gmail.com",
     phone: ["+254 720322662", "+254 724162643"],
     social: {
       "Facebook": "https://www.facebook.com/share/1G1g6UHspr/",

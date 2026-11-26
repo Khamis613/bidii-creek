@@ -1,0 +1,371 @@
+/* ==========================================================
+   Bidii Creek Conservancy – About Us pages (CSS/about.css)
+   One stylesheet for all three About pages:
+     · Leadership and team   (Pages/about.html)
+     · Our partners          (Pages/partners.html)
+     · Our history           (Pages/history.html)
+   Load after Bidii style.css: uses its fonts and colours
+   DM Serif Display (headings) · DM Sans (text)
+   Forest green · leaf green · soft green · warm off-white · earthy brown
+
+   The hero is styled in Bidii style.css (.page-hero), like every page.
+   ========================================================== */
+
+
+/* ---------- Leadership and team ---------- */
+
+/* A person's photo. Until a photo is added, their initials show
+   on a soft green background (the photo covers them when it loads). */
+.person-photo {
+  position: relative; overflow: hidden;
+  aspect-ratio: 4 / 5;
+  background: var(--mint);
+}
+.person-photo img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform .5s ease;
+}
+.initials {
+  position: absolute; inset: 0;
+  display: grid; place-items: center;
+  font-family: var(--font-head); font-size: clamp(2.5rem, 6vw, 4rem);
+  color: var(--forest-700); letter-spacing: .04em;
+}
+
+.person {
+  background: var(--white);
+  border: 1px solid var(--line); border-radius: 14px;
+  overflow: hidden;
+  transition: transform .2s, box-shadow .2s;
+}
+.person:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+.person:hover .person-photo img { transform: scale(1.04); }
+
+.person-name { margin: 0 0 .25rem; font-family: var(--font-head); font-weight: 400; color: var(--forest-800); }
+.person-role {
+  margin: 0;
+  font-size: .82rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--bark);
+}
+
+
+/* Founders: two larger cards, photo beside the name */
+.founders {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+  margin-bottom: clamp(2.5rem, 6vw, 4rem);
+}
+.founder {
+  display: grid; grid-template-columns: 1fr 1.1fr;
+  border-top: 4px solid var(--bark);
+}
+.founder .person-photo { aspect-ratio: auto; min-height: 300px; }
+.founder .person-body {
+  display: flex; flex-direction: column; justify-content: center;
+  padding: clamp(1.25rem, 3vw, 2rem);
+}
+.founder .person-name { font-size: clamp(1.6rem, 3vw, 2.1rem); line-height: 1.15; }
+.founder-tag {
+  align-self: flex-start;
+  margin: 0 0 .75rem; padding: .25rem .8rem; border-radius: 999px;
+  background: #f6ead6; color: var(--bark-dark);
+  font-size: .72rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+}
+
+/* Board officials: four cards in a row */
+.board-title {
+  margin: 0 0 1.25rem; text-align: center;
+  font-family: var(--font-body); font-weight: 600; font-size: .82rem;
+  letter-spacing: .14em; text-transform: uppercase; color: var(--bark);
+}
+.board-title::before,
+.board-title::after {                     /* thin lines either side of the title */
+  content: ""; display: inline-block; width: 40px; height: 1px;
+  margin: 0 .9rem; vertical-align: middle; background: var(--line);
+}
+.board {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem;
+}
+.board .person { border-top: 4px solid var(--leaf); }
+.board .person-body { padding: 1rem 1.1rem 1.2rem; text-align: center; }
+.board .person-name { font-size: 1.3rem; }
+.board .person-role { font-size: .75rem; }
+
+
+/* ---------- Smaller screens ---------- */
+@media (max-width: 960px) {
+  .founders { grid-template-columns: 1fr; }
+  .board { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 520px) {
+  .founder { grid-template-columns: 1fr; }
+  .founder .person-photo { min-height: 0; aspect-ratio: 4 / 5; }
+  .board { gap: .9rem; }
+  .board .person-body { padding: .8rem .7rem 1rem; }
+  .board .person-name { font-size: 1.1rem; }
+  .board .person-role { font-size: .68rem; letter-spacing: .06em; }
+}
+
+
+/* ---------- Our partners ----------
+   Each partner: logo on the left, name and type beside it. */
+.partners-head { max-width: 760px; }
+
+.partner-list {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;
+}
+.partner-card {
+  display: flex; align-items: center; gap: 1rem;
+  padding: 1rem 1.1rem;
+  background: var(--white);
+  border: 1px solid var(--line); border-left: 4px solid var(--leaf);
+  border-radius: 12px;
+  transition: transform .2s, box-shadow .2s, border-color .2s;
+}
+.partner-card:nth-child(even) { border-left-color: var(--bark); }
+.partner-card:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+
+/* Logo box: the logo sits inside, never stretched */
+.partner-logo {
+  position: relative; flex: none;
+  width: 84px; height: 84px; padding: .5rem;
+  border-radius: 10px; background: var(--white);
+  border: 1px solid var(--line);
+  display: grid; place-items: center;
+}
+.partner-logo img {                    /* fills the box on white, keeping its shape */
+  position: absolute; inset: 0; z-index: 1;
+  width: 100%; height: 100%; padding: .5rem;
+  object-fit: contain;
+  background: var(--white); border-radius: 10px;
+}
+.logo-initials {                       /* shown until the logo file is added */
+  position: absolute; inset: 0; border-radius: 10px;
+  display: grid; place-items: center;
+  background: var(--mint-soft); color: var(--forest-700);
+  font-family: var(--font-head); font-size: 1.35rem;
+}
+
+.partner-info { min-width: 0; }
+.partner-name {
+  margin: 0 0 .25rem;
+  font-family: var(--font-head); font-weight: 400;
+  font-size: 1.15rem; line-height: 1.25; color: var(--forest-800);
+}
+.partner-type {
+  margin: 0;
+  font-size: .72rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--bark);
+}
+
+/* Invitation below the list */
+.partner-cta {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 1rem 1.5rem;
+  margin-top: clamp(2rem, 5vw, 3rem); padding: 1.5rem;
+  border-radius: 14px; background: var(--white); border: 1px dashed var(--mint);
+  text-align: center;
+}
+.partner-cta p { margin: 0; font-weight: 600; color: var(--forest-800); }
+
+@media (max-width: 960px) { .partner-list { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 600px) {
+  .partner-list { grid-template-columns: 1fr; gap: .75rem; }
+  .partner-logo { width: 72px; height: 72px; }
+}
+
+
+/* ==========================================================
+   OUR HISTORY page (Pages/history.html)
+   ========================================================== */
+
+/* Headings left empty in the HTML take up no space */
+#main h2:empty, #main h3:empty { display: none; }
+
+/* ---------- How it began ---------- */
+.story-intro {
+  display: grid; grid-template-columns: 1.5fr 1fr;
+  gap: clamp(2rem, 5vw, 4rem); align-items: center;
+}
+.story-text h2 { font-size: clamp(1.9rem, 4vw, 2.7rem); }
+.story-text p { color: var(--ink-soft); }
+.story-text .lead-para { font-size: 1.15rem; color: var(--forest-800); font-weight: 500; }
+.story-quote {
+  position: relative; margin: 0;
+  padding: 2rem 2rem 2rem 2.25rem;
+  background: var(--forest-800); color: var(--white);
+  border-radius: 14px;
+}
+.story-quote::before {                    /* large opening quote mark */
+  content: "\201C"; position: absolute; top: -.35em; left: .2em;
+  font-family: var(--font-head); font-size: 6rem; line-height: 1; color: var(--leaf-bright);
+}
+.story-quote p {
+  margin: 0; font-family: var(--font-head); font-size: clamp(1.3rem, 2.4vw, 1.65rem); line-height: 1.35;
+}
+@media (max-width: 860px) {
+  .story-intro { grid-template-columns: 1fr; }
+}
+
+
+
+/* ---------- Timeline ---------- */
+.timeline {
+  --line-x: 70px;                         /* position of the vertical line */
+  position: relative; list-style: none; margin: 0; padding: 0;
+}
+.timeline::before {                       /* the vertical line */
+  content: ""; position: absolute; top: .5rem; bottom: .5rem; left: var(--line-x);
+  width: 3px; border-radius: 3px;
+  background: linear-gradient(var(--leaf), var(--bark));
+}
+.milestone {
+  position: relative;
+  display: grid; grid-template-columns: calc(var(--line-x) * 2) 1fr; align-items: start;
+  margin-bottom: 1.75rem;
+}
+.milestone:last-child { margin-bottom: 0; }
+
+/* year badge, sitting on the line */
+.milestone-year {
+  position: relative; z-index: 1; justify-self: start;
+  width: calc(var(--line-x) * 2 - 1.25rem); padding: .55rem .4rem;
+  border-radius: 10px; text-align: center;
+  background: var(--forest-800); color: var(--white);
+  font-family: var(--font-head); font-size: 1.35rem; line-height: 1.15;
+}
+.milestone.setback .milestone-year { background: var(--bark); font-family: var(--font-body); font-size: .85rem; font-weight: 700; }
+.milestone.record .milestone-year { background: var(--leaf); }
+
+.milestone-card {
+  display: grid; grid-template-columns: 1fr; gap: 1.5rem;
+  padding: clamp(1.25rem, 3vw, 1.75rem);
+  background: var(--white); border: 1px solid var(--line); border-radius: 14px;
+}
+.milestone.major .milestone-card { grid-template-columns: 1.15fr 1fr; align-items: center; }
+.milestone.setback .milestone-card { background: #fbf6ee; border-color: rgba(122,82,48,.25); }
+.milestone.highlight .milestone-card { border: 2px solid var(--leaf); box-shadow: var(--shadow); }
+.milestone.record .milestone-card { background: var(--forest-800); border-color: var(--forest-800); color: var(--mint-soft); }
+.milestone.record h3 { color: var(--white); }
+.milestone.record .milestone-tag { background: var(--leaf); color: var(--white); }
+.milestone.record strong { color: var(--white); }
+
+.milestone-tag {
+  display: inline-block; margin: 0 0 .6rem; padding: .2rem .75rem; border-radius: 999px;
+  background: var(--mint-soft); color: var(--forest-700);
+  font-size: .72rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+}
+.milestone.setback .milestone-tag { background: #f6ead6; color: var(--bark-dark); }
+.milestone-text h3 { margin: 0 0 .6rem; font-size: clamp(1.4rem, 2.6vw, 1.85rem); }
+.milestone-text p { margin: 0 0 .7rem; }
+.milestone-text p:last-child { margin-bottom: 0; }
+.milestone-text strong { color: var(--forest-800); }
+
+/* photo holder on major breakthroughs */
+.milestone-photo { margin: 0; }
+.photo-frame {
+  position: relative; overflow: hidden;
+  aspect-ratio: 4 / 3; border-radius: 10px;
+  background: var(--mint-soft); border: 2px dashed var(--mint);
+}
+.milestone.record .photo-frame { background: rgba(255,255,255,.06); border-color: rgba(207,227,196,.4); }
+.photo-holder {                            /* shown until the photo is added */
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .5rem;
+  font-size: .82rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase;
+  color: var(--forest-700); opacity: .75;
+}
+.milestone.record .photo-holder { color: var(--mint); }
+.photo-holder svg { width: 38px; height: 38px; }
+/* empty photo holder: camera icon and "Photo to come" until the image is added */
+.photo-frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.photo-frame:has(img) { border-style: solid; border-color: transparent; }
+.milestone-photo figcaption {
+  margin-top: .5rem; font-size: .82rem; font-style: italic; color: var(--ink-soft);
+}
+.milestone.record figcaption { color: var(--mint); }
+
+/* 2022 - 2025 figures */
+.year-list { list-style: none; margin: .5rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: .6rem; }
+.year-list li {
+  display: flex; flex-direction: column; gap: .1rem;
+  padding: .75rem .8rem; border-radius: 10px; background: var(--paper);
+  border-left: 3px solid var(--leaf);
+}
+.year-list span { font-size: .8rem; font-weight: 700; letter-spacing: .08em; color: var(--bark); }
+.year-list strong { font-family: var(--font-head); font-weight: 400; font-size: 1.2rem; color: var(--forest-800); }
+
+@media (max-width: 860px) {
+  .milestone.major .milestone-card { grid-template-columns: 1fr; }
+  .year-list { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+  .timeline { --line-x: 14px; }
+  .timeline::before { left: 13px; }
+  .milestone { grid-template-columns: 1fr; padding-left: 2.5rem; }
+  .milestone-year {
+    width: auto; justify-self: start; margin-bottom: .6rem; padding: .35rem .9rem;
+    font-size: 1.1rem;
+  }
+  .milestone-year::before {               /* dot on the line */
+    content: ""; position: absolute; left: calc(-2.5rem + 6px); top: 50%;
+    width: 17px; height: 17px; margin-top: -8.5px; border-radius: 50%;
+    background: var(--paper); border: 3px solid var(--leaf);
+  }
+}
+
+
+
+/* ---------- Trees planted each year since 2021 (bar chart) ----------
+   Each bar's length comes from --w in the HTML: the figure as a % of 300,000. */
+.bar-chart { list-style: none; margin: 0 auto; padding: 0; max-width: 820px; display: grid; gap: .9rem; }
+.bar-chart li { display: grid; grid-template-columns: 56px 1fr 92px; gap: 1rem; align-items: center; }
+.bar-year { font-weight: 700; color: var(--forest-800); }
+.bar { height: 34px; border-radius: 8px; background: var(--mint-soft); overflow: hidden; }
+.bar-fill {
+  display: block; height: 100%; width: var(--w);
+  border-radius: 8px; background: linear-gradient(90deg, var(--leaf), var(--leaf-bright));
+  transform-origin: left; animation: grow-bar 1.2s ease-out both;
+}
+.bar-chart li:first-child .bar-fill { background: linear-gradient(90deg, var(--bark), var(--clay)); }   /* 2021, the partnership year */
+@keyframes grow-bar { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+.bar-value { font-family: var(--font-head); font-size: 1.25rem; color: var(--forest-800); text-align: right; font-variant-numeric: tabular-nums; }
+@media (max-width: 520px) {
+  .bar-chart li { grid-template-columns: 44px 1fr 74px; gap: .6rem; }
+  .bar { height: 26px; }
+  .bar-value { font-size: 1.05rem; }
+}
+
+
+/* ---------- Beyond planting ---------- */
+.livelihood-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
+.livelihood {
+  padding: 1.6rem 1.4rem;
+  background: var(--white); border: 1px solid var(--line); border-top: 4px solid var(--leaf);
+  border-radius: 12px;
+}
+.livelihood:nth-child(even) { border-top-color: var(--bark); }
+.livelihood-icon {
+  width: 52px; height: 52px; margin-bottom: .9rem; border-radius: 50%;
+  display: grid; place-items: center; background: var(--mint-soft); color: var(--leaf);
+}
+.livelihood:nth-child(even) .livelihood-icon { background: #f6ead6; color: var(--bark); }
+.livelihood-icon svg { width: 26px; height: 26px; }
+.livelihood h3 { margin: 0 0 .4rem; font-size: 1.35rem; }
+.livelihood p { margin: 0; font-size: .93rem; color: var(--ink-soft); }
+@media (max-width: 960px) { .livelihood-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 520px) { .livelihood-grid { grid-template-columns: 1fr; } }
+
+
+
+/* ---------- Next chapter ---------- */
+.next-chapter { max-width: 680px; text-align: center; }
+.next-chapter h2 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
+.next-chapter > p:not(.eyebrow) { color: var(--ink-soft); }
+.next-buttons { display: flex; flex-wrap: wrap; justify-content: center; gap: .8rem; margin-top: 1.25rem; }
+
+
+@media (prefers-reduced-motion: reduce) {
+  .bar-fill { animation: none; }
+}
