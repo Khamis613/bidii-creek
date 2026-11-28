@@ -346,7 +346,7 @@
       "YouTube": "https://youtube.com/@bidiicreek"
     },
     quick: [
-      ["About Us", "Pages/about.html"],
+      ["About Us", "Pages/history.html"],
       ["Our Work", "Pages/our-work.html"],
       ["News", "Pages/news.html"],
       ["Events", "Pages/events.html"],
