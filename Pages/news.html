@@ -14,8 +14,7 @@
 </head>
 <body>
 
-<!-- Header is filled in by Bidii-script.js (same menu on every page) -->
-<header class="site"></header>
+r class="site"></header>
 
 <main id="main">
 
@@ -31,7 +30,7 @@
           <p class="eyebrow">Latest news</p>
           <h2 id="news-title">What is happening at Bidii Creek</h2>
         </div>
-        <!-- Category buttons are added by the script, one per category used -->
+        
         <div class="news-filters" id="newsFilters" role="group" aria-label="Filter news by category"></div>
       </div>
 
@@ -243,7 +242,6 @@
       if (para.trim()) text.appendChild(el("p", "", para.trim()));
     });
 
-    $("storyCopy").textContent = "Copy link to this story";
     if (location.hash !== "#" + story.slug) history.replaceState(null, "", "#" + story.slug);
     dialog.showModal();
     dialog.scrollTop = 0;
@@ -257,17 +255,6 @@
   });
   $("storyClose").addEventListener("click", closeStory);
   dialog.addEventListener("click", function (e) { if (e.target === dialog) closeStory(); });   // click outside
-
-  $("storyCopy").addEventListener("click", function () {
-    var btn = this;
-    var url = location.href;
-    function done() { btn.textContent = "Link copied ✓"; }
-    if (navigator.clipboard && window.isSecureContext) {
-      navigator.clipboard.writeText(url).then(done, function () { window.prompt("Copy this link:", url); });
-    } else {
-      window.prompt("Copy this link:", url);
-    }
-  });
 
   // Open a story when the page is visited with its link
   function openFromHash() {
@@ -285,6 +272,7 @@
     .then(function (data) {
       stories = (data.items || [])
         .filter(function (s) { return s && s.title && s.date; })
+        .map(function (s) { s.date = String(s.date).slice(0, 10); return s; })
         .sort(function (a, b) { return a.date < b.date ? 1 : a.date > b.date ? -1 : 0; });
       stories.forEach(function (s) { s.slug = slugify(s); });
       buildFilters();
