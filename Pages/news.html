@@ -19,22 +19,10 @@
 
 <main id="main">
 
-  <!-- ===================================================
-       1. HERO (full screen, styled in Bidii-style.css)
-       =================================================== -->
-  <section class="page-hero" style="background-image: url('../Images/NewsEvent/N Hero.jpg')">
- <div class="slide-text">
-      <p class="slide-eyebrow">News &middot; Events</p>
-    
-    </div>
+  <section class="page-hero" style="background-image: url('../Images/Heros slideshows/News.jpg')">
+
   </section>
 
-
-  <!-- ===================================================
-       2. NEWS
-       Everything below is built from data/news.json.
-       To add a story, add an entry to that file: no HTML needed.
-       =================================================== -->
   <section class="section" id="news" aria-labelledby="news-title">
     <div class="container">
 
@@ -47,10 +35,9 @@
         <div class="news-filters" id="newsFilters" role="group" aria-label="Filter news by category"></div>
       </div>
 
-      <!-- Latest story, shown large -->
       <div id="newsFeatured"></div>
 
-      <!-- All other stories -->
+   
       <div class="news-grid" id="newsGrid" aria-live="polite"></div>
 
       <p class="news-empty" id="newsEmpty" hidden>No stories in this category yet.</p>
@@ -59,23 +46,13 @@
         <button type="button" class="btn outline" id="newsMore" hidden>Show more news</button>
       </p>
 
-      <!-- Shown only if data/news.json cannot be loaded -->
-      <div class="news-error" id="newsError" hidden>
-        <p><strong>The news could not be loaded.</strong></p>
-        <p>If you are viewing this page from your computer, open it with <strong>Live Server</strong> in VS Code (right-click the file and choose "Open with Live Server"). Pages that read data files do not work when opened by double-clicking.</p>
-      </div>
-
+      <p class="news-error" id="newsError" hidden>Sorry, we couldn't load the news. Please try again later.</p>
     </div>
   </section>
 
 </main>
 
 
-<!-- ===================================================
-     FULL STORY POP-UP
-     Opens when a story is clicked. The page address changes to
-     news.html#story-name, so a story can be shared as a link.
-     =================================================== -->
 <dialog class="story" id="story" aria-labelledby="storyTitle">
   <button type="button" class="story-close" id="storyClose" aria-label="Close story">&times;</button>
   <div class="story-img-wrap" id="storyImgWrap"><img class="story-img" id="storyImg" src="" alt=""></div>
@@ -83,13 +60,9 @@
     <p class="story-meta"><span class="news-tag" id="storyTag"></span> <time id="storyDate"></time></p>
     <h2 id="storyTitle"></h2>
     <div class="story-text" id="storyText"></div>
-    <div class="story-actions">
-      <button type="button" class="btn outline" id="storyCopy">Copy link to this story</button>
-    </div>
   </div>
 </dialog>
 
-<!-- Footer is added by Bidii-script.js (same footer on every page) -->
 
 <script src="../Bidii script.js"></script>
 <script>

@@ -14,42 +14,20 @@
 </head>
 <body>
 
-<!-- Header is filled in by Bidii-script.js (same menu on every page) -->
+
 <header class="site"></header>
 
 <main id="main">
 
-  <!-- ===================================================
-       1. SLIDESHOW: different views of the creek
-       Full screen, same as the home page slideshow (styled in
-       Bidii-style.css, run by Bidii-script.js).
-       EDIT: photos go in Images/visit/. To add a slide, copy an
-       <article class="slide"> block AND add one more dot button.
-       =================================================== -->
- <section class="page-hero" style="background-image: url('../Images/visit/hero.jpg');" aria-label="Visit us hero image">
+ <section class="page-hero" style="background-image: url('../Images/Heros slideshows/visit.jpg');" aria-label="Visit us hero image">
   </section>
 
 
 
-  <!-- Quick jump links to each experience -->
-  <nav class="visit-jump" aria-label="On this page">
-    <div class="container">
-      <a href="#boat-rides">Boat rides</a>
-      <a href="#boardwalk">Mangrove boardwalk</a>
-      <a href="#restaurant">Eco restaurant</a>
-      <a href="#book">Book a session</a>
-    </div>
-  </nav>
-
-
-  <!-- ===================================================
-       2. BOAT RIDES
-       EDIT: photos go in Images/visit/
-       =================================================== -->
   <section class="section" id="boat-rides" aria-labelledby="boats-title">
     <div class="container">
 
-      <!-- Explanation with photos -->
+     
       <div class="split">
         <div class="split-text">
           <p class="eyebrow">On the water</p>
@@ -63,12 +41,11 @@
           </ul>
         </div>
         <div class="split-media photo-pair">
-          <img src="../Images/Heros slideshows/8.jpg" alt="Visitors on a boat ride through the mangrove creek" loading="lazy">
+          <img src="../Images/visit/M boat.jpeg" alt="Visitors on a boat ride through the mangrove creek" loading="lazy">
           <img src="../Images/visit/bird.jpg" alt="A heron standing among mangrove roots" loading="lazy">
         </div>
       </div>
 
-      <!-- Prices -->
       <div class="ride-grid">
 
         <article class="ride-card">
@@ -96,9 +73,6 @@
   </section>
 
 
-  <!-- ===================================================
-       3. MANGROVE BOARDWALK (under construction)
-       =================================================== -->
   <section class="section alt" id="boardwalk" aria-labelledby="boardwalk-title">
     <div class="container">
       <div class="split reverse">
@@ -111,16 +85,13 @@
           <a class="more-link" href="news-events.html#news">Follow the updates</a>
         </div>
         <div class="split-media">
-          <img class="single-photo" src="../Images/Heros slideshows/b walk.jpeg" alt="The mangrove boardwalk under construction" loading="lazy">
+          <img class="single-photo" src="../Images/visit/b walk.jpeg" alt="The mangrove boardwalk under construction" loading="lazy">
         </div>
       </div>
     </div>
   </section>
 
 
-  <!-- ===================================================
-       4. ECO RESTAURANT
-       =================================================== -->
   <section class="section" id="restaurant" aria-labelledby="restaurant-title">
     <div class="container">
       <div class="split">
@@ -137,17 +108,14 @@
           </ul>
         </div>
         <div class="split-media photo-pair">
-          <img src="../Images/Heros slideshows/e resto.jpeg" alt="A plate of fresh seafood at the eco restaurant" loading="lazy">
-          <img src="../Images/Heros slideshows/e resto1.jpeg" alt="Cold drinks on a table beside the creek" loading="lazy">
+          <img src="../Images/visit/e resto.jpeg" alt="A plate of fresh seafood at the eco restaurant" loading="lazy">
+          <img src="../Images/visit/e resto1.jpeg" alt="Cold drinks on a table beside the creek" loading="lazy">
         </div>
       </div>
     </div>
   </section>
 
 
-  <!-- ===================================================
-       5. BOOK A SESSION
-       =================================================== -->
   <section class="section book-section" id="book" aria-labelledby="book-title">
     <div class="container">
 
@@ -159,9 +127,9 @@
 
       <div class="book-layout">
 
-        <!-- Booking form -->
+       
         <div class="book-card">
-          <!-- Tide note -->
+      
           <div class="tide-note" role="note">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 6c2 0 2-1.5 4-1.5S8 6 10 6s2-1.5 4-1.5S16 6 18 6s2-1.5 4-1.5"/><path d="M2 12c2 0 2-1.5 4-1.5S8 12 10 12s2-1.5 4-1.5S16 12 18 12s2-1.5 4-1.5"/><path d="M2 18c2 0 2-1.5 4-1.5S8 18 10 18s2-1.5 4-1.5S16 18 18 18s2-1.5 4-1.5"/></svg>
             <p><strong>Plan around the tide.</strong> Water tides in the creek vary from month to month, so please book in advance. We will then arrange your visit for the perfect tide.</p>
@@ -222,7 +190,7 @@
           <div class="form-status" id="bStatus" role="status" aria-live="polite" tabindex="-1" hidden></div>
         </div>
 
-        <!-- Prices and contact, beside the form -->
+      
         <aside class="book-info" aria-label="Prices and contact">
           <h3>Prices</h3>
           <ul class="price-lines">
@@ -233,7 +201,7 @@
           <p class="book-note">Boat ride prices include bird viewing, mangrove restoration and sightseeing.</p>
 
           <h3>Prefer to call?</h3>
-          <!-- EDIT: phone number -->
+         
           <p><a class="call-link" href="tel:+254720322662">+254 720 322 662</a></p>
           <p class="book-note">We are in Jomvu Kuu, Mombasa. <a href="contact.html#location">See the map</a></p>
         </aside>
@@ -243,8 +211,6 @@
   </section>
 
 </main>
-
-<!-- Footer is added by Bidii-script.js (same footer on every page) -->
 
 <script src="../Bidii script.js"></script>
 <script>

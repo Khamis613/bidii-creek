@@ -14,27 +14,15 @@
 </head>
 <body>
 
-<!-- Header is filled in by Bidii-script.js (same menu on every page) -->
 <header class="site"></header>
 
 <main id="main">
 
-  <!-- ===================================================
-       1. HERO (full screen, styled in Bidii-style.css)
-       =================================================== -->
-  <section class="page-hero" style="background-image: url('../Images/NewsEvent/E Hero.jpeg')">
-     <div class="slide-text">
-      <p class="slide-eyebrow">Events &middot; Activities</p>
-    
-    </div>
+  <section class="page-hero" style="background-image: url('../Images/Heros slideshows/Events.jpeg')">
+
   </section>
 
 
-  <!-- ===================================================
-       2. CALENDAR (left) + NEXT THREE EVENTS (right)
-       Built by the script below. The 12 days are built in;
-       activities come from data/events.json.
-       =================================================== -->
   <section class="section" id="calendar" aria-labelledby="cal-heading">
     <div class="container">
 
@@ -46,7 +34,7 @@
 
       <div class="events-layout">
 
-        <!-- LEFT: calendar -->
+      
         <div class="cal-card">
           <div class="cal-head">
             <button type="button" class="cal-nav" id="calPrev" aria-label="Previous month">&#8249;</button>
@@ -76,11 +64,10 @@
             <li><span class="dot planned"></span>Activity planned</li>
           </ul>
 
-          <!-- Details of the chosen date -->
           <div class="cal-details" id="calDetails" aria-live="polite"></div>
         </div>
 
-        <!-- RIGHT: the next three events -->
+        
         <aside class="upcoming" aria-labelledby="upcoming-title">
           <h3 class="upcoming-title" id="upcoming-title">Next up</h3>
           <ol class="upcoming-list" id="upcomingList"></ol>
@@ -88,18 +75,10 @@
 
       </div>
 
-      <!-- Shown only if data/events.json cannot be loaded -->
-      <p class="events-note" id="eventsNote" hidden>
-        The days are shown, but the planned activities could not be loaded. If you are viewing this page from your computer, open it with <strong>Live Server</strong> in VS Code.
-      </p>
-
     </div>
   </section>
 
 
-  <!-- ===================================================
-       3. THE 12 DAYS WE MARK EACH YEAR
-       =================================================== -->
   <section class="section alt" id="yearly" aria-labelledby="yearly-title">
     <div class="container">
       <div class="section-head">
@@ -113,7 +92,6 @@
 
 </main>
 
-<!-- Footer is added by Bidii-script.js (same footer on every page) -->
 
 <script src="../Bidii script.js"></script>
 <script>
@@ -144,7 +122,7 @@
   var DATA_FILE = "../data/events.json";
   var ROOT = "../";
 
-  /* ---------- 1. The 12 days (month is 1-12) ---------- */
+ 
   var DAYS = [
     { name: "World Wetlands Day",           month: 2,  day: 2,  type: "env",
       about: "Celebrating wetlands, including the mangroves and creeks that protect our coast." },

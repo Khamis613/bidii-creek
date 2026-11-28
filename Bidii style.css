@@ -528,29 +528,48 @@ header.site.scrolled { box-shadow: var(--shadow); }
   .news-item > div { padding: .8rem .9rem .8rem 0; }
   .news-item p { display: none; }
 }
-/* ---------- Partners ---------- */
+/* ---------- Partners (home page): logos scrolling in a continuous loop ---------- */
 .partners { background: var(--paper); }
 .partners .section-head { max-width: 720px; }
 
-.partner-grid {
-  list-style: none; margin: 0; padding: 0;
-  display: grid; gap: 1.25rem;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+.partner-marquee {
+  overflow: hidden;
+  /* logos fade in and out at the edges */
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+          mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
 }
+.partner-track {
+  list-style: none; margin: 0; padding: .5rem 0;
+  display: flex; width: max-content;
+  animation: partner-scroll 45s linear infinite;   /* bigger number = slower */
+}
+.partner-marquee:hover .partner-track { animation-play-state: paused; }   /* pause on hover */
+@keyframes partner-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }            /* moves exactly one set, then repeats */
+}
+
 .partner {
-  display: grid; place-items: center;
-  height: 120px; padding: 1.25rem;
+  flex: none; display: grid; place-items: center;
+  width: 140px; height: 84px; padding: .8rem;
+  margin-right: 1.1rem;                            /* spacing (margin, not gap, keeps the loop seamless) */
   background: var(--white); border: 1px solid var(--line);
   border-radius: var(--radius);
 }
-.partner img {
-  max-width: 100%; max-height: 70px; width: auto; object-fit: contain;
-}
+.partner img { max-width: 100%; max-height: 48px; width: auto; object-fit: contain; }
 
 @media (max-width: 600px) {
-  .partner-grid { grid-template-columns: repeat(2, 1fr); gap: .9rem; }
-  .partner { height: 96px; padding: 1rem; }
-  .partner img { max-height: 56px; }
+  .partner { width: 112px; height: 70px; padding: .6rem; margin-right: .8rem; }
+  .partner img { max-height: 38px; }
+  .partner-track { animation-duration: 35s; }
+}
+
+/* Visitors who prefer less motion: no scrolling, one set of logos centred */
+@media (prefers-reduced-motion: reduce) {
+  .partner-marquee { -webkit-mask-image: none; mask-image: none; }
+  .partner-track { animation: none; width: auto; flex-wrap: wrap; justify-content: center; gap: 1rem; padding: 0 1.25rem; }
+  .partner { margin-right: 0; }
+  .partner[aria-hidden="true"] { display: none; }
 }
 /* Activities in the creek: list inside the boat rides card */
 .activity-list { list-style: none; margin: 0; padding: 0; }

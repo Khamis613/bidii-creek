@@ -14,31 +14,18 @@
 </head>
 <body>
 
-<!-- Header is filled in by Bidii-script.js (same menu on every page) -->
 <header class="site"></header>
 
 <main id="main">
 
-  <!-- ===================================================
-       1. HERO (full screen, styled in Bidii-style.css)
-       =================================================== -->
-  <section class="page-hero" style="background-image: url('../Images/NewsEvent/G Hero.jpg')">
-     <div class="slide-text">
-      <p class="slide-eyebrow">Photo &middot; Video Gallery</p>
-    
-    </div>
+  <section class="page-hero" style="background-image: url('../Images/Heros slideshows/Gallery.jpg')">
+   
   </section>
 
 
-  <!-- ===================================================
-       2. GALLERY
-       Everything below is built from data/gallery.json:
-       one album per event, each with photos and videos.
-       =================================================== -->
   <section class="section" id="gallery" aria-labelledby="gallery-title">
     <div class="container">
 
-      <!-- ===== Browsing: all albums, or everything at once ===== -->
       <div id="browse">
 
         <div class="gallery-top">
@@ -46,14 +33,14 @@
             <p class="eyebrow">From our events</p>
             <h2 id="gallery-title">Albums by event</h2>
           </div>
-          <!-- Albums or everything in one wall -->
+    
           <div class="view-switch" role="group" aria-label="How to show the gallery">
             <button type="button" class="switch-btn" data-view="albums" aria-pressed="true">By event</button>
             <button type="button" class="switch-btn" data-view="all" aria-pressed="false">Everything</button>
           </div>
         </div>
 
-        <!-- Filters (built by the script from the albums) -->
+
         <div class="gallery-filters" id="filters" hidden>
           <div class="filter-row" id="eventFilters" role="group" aria-label="Filter by event"></div>
           <div class="filter-row filter-row-small">
@@ -69,17 +56,17 @@
 
         <p class="result-count" id="resultCount" aria-live="polite"></p>
 
-        <!-- Album cards ("By event") -->
+       
         <ul class="album-grid" id="albumGrid"></ul>
 
-        <!-- All photos and videos ("Everything") -->
+       
         <ul class="wall" id="allWall" hidden></ul>
 
         <p class="gallery-empty" id="galleryEmpty" hidden>Nothing matches these filters yet. Try another event or year.</p>
       </div>
 
 
-      <!-- ===== One album, opened ===== -->
+    
       <div id="albumView" hidden>
         <button type="button" class="back-btn" id="albumBack">&larr; All albums</button>
 
@@ -96,14 +83,6 @@
         <ul class="wall" id="albumWall"></ul>
       </div>
 
-
-      <!-- Shown only if data/gallery.json can't be read -->
-      <div class="gallery-error" id="galleryError" hidden>
-        <p><strong>The gallery could not be loaded.</strong></p>
-        <p id="galleryErrorText">If you are viewing this page from your computer, open it with <strong>Live Server</strong> in VS Code (right-click the file and choose "Open with Live Server").</p>
-        <p>In the meantime, <a href="https://youtube.com/@bidiicreek" target="_blank" rel="noopener">watch our videos on YouTube</a>.</p>
-      </div>
-
       <p class="channel-link" id="channelLink" hidden>
         <a class="btn outline" href="https://youtube.com/@bidiicreek" target="_blank" rel="noopener">More videos on our YouTube channel</a>
       </p>
@@ -114,10 +93,6 @@
 </main>
 
 
-<!-- ===================================================
-     FULL-SCREEN VIEWER
-     Arrows or swipe to move, Esc to close.
-     =================================================== -->
 <dialog class="viewer" id="viewer" aria-label="Photo and video viewer">
   <div class="viewer-top">
     <p class="viewer-count" id="viewerCount"></p>
@@ -132,7 +107,6 @@
   </div>
 </dialog>
 
-<!-- Footer is added by Bidii-script.js (same footer on every page) -->
 
 <script src="../Bidii script.js"></script>
 <script>
